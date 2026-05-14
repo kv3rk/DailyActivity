@@ -1,4 +1,4 @@
-package com.example.demo.common.exception;
+package com.daily.plan.common.exception;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
