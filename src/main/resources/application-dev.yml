@@ -3,6 +3,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/daily_plan_project
     username: ${DB_USER}
     password: ${DB_PASSWORD}
+  data:
+    jdbc:
+      dialect: postgresql
   jpa:
     hibernate:
       ddl-auto: update
