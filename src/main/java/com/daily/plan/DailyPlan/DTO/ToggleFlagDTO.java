@@ -1,4 +1,9 @@
 package com.daily.plan.DailyPlan.DTO;
 
-public record ToggleFlagDTO() {
+import java.util.UUID;
+
+public record ToggleFlagDTO(
+        UUID id,
+        Boolean doneFlag
+) {
 }

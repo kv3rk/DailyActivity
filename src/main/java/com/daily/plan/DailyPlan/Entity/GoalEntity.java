@@ -1,6 +1,7 @@
 package com.daily.plan.DailyPlan.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,13 +15,14 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table()
+@Table(name = "daily_goals")
 public class GoalEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @CreationTimestamp
     private LocalDate goalDate;
+    @NotBlank(message = "Goal cant be blank")
     @Column(unique = true, nullable = false)
     private String goalText;
     @ColumnDefault("false")
