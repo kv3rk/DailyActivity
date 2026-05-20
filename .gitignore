@@ -19,6 +19,25 @@ target/
 *.iml
 *.ipr
 
+# Java build
+*.jar
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+
+# Logs
+*.log
+
+# Docker volumes / data
+pgdata/
+
+# Env files (секреты)
+.env
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
