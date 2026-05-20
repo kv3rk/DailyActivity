@@ -1,25 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Error</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
     <link rel="icon" type="image/x-icon" href="/images/exclamation.png"/>
+
+    <style>
+        body {
+            margin: 0;
+            background: #1f1f1f;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .error-card {
+            background: darkred;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            font-size: 48px;
+        }
+
+        p {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            background: white;
+            color: darkred;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+    </style>
 </head>
-<body class="bg-light">
-<div>
 
-    <!--    Greeting phrase-->
-    <div id="greeting-phrase" class="container py-4
-d-flex justify-content-center align-text-center">
+<body>
 
-        <h1>Error page</h1>
+<div class="error-card">
 
-    </div>
+    <h1>Critical Error</h1>
+
+    <p>
+        The application failed to load.
+    </p>
+
+    <a href="/daily/main">
+        Try again
+    </a>
 
 </div>
+
 </body>
 </html>

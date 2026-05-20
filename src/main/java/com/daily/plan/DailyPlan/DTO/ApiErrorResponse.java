@@ -1,4 +1,11 @@
 package com.daily.plan.DailyPlan.DTO;
 
-public record ApiErrorResponse() {
+import java.util.List;
+
+public record ApiErrorResponse(
+
+        String message,
+        List<String> errors
+
+) {
 }

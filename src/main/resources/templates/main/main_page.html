@@ -15,9 +15,12 @@
     <link rel="icon" type="image/x-icon" href="/images/clock.png"/>
 
     <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/Error.css"/>
 
-    <script defer src="/js/script.js"></script>
-    <script defer src="/js/timer.js"></script>
+    <script defer src="/js/DailyPlan/ErrorHandling.js"></script>
+    <script defer src="/js/DailyPlan/script.js"></script>
+    <script defer src="/js/TimerActivity/timer.js"></script>
+    <script defer src="/js/DailyPlan/refreshingInterface.js"></script>
 
 </head>
 
@@ -248,6 +251,28 @@
 
             Save activity
 
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ERROR MODAL -->
+
+<div id="error-modal-overlay">
+
+    <div id="error-modal">
+
+        <h2 id="error-modal-title">
+            Error
+        </h2>
+
+        <p id="error-modal-message">
+            Something went wrong
+        </p>
+
+        <button id="error-modal-close">
+            Close
         </button>
 
     </div>

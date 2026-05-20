@@ -4,21 +4,27 @@ async function add_goal(event) {
 
     const input_text = document.getElementById("textfield-goals");
 
-    const res = await fetch('/daily/save', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            goalText: input_text.value
-        })
-    });
+    try {
 
-    input_text.value = "";
+        const res = await fetch('/daily/save', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                goalText: input_text.value
+            })
+        });
 
-    const data = await res.json();
+        const data = await handleResponse(res);
 
-    await createActiveListElement(data);
+        input_text.value = "";
+
+        await createActiveListElement(data);
+
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 async function createActiveListElement(data) {
@@ -53,28 +59,32 @@ async function toggleFlag(event) {
     event.preventDefault();
 
     const button = event.target;
-
     const li = button.parentElement;
 
-    const res = await fetch('/daily/toggle', {
+    try {
 
-        method: 'POST',
+        const res = await fetch('/daily/toggle', {
 
-        headers: {
-            'Content-Type': 'application/json',
-        },
+            method: 'POST',
 
-        body: JSON.stringify({
-            id: li.id,
-            doneFlag: true
-        })
-    });
+            headers: {
+                'Content-Type': 'application/json',
+            },
 
-    const data = await res.json();
+            body: JSON.stringify({
+                id: li.id
+            })
+        });
 
-    li.remove();
+        const data = await handleResponse(res);
 
-    await createDoneListElement(data);
+        li.remove();
+
+        await createDoneListElement(data);
+
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 async function createDoneListElement(data) {
