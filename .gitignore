@@ -26,6 +26,8 @@ target/
 .idea/
 .vscode/
 
+.env
+
 # OS
 .DS_Store
 
@@ -34,9 +36,6 @@ target/
 
 # Docker volumes / data
 pgdata/
-
-# Env files (секреты)
-.env
 
 ### NetBeans ###
 /nbproject/private/
@@ -47,6 +46,3 @@ pgdata/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
-
-### VS Code ###
-.vscode/
