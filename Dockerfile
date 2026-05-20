@@ -5,6 +5,7 @@ WORKDIR /app
 
 COPY . .
 
+RUN chmod 755 mvnw
 RUN ./mvnw clean package -DskipTests
 
 # ===== RUNTIME STAGE =====
