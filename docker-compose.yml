@@ -3,24 +3,25 @@ services:
   db:
     image: postgres:16
     container_name: daily-db
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_DB: daily_plan_project
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: java2905
     volumes:
       - pgdata:/var/lib/postgresql/data
-
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d daily_plan_project"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d daily_plan_project"]
       interval: 5s
       timeout: 5s
       retries: 10
 
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: daily-app
-    restart: always
+    restart: unless-stopped
 
     ports:
       - "8080:8080"
@@ -31,9 +32,19 @@ services:
       DB_USER: postgres
       DB_PASSWORD: java2905
 
+      # 👇 добавили дефолтные логины (чтобы не падало)
+      USER_LOGIN: admin
+      USER_PASSWORD: admin
+
     depends_on:
       db:
         condition: service_healthy
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/daily/main"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
 volumes:
   pgdata:

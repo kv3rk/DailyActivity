@@ -4,15 +4,27 @@ spring:
     username: ${DB_USER}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
+    hikari:
+      initialization-fail-timeout: 60000
+      connection-timeout: 30000
 
   jpa:
     hibernate:
       ddl-auto: none
     show-sql: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        connection:
+          provider_disables_autocommit: true
 
 management:
   endpoints:
     web:
       exposure:
         include: health,info,metrics
+
+logging:
+  level:
+    org.hibernate: DEBUG
+    org.springframework.jdbc: DEBUG

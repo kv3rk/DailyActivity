@@ -57,8 +57,8 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
 
-        String username = env.getProperty("USER_LOGIN");
-        String password = env.getProperty("USER_PASSWORD");
+        String username = env.getProperty("USER_LOGIN", "admin");
+        String password = env.getProperty("USER_PASSWORD", "admin");
 
         UserDetails user = User.builder()
                 .username(username)
