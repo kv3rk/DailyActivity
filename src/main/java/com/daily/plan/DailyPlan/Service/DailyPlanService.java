@@ -18,14 +18,10 @@ import java.util.List;
 public class DailyPlanService {
     private final GoalRepository goalRepository;
     private final GoalMapper goalMapper;
-    private final OpenEntityManagerInViewInterceptor openEntityManagerInViewInterceptor;
-    private final PersistenceManagedTypes persistenceManagedTypes;
 
     public DailyPlanService(GoalRepository goalRepository, GoalMapper goalMapper, OpenEntityManagerInViewInterceptor openEntityManagerInViewInterceptor, PersistenceManagedTypes persistenceManagedTypes) {
         this.goalRepository = goalRepository;
         this.goalMapper = goalMapper;
-        this.openEntityManagerInViewInterceptor = openEntityManagerInViewInterceptor;
-        this.persistenceManagedTypes = persistenceManagedTypes;
     }
 
     @Transactional
@@ -34,11 +30,11 @@ public class DailyPlanService {
 
         goalEntity.setGoalText(goalDTO.goalText());
 
-        goalRepository.save(goalEntity);
+        GoalEntity saved = goalRepository.saveAndFlush(goalEntity);
 
         log.info("Saved entity in DB with text [{}]", goalDTO.goalText());
 
-        GoalDTO fullDTO = goalMapper.goalToGoalDTO(goalEntity);
+        GoalDTO fullDTO = goalMapper.goalToGoalDTO(saved);
 
         log.info("Return full DTO in refresh case: [{}], [{}], [{}]",
                 fullDTO.id(), goalDTO.goalText(), fullDTO.doneFlag());
@@ -73,7 +69,7 @@ public class DailyPlanService {
 
         GoalEntity goalEntity = goalRepository.findById(toggleFlagDTO.id()).orElseThrow();
 
-        if (goalEntity.getDoneFlag() == true) {
+        if (Boolean.TRUE.equals(goalEntity.getDoneFlag())) {
             throw new RuntimeException("Goal already done");
         } else {
             goalEntity.setDoneFlag(toggleFlagDTO.doneFlag());

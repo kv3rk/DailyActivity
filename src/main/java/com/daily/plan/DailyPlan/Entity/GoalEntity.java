@@ -22,7 +22,7 @@ public class GoalEntity {
     @CreationTimestamp
     private LocalDate goalDate;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String goalText;
 
     private Boolean doneFlag = false;
