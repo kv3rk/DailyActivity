@@ -3,7 +3,7 @@ services:
   db:
     image: postgres:16
     container_name: daily-db
-    restart: unless-stopped
+    restart: "no"
     environment:
       POSTGRES_DB: daily_plan_project
       POSTGRES_USER: postgres
@@ -21,7 +21,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: daily-app
-    restart: unless-stopped
+    restart: "no"
 
     ports:
       - "8080:8080"
