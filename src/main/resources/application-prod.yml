@@ -29,5 +29,6 @@ management:
 
 logging:
   level:
-    org.hibernate: DEBUG
-    org.springframework.jdbc: DEBUG
+    org.flywaydb: DEBUG
+    org.springframework.boot: DEBUG
+    root: INFO
