@@ -67,11 +67,11 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- LIQUIBASE -->
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-        </dependency>
+        <!-- FLYWAY -->
+<!--        <dependency>-->
+<!--            <groupId>org.flywaydb</groupId>-->
+<!--            <artifactId>flyway-core</artifactId>-->
+<!--        </dependency>-->
 
 
         <!-- LOMBOK -->
