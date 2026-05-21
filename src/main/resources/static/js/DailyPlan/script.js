@@ -72,7 +72,8 @@ async function toggleFlag(event) {
             },
 
             body: JSON.stringify({
-                id: li.id
+                id: li.id,
+                doneFlag: true
             })
         });
 

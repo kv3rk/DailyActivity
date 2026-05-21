@@ -72,7 +72,9 @@ public class DailyPlanService {
         if (Boolean.TRUE.equals(goalEntity.getDoneFlag())) {
             throw new RuntimeException("Goal already done");
         } else {
-            goalEntity.setDoneFlag(toggleFlagDTO.doneFlag());
+            goalEntity.setDoneFlag(
+                    Boolean.TRUE.equals(toggleFlagDTO.doneFlag())
+            );
 
             log.info("Updated goal [{}] with text [{}] to flag [{}]",
                     goalEntity.getId(), goalEntity.getGoalText(), goalEntity.getDoneFlag());
