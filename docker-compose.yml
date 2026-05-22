@@ -31,10 +31,8 @@ services:
       DB_URL: jdbc:postgresql://db:5432/daily_plan_project
       DB_USER: postgres
       DB_PASSWORD: java2905
-
-      # 👇 добавили дефолтные логины (чтобы не падало)
-      USER_LOGIN: admin
-      USER_PASSWORD: admin
+      USER_LOGIN: kv3rk
+      USER_PASSWORD: Java_2905!
 
     depends_on:
       db:

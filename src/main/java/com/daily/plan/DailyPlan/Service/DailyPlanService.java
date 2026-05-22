@@ -22,9 +22,6 @@ import java.util.List;
 @Service
 public class DailyPlanService {
 
-    @Autowired
-    Environment environment;
-
     private final GoalRepository goalRepository;
     private final GoalMapper goalMapper;
 
