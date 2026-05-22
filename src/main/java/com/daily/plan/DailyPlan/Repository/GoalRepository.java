@@ -11,4 +11,9 @@ public interface GoalRepository extends JpaRepository<GoalEntity, UUID> {
     List<GoalEntity> findAllByDoneFlagAndGoalDate(Boolean doneFlag, LocalDate goalDate);
 
     void deleteAllByGoalDateBefore(LocalDate goalDateBefore);
+
+    boolean existsByGoalDateAndGoalText(
+            LocalDate goalDate,
+            String goalText
+    );
 }

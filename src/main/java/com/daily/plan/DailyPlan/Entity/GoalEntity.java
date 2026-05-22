@@ -13,7 +13,14 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "daily_goals")
+@Table(
+        name = "daily_goals",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        columnNames = {"goal_date", "goal_text"}
+                )
+        }
+)
 public class GoalEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

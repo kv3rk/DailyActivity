@@ -4,6 +4,7 @@ import com.daily.plan.DailyPlan.DTO.GoalDTO;
 import com.daily.plan.DailyPlan.DTO.ToggleFlagDTO;
 import com.daily.plan.DailyPlan.Entity.GoalEntity;
 import com.daily.plan.DailyPlan.Repository.GoalRepository;
+import com.daily.plan.common.exception.DuplicateGoalException;
 import com.daily.plan.common.mapper.GoalMapper;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +38,16 @@ public class DailyPlanService {
         GoalEntity goalEntity = new GoalEntity();
 
         goalEntity.setGoalText(goalDTO.goalText());
+
+        boolean exists =
+                goalRepository.existsByGoalDateAndGoalText(
+                        LocalDate.now(),
+                        goalDTO.goalText()
+                );
+
+        if (exists) {
+            throw new DuplicateGoalException("Goal already exists for today");
+        }
 
         GoalEntity saved = goalRepository.save(goalEntity);
 

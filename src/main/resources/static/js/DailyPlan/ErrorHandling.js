@@ -9,6 +9,8 @@ function showErrorModal(message) {
 function hideErrorModal() {
     const overlay = document.getElementById("error-modal-overlay");
     overlay.style.display = "none";
+
+    document.getElementById("textfield-goals").value = "";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
