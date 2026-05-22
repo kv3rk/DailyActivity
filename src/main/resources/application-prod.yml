@@ -13,10 +13,6 @@ spring:
       ddl-auto: update
     show-sql: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-    properties:
-      hibernate:
-        connection:
-          provider_disables_autocommit: true
 
 management:
   endpoints:

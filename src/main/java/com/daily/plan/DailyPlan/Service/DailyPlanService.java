@@ -19,7 +19,7 @@ public class DailyPlanService {
     private final GoalRepository goalRepository;
     private final GoalMapper goalMapper;
 
-    public DailyPlanService(GoalRepository goalRepository, GoalMapper goalMapper, OpenEntityManagerInViewInterceptor openEntityManagerInViewInterceptor, PersistenceManagedTypes persistenceManagedTypes) {
+    public DailyPlanService(GoalRepository goalRepository, GoalMapper goalMapper) {
         this.goalRepository = goalRepository;
         this.goalMapper = goalMapper;
     }
@@ -30,7 +30,7 @@ public class DailyPlanService {
 
         goalEntity.setGoalText(goalDTO.goalText());
 
-        GoalEntity saved = goalRepository.saveAndFlush(goalEntity);
+        GoalEntity saved = goalRepository.save(goalEntity);
 
         log.info("Saved entity in DB with text [{}]", goalDTO.goalText());
 
@@ -78,8 +78,6 @@ public class DailyPlanService {
 
             log.info("Updated goal [{}] with text [{}] to flag [{}]",
                     goalEntity.getId(), goalEntity.getGoalText(), goalEntity.getDoneFlag());
-
-            goalRepository.flush();
 
             log.info("Flushed data in DB after update");
 
