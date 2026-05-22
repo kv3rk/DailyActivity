@@ -31,8 +31,8 @@ services:
       DB_URL: jdbc:postgresql://db:5432/daily_plan_project
       DB_USER: postgres
       DB_PASSWORD: java2905
-      USER_LOGIN: kv3rk
-      USER_PASSWORD: Java_2905!
+      USER_LOGIN: ${USER_LOGIN}
+      USER_PASSWORD: ${USER_PASSWORD}
 
     depends_on:
       db:
