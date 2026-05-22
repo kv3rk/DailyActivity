@@ -7,6 +7,8 @@ import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 @Slf4j
 public class TimerService {
@@ -30,5 +32,11 @@ public class TimerService {
         log.info("Saved TimerEntity with values [{}], [{}], [{}]",
                 timerDTO.activityType(), timerDTO.comment(),
                 timerDTO.time());
+    }
+
+    @Transactional
+    public void deleteAll() {
+
+        timerRepository.deleteAllByActivityDateBefore(LocalDate.now().minusWeeks(2));
     }
 }

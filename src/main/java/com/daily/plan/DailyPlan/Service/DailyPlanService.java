@@ -7,15 +7,23 @@ import com.daily.plan.DailyPlan.Repository.GoalRepository;
 import com.daily.plan.common.mapper.GoalMapper;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.orm.jpa.persistenceunit.PersistenceManagedTypes;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
 @Service
 public class DailyPlanService {
+
+    @Autowired
+    Environment environment;
+
     private final GoalRepository goalRepository;
     private final GoalMapper goalMapper;
 
@@ -43,7 +51,7 @@ public class DailyPlanService {
     }
 
     public List<GoalDTO> getActiveGoals() {
-        List<GoalDTO> goalDTOList = goalRepository.findAllByDoneFlag(false)
+        List<GoalDTO> goalDTOList = goalRepository.findAllByDoneFlagAndGoalDate(false, LocalDate.now())
                 .stream()
                 .map(goalMapper::goalToGoalDTO)
                 .toList();
@@ -54,7 +62,7 @@ public class DailyPlanService {
     }
 
     public List<GoalDTO> getDoneGoals() {
-        List<GoalDTO> goalDTOList = goalRepository.findAllByDoneFlag(true)
+        List<GoalDTO> goalDTOList = goalRepository.findAllByDoneFlagAndGoalDate(true, LocalDate.now())
                 .stream()
                 .map(goalMapper::goalToGoalDTO)
                 .toList();
@@ -92,7 +100,8 @@ public class DailyPlanService {
 
     @Transactional
     public void deleteAll() {
-        goalRepository.deleteAll();
+
+        goalRepository.deleteAllByGoalDateBefore(LocalDate.now().minusWeeks(2));
     }
 }
 
