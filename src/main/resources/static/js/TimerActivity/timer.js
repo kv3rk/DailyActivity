@@ -153,7 +153,7 @@ activitySubmitButton.addEventListener("click", () => {
         body: JSON.stringify({
             activityType: activityType.value,
             comment: activityComment.value,
-            time: Math.ceil(
+            timer: Math.ceil(
                 (Number(minutesInput.value) * 60 - totalSeconds) / 60
             )
         })

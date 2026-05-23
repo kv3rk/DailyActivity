@@ -25,13 +25,13 @@ public class TimerService {
 
         timerEntity.setActivityType(timerDTO.activityType());
         timerEntity.setComment(timerDTO.comment());
-        timerEntity.setTime(timerDTO.time());
+        timerEntity.setTimer(timerDTO.timer());
 
         timerRepository.save(timerEntity);
 
         log.info("Saved TimerEntity with values [{}], [{}], [{}]",
                 timerDTO.activityType(), timerDTO.comment(),
-                timerDTO.time());
+                timerDTO.timer());
     }
 
     @Transactional
