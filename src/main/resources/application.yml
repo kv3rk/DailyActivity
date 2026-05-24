@@ -2,6 +2,10 @@ spring:
   application:
     name: DailyPlan
   profiles:
-    active: dev
+    active: prod
   main:
     banner-mode: off
+telegram:
+  bot:
+    username: ${TELEGRAM_BOT_USERNAME}
+    token: ${TELEGRAM_BOT_TOKEN}

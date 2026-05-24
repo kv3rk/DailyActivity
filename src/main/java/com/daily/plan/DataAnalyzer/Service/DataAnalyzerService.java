@@ -3,10 +3,15 @@ package com.daily.plan.DataAnalyzer.Service;
 import com.daily.plan.DataAnalyzer.DTO.ActivityDTO;
 import com.daily.plan.DataAnalyzer.Repository.DataActivityAnalyzerRepository;
 import com.daily.plan.DataAnalyzer.Repository.DataGoalsAnalyzerRepository;
+import com.daily.plan.TgBot.TelegramBotLogic;
 import com.daily.plan.common.mapper.GoalMapper;
+import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,7 +27,7 @@ public class DataAnalyzerService {
     public final DataActivityAnalyzerRepository activityAnalyzerRepository;
     public final GoalMapper goalMapper;
 
-    public DataAnalyzerService(DataGoalsAnalyzerRepository goalsAnalyzerRepository, DataActivityAnalyzerRepository activityAnalyzerRepository, GoalMapper goalMapper) {
+    public DataAnalyzerService(DataGoalsAnalyzerRepository goalsAnalyzerRepository, DataActivityAnalyzerRepository activityAnalyzerRepository, GoalMapper goalMapper, TelegramBotLogic telegramBotLogic) {
         this.goalsAnalyzerRepository = goalsAnalyzerRepository;
         this.activityAnalyzerRepository = activityAnalyzerRepository;
         this.goalMapper = goalMapper;
@@ -88,6 +93,5 @@ public class DataAnalyzerService {
 
         return count;
     }
-
 
 }
