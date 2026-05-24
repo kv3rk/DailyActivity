@@ -2,7 +2,7 @@ spring:
   application:
     name: DailyPlan
   profiles:
-    active: prod
+    active: dev
   main:
     banner-mode: off
 telegram:
