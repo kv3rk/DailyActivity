@@ -25,7 +25,7 @@ public class PerTimeCollectExecution {
         this.chatId = chatId;
     }
 
-    @Scheduled(cron = "0/15 * * * * *", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 0 11 1/1 * *", zone = "Europe/Moscow")
     public void dailyRollover() {
 
         Long totalGoalAmount = dataAnalyzerService.getAmountTodayGoals().orElse(0L);
