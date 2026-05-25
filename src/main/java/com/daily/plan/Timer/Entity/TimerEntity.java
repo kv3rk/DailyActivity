@@ -27,12 +27,12 @@ import java.util.UUID;
         )
 )
 @NamedNativeQuery(
-        name = "sumOfTimeAllTodayActivities",
+        name = "sumOfTimeAllActivities",
         query = """
                 select activity_type as activityType,
                        sum(timer) as timer
                 from timer_activity
-                where activity_date = :today
+                where activity_date >= :date
                 group by activity_type
                 order by timer desc
                 """,

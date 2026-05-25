@@ -17,16 +17,20 @@ public interface DataActivityAnalyzerRepository
         extends JpaRepository<TimerEntity, UUID> {
 
     @Query(
-            value = "select count(id) from timer_activity where activity_date = :today",
+            value = "select count(id) from timer_activity where activity_date >= :date",
             nativeQuery = true
     )
-    Optional<Long> countAllTodayActivities(@Param("today") LocalDate today);
+    Optional<Long> countAllActivities(
+            @Param("date") LocalDate date
+    );
 
     @Query(
             nativeQuery = true,
-            name = "sumOfTimeAllTodayActivities"
+            name = "sumOfTimeAllActivities"
     )
-    List<ActivityDTO> sumOfTimeAllTodayActivities(
-            @Param("today") LocalDate today
+    List<ActivityDTO> sumOfTimeAllActivities(
+            @Param("date") LocalDate date
     );
+
+
 }

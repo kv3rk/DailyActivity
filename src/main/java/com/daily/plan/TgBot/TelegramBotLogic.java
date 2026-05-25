@@ -2,6 +2,7 @@ package com.daily.plan.TgBot;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -9,6 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Slf4j
 @Component
+@Profile("prod")
 public class TelegramBotLogic extends TelegramLongPollingBot {
 
     private final String username;
