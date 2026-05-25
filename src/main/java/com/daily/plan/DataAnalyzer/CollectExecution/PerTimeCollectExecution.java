@@ -24,23 +24,14 @@ public class PerTimeCollectExecution {
     }
 
     @Scheduled(cron = "0/15 * * * * *", zone = "Europe/Moscow")
-    public Optional<Long> dailyRollover() {
+    public void dailyRollover() {
 
-        log.info("""
-                        Daily rollover done in time [{}] with values:
-                        ALL GOALS [{}]
-                        ACTIVE GOALS [{}]
-                        ACCOMPLISHED GOALS [{}]
-                        AMOUNT OF ACTIVITIES [{}]
-                        AMOUNT ACTIVITIES TIME [{}]
-                        """,
-                LocalDateTime.now(), dataAnalyzerService.getAmountTodayGoals(),
-                dataAnalyzerService.getAmountTodayActiveGoals(),
-                dataAnalyzerService.getAmountTodayDoneGoals(),
-                dataAnalyzerService.getAmountTodayActivities(),
-                dataAnalyzerService.getAmountTimeSpendOnActivitiesToday());
+        Long amount = dataAnalyzerService.getAmountTodayGoals().orElse(0L);
 
-        return dataAnalyzerService.getAmountTodayGoals();
+        telegramBotLogic.sendToChat(
+                "ТВОЙ_CHAT_ID",
+                "Сегодня целей: " + amount
+        );
     }
 
 }
