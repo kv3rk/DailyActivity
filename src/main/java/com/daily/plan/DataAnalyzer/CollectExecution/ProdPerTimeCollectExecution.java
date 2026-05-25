@@ -43,14 +43,14 @@ public class ProdPerTimeCollectExecution implements PerTimeCollectExecution {
 
         StringBuilder string = new StringBuilder();
         string
-                .append("\uD83D\uDFF0\uD83D\uDFF0\uD83D\uDFF0\uD83D\uDFF0\uD83D\uDFF0").append("\n")
-                .append("✨DAILY REPORT✨").append("\n\uD83D\uDFF0\n")
+                .append("\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29").append("\n")
+                .append("✨DAILY REPORT✨").append("\n✅\n")
                 .append("Amount of goals today: ").append(totalGoalAmount).append("\n")
                 .append("Amount of unaccomplished goals today: ").append(activeGoalAmount).append("\n")
-                .append("Amount of accomplished goals today: ").append(doneGoalAmount).append("\n\uD83D\uDFF0\n")
+                .append("Amount of accomplished goals today: ").append(doneGoalAmount).append("\n✅\n")
                 .append("Amount of activities today: ").append(totalActivityAmount).append("\n")
                 .append("Total time spend on activities: ").append(timeSpendOnActivities).append("\n")
-                .append("\uD83D\uDFF0\uD83D\uDFF0\uD83D\uDFF0\uD83D\uDFF0\uD83D\uDFF0");
+                .append("\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29");
 
         telegramBotLogic.sendToChat(
                 chatId,
@@ -70,14 +70,14 @@ public class ProdPerTimeCollectExecution implements PerTimeCollectExecution {
 
         StringBuilder string = new StringBuilder();
         string
-                .append("\uD83D\uDFF0\uD83D\uDFF0\uD83D\uDFF0\uD83D\uDFF0\uD83D\uDFF0").append("\n")
-                .append("\uD83C\uDFC6WEEKLY REPORT\uD83C\uDFC6").append("\n\uD83D\uDFF0\n")
+                .append("\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29").append("\n")
+                .append("\uD83C\uDFC6WEEKLY REPORT\uD83C\uDFC6").append("\n✅\n")
                 .append("Amount of goals weekly: ").append(totalGoalAmount).append("\n")
                 .append("Amount of unaccomplished goals weekly: ").append(activeGoalAmount).append("\n")
-                .append("Amount of accomplished goals weekly: ").append(doneGoalAmount).append("\n\uD83D\uDFF0\n")
+                .append("Amount of accomplished goals weekly: ").append(doneGoalAmount).append("\n✅\n")
                 .append("Amount of activities weekly: ").append(totalActivityAmount).append("\n")
                 .append("Total time spend on activities: ").append(timeSpendOnActivities).append("\n")
-                .append("\uD83D\uDFF0\uD83D\uDFF0\uD83D\uDFF0\uD83D\uDFF0\uD83D\uDFF0");
+                .append("\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29");
 
         telegramBotLogic.sendToChat(
                 chatId,
