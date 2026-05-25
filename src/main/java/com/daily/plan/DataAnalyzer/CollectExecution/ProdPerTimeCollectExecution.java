@@ -39,7 +39,7 @@ public class ProdPerTimeCollectExecution implements PerTimeCollectExecution {
     }
 
     @Override
-    @Scheduled(cron = "0 55 23 1/7 * *", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 55 23 * * 6/6", zone = "Europe/Moscow")
     public void weeklyRollover() {
 
         telegramBotLogic.sendToChat(
