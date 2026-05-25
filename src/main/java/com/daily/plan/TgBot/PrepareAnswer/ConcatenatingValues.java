@@ -32,7 +32,8 @@ public class ConcatenatingValues {
         );
 
         Long totalActivityAmount = dailyDataAnalyzerService.getAmountTodayActivities().orElse(0L);
-        Long timeSpendOnActivities = dailyDataAnalyzerService.getAmountTimeSpendOnActivitiesToday();
+
+        BigDecimal timeSpendOnActivities = dailyDataAnalyzerService.getAmountTimeSpendOnActivitiesToday();
 
         StringBuilder string = new StringBuilder();
         string
@@ -43,7 +44,7 @@ public class ConcatenatingValues {
                 .append("Percentage completion: ").append(percentageCompletion).append("%")
                 .append("\n✅\n")
                 .append("Amount of activities today: ").append(totalActivityAmount).append("\n")
-                .append("Total time spend on activities: ").append(timeSpendOnActivities).append("\n")
+                .append("Total time spend on activities: ").append(timeSpendOnActivities).append(" hours").append("\n")
                 .append("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
 
         log.info("Prepared answer for daily TG mail in size [{}]",
