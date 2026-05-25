@@ -1,4 +1,4 @@
-package com.daily.plan.TgBot;
+package com.daily.plan.TgBot.TgBotLogic;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

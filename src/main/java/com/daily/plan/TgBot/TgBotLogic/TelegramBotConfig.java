@@ -1,4 +1,4 @@
-package com.daily.plan.TgBot;
+package com.daily.plan.TgBot.TgBotLogic;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;

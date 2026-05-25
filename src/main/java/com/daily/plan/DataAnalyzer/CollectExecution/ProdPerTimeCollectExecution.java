@@ -1,8 +1,7 @@
 package com.daily.plan.DataAnalyzer.CollectExecution;
 
-import com.daily.plan.DataAnalyzer.Service.DailyDataAnalyzerService;
-import com.daily.plan.DataAnalyzer.Service.WeeklyDataAnalyzerService;
-import com.daily.plan.TgBot.TelegramBotLogic;
+import com.daily.plan.TgBot.PrepareAnswer.ConcatenatingValues;
+import com.daily.plan.TgBot.TgBotLogic.TelegramBotLogic;
 import com.daily.plan.common.blueprint.PerTimeCollectExecution;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,16 +16,14 @@ import org.springframework.stereotype.Component;
 @Profile("prod")
 public class ProdPerTimeCollectExecution implements PerTimeCollectExecution {
 
-    public final DailyDataAnalyzerService dailyDataAnalyzerService;
-    private final WeeklyDataAnalyzerService weeklyDataAnalyzerService;
+    private final ConcatenatingValues concatenatingValues;
     private final TelegramBotLogic telegramBotLogic;
     private final String chatId;
 
-    public ProdPerTimeCollectExecution(DailyDataAnalyzerService dailyDataAnalyzerService, WeeklyDataAnalyzerService weeklyDataAnalyzerService,
+    public ProdPerTimeCollectExecution(ConcatenatingValues concatenatingValues,
                                        TelegramBotLogic telegramBotLogic,
                                        @Value("${telegram.bot.chat.id}") String chatId) {
-        this.dailyDataAnalyzerService = dailyDataAnalyzerService;
-        this.weeklyDataAnalyzerService = weeklyDataAnalyzerService;
+        this.concatenatingValues = concatenatingValues;
         this.telegramBotLogic = telegramBotLogic;
         this.chatId = chatId;
     }
@@ -35,26 +32,9 @@ public class ProdPerTimeCollectExecution implements PerTimeCollectExecution {
     @Scheduled(cron = "0/15 * * * * * ", zone = "Europe/Moscow")
     public void dailyRollover() {
 
-        Long totalGoalAmount = dailyDataAnalyzerService.getAmountTodayGoals().orElse(0L);
-        Long activeGoalAmount = dailyDataAnalyzerService.getAmountTodayActiveGoals().orElse(0L);
-        Long doneGoalAmount = dailyDataAnalyzerService.getAmountTodayDoneGoals().orElse(0L);
-        Long totalActivityAmount = dailyDataAnalyzerService.getAmountTodayActivities().orElse(0L);
-        Long timeSpendOnActivities = dailyDataAnalyzerService.getAmountTimeSpendOnActivitiesToday();
-
-        StringBuilder string = new StringBuilder();
-        string
-                .append("\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29").append("\n")
-                .append("✨DAILY REPORT✨").append("\n✅\n")
-                .append("Amount of goals today: ").append(totalGoalAmount).append("\n")
-                .append("Amount of unaccomplished goals today: ").append(activeGoalAmount).append("\n")
-                .append("Amount of accomplished goals today: ").append(doneGoalAmount).append("\n✅\n")
-                .append("Amount of activities today: ").append(totalActivityAmount).append("\n")
-                .append("Total time spend on activities: ").append(timeSpendOnActivities).append("\n")
-                .append("\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29");
-
         telegramBotLogic.sendToChat(
                 chatId,
-                String.valueOf(string)
+                concatenatingValues.answerDailyRollover()
         );
     }
 
@@ -62,26 +42,9 @@ public class ProdPerTimeCollectExecution implements PerTimeCollectExecution {
     @Scheduled(cron = "0/30 * * * * * ", zone = "Europe/Moscow")
     public void weeklyRollover() {
 
-        Long totalGoalAmount = weeklyDataAnalyzerService.getAmountWeeklyGoals().orElse(0L);
-        Long activeGoalAmount = weeklyDataAnalyzerService.getAmountWeeklyActiveGoals().orElse(0L);
-        Long doneGoalAmount = weeklyDataAnalyzerService.getAmountWeeklyDoneGoals().orElse(0L);
-        Long totalActivityAmount = weeklyDataAnalyzerService.getAmountWeeklyActivities().orElse(0L);
-        Long timeSpendOnActivities = weeklyDataAnalyzerService.getAmountTimeSpendOnActivitiesWeekly();
-
-        StringBuilder string = new StringBuilder();
-        string
-                .append("\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29").append("\n")
-                .append("\uD83C\uDFC6WEEKLY REPORT\uD83C\uDFC6").append("\n✅\n")
-                .append("Amount of goals weekly: ").append(totalGoalAmount).append("\n")
-                .append("Amount of unaccomplished goals weekly: ").append(activeGoalAmount).append("\n")
-                .append("Amount of accomplished goals weekly: ").append(doneGoalAmount).append("\n✅\n")
-                .append("Amount of activities weekly: ").append(totalActivityAmount).append("\n")
-                .append("Total time spend on activities: ").append(timeSpendOnActivities).append("\n")
-                .append("\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29\uD83E\uDD29");
-
         telegramBotLogic.sendToChat(
                 chatId,
-                String.valueOf(string)
+                concatenatingValues.answerWeeklyRollover()
         );
     }
 

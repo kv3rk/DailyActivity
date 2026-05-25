@@ -91,4 +91,13 @@ public class DailyDataAnalyzerService {
         return count;
     }
 
+    public Long calculatePercentageCompletion(Long active, Long done) {
+
+        Long value = (long) ((double) active / done * 100);
+
+        log.info("Calculated active goals [{}] and done goals [{}] to percentage ratio [{}%]",
+                active, done, value);
+
+        return value;
+    }
 }
