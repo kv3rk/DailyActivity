@@ -34,7 +34,7 @@ public class TelegramBotLogic extends TelegramLongPollingBot {
 
         log.info("Received from chat {}", chatId);
 
-        sendToChat(chatId, "Bot is up-to-date");
+        sendToChat(chatId, chatId);
     }
 
     public void sendToChat(String chatId, String text) {
