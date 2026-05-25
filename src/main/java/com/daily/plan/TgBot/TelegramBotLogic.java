@@ -28,13 +28,7 @@ public class TelegramBotLogic extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        if (!update.hasMessage() || !update.getMessage().hasText()) return;
 
-        String chatId = update.getMessage().getChatId().toString();
-
-        log.info("Received from chat {}", chatId);
-
-        sendToChat(chatId, chatId);
     }
 
     public void sendToChat(String chatId, String text) {
