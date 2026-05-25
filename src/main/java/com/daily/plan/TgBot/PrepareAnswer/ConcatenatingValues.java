@@ -25,7 +25,7 @@ public class ConcatenatingValues {
 
         Long percentageCompletion = dailyDataAnalyzerService.calculatePercentageCompletion(
                 activeGoalAmount,
-                doneGoalAmount
+                totalGoalAmount
         );
 
         Long totalActivityAmount = dailyDataAnalyzerService.getAmountTodayActivities().orElse(0L);
@@ -33,15 +33,15 @@ public class ConcatenatingValues {
 
         StringBuilder string = new StringBuilder();
         string
-                .append("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖").append("\n")
+                .append("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖").append("\n")
                 .append("✨DAILY REPORT✨")
                 .append("\n✅\n")
                 .append("Amount of goals today: ").append(totalGoalAmount).append("\n")
-                .append("Percentage completion: ").append(percentageCompletion).append("\uD83D\uDE36")
+                .append("Percentage completion: ").append(percentageCompletion).append("%")
                 .append("\n✅\n")
                 .append("Amount of activities today: ").append(totalActivityAmount).append("\n")
                 .append("Total time spend on activities: ").append(timeSpendOnActivities).append("\n")
-                .append("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
+                .append("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
 
         log.info("Prepared answer for daily TG mail in size [{}]",
                 string.length());
@@ -57,7 +57,7 @@ public class ConcatenatingValues {
 
         Long percentageCompletion = dailyDataAnalyzerService.calculatePercentageCompletion(
                 activeGoalAmount,
-                doneGoalAmount
+                totalGoalAmount
         );
 
         Long totalActivityAmount = weeklyDataAnalyzerService.getAmountWeeklyActivities().orElse(0L);
@@ -65,15 +65,15 @@ public class ConcatenatingValues {
 
         StringBuilder string = new StringBuilder();
         string
-                .append("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖").append("\n")
+                .append("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖").append("\n")
                 .append("\uD83C\uDFC6WEEKLY REPORT\uD83C\uDFC6")
                 .append("\n✅\n")
                 .append("Amount of goals weekly: ").append(totalGoalAmount).append("\n")
-                .append("Percentage completion: ").append(percentageCompletion).append("\uD83C\uDFC6")
+                .append("Percentage completion: ").append(percentageCompletion).append("%")
                 .append("\n✅\n")
                 .append("Amount of activities weekly: ").append(totalActivityAmount).append("\n")
                 .append("Total time spend on activities: ").append(timeSpendOnActivities).append("\n")
-                .append("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
+                .append("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
 
         log.info("Prepared answer for weekly TG mail in size [{}]",
                 string.length());
