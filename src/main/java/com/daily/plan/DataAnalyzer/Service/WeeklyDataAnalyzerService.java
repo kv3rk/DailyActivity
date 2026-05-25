@@ -8,6 +8,8 @@ import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -68,7 +70,7 @@ public class WeeklyDataAnalyzerService {
     }
 
     @Transactional
-    public Long getAmountTimeSpendOnActivitiesWeekly() {
+    public BigDecimal getAmountTimeSpendOnActivitiesWeekly() {
 
         List<ActivityDTO> list =
                 activityAnalyzerRepository.sumOfTimeAllActivities(
@@ -82,10 +84,13 @@ public class WeeklyDataAnalyzerService {
                 .mapToLong(Long::longValue)
                 .sum();
 
-        log.info("Return amount of time spending on all activities weekly with value [{}] in time [{}]",
+        BigDecimal result = BigDecimal.valueOf(count)
+                .divide(BigDecimal.valueOf(60), 2, RoundingMode.HALF_UP);
+
+        log.info("Return amount of time spending on all activities weekly with value [{}] minutes in time [{}]",
                 count, LocalDateTime.now());
 
-        return count;
+        return result;
     }
 
     @Transactional

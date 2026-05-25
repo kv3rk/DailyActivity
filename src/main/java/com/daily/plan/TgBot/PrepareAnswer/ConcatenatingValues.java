@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+import java.util.Formatter;
+
 @Component
 @Slf4j
 @Profile("prod")
@@ -24,7 +27,7 @@ public class ConcatenatingValues {
         Long doneGoalAmount = dailyDataAnalyzerService.getAmountTodayDoneGoals().orElse(0L);
 
         Long percentageCompletion = dailyDataAnalyzerService.calculatePercentageCompletion(
-                activeGoalAmount,
+                doneGoalAmount,
                 totalGoalAmount
         );
 
@@ -56,12 +59,14 @@ public class ConcatenatingValues {
         Long doneGoalAmount = weeklyDataAnalyzerService.getAmountWeeklyDoneGoals().orElse(0L);
 
         Long percentageCompletion = dailyDataAnalyzerService.calculatePercentageCompletion(
-                activeGoalAmount,
+                doneGoalAmount,
                 totalGoalAmount
         );
 
         Long totalActivityAmount = weeklyDataAnalyzerService.getAmountWeeklyActivities().orElse(0L);
-        Long timeSpendOnActivities = weeklyDataAnalyzerService.getAmountTimeSpendOnActivitiesWeekly();
+
+        BigDecimal timeSpendOnActivities = weeklyDataAnalyzerService.
+                getAmountTimeSpendOnActivitiesWeekly();
 
         StringBuilder string = new StringBuilder();
         string
@@ -72,7 +77,7 @@ public class ConcatenatingValues {
                 .append("Percentage completion: ").append(percentageCompletion).append("%")
                 .append("\n✅\n")
                 .append("Amount of activities weekly: ").append(totalActivityAmount).append("\n")
-                .append("Total time spend on activities: ").append(timeSpendOnActivities).append("\n")
+                .append("Total time spend on activities: ").append(timeSpendOnActivities).append(" hours").append("\n")
                 .append("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
 
         log.info("Prepared answer for weekly TG mail in size [{}]",

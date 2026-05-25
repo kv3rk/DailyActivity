@@ -1,57 +1,57 @@
-[2026-05-22 16-11] [background-preinit] [INFO ] [Version] - [HV000001: Hibernate Validator 8.0.1.Final]
-[2026-05-22 16-11] [restartedMain] [INFO ] [PlanApplication] - [Starting PlanApplication using Java 21.0.10 with PID 65765 (/home/kv3rk/full_projects/DailyPlan/target/classes started by kv3rk in /home/kv3rk/full_projects/DailyPlan)]
-[2026-05-22 16-11] [restartedMain] [INFO ] [PlanApplication] - [The following 1 profile is active: "prod"]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [SpringApplication] - [Loading source class com.daily.plan.PlanApplication]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [ChangeableUrls] - [Matching URLs for reloading : [file:/home/kv3rk/full_projects/DailyPlan/target/classes/]]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [DevToolsSettings] - [Included patterns for restart : []]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [DevToolsSettings] - [Excluded patterns for restart : [/spring-boot-starter-[\w-]+/, /spring-boot/(bin|build|out)/, /spring-boot-starter/(bin|build|out)/, /spring-boot-devtools/(bin|build|out)/, /spring-boot-actuator/(bin|build|out)/, /spring-boot-autoconfigure/(bin|build|out)/]]
-[2026-05-22 16-11] [restartedMain] [INFO ] [DevToolsPropertyDefaultsPostProcessor] - [Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable]
-[2026-05-22 16-11] [restartedMain] [INFO ] [DevToolsPropertyDefaultsPostProcessor] - [For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG']
-[2026-05-22 16-11] [restartedMain] [DEBUG] [AnnotationConfigServletWebServerApplicationContext] - [Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@26ce493a]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [ConfigurationPropertySourcesPropertyResolver$DefaultResolver] - [Found key 'DB_URL' in PropertySource 'systemEnvironment' with value of type String]
-[2026-05-22 16-11] [restartedMain] [INFO ] [RepositoryConfigurationDelegate] - [Bootstrapping Spring Data JPA repositories in DEFAULT mode.]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [AutoConfigurationPackages] - [@EnableAutoConfiguration was declared on a class in the package 'com.daily.plan'. Automatic @Repository and @Entity scanning is enabled.]
-[2026-05-22 16-11] [restartedMain] [INFO ] [RepositoryConfigurationDelegate] - [Finished Spring Data repository scanning in 47 ms. Found 2 JPA repository interfaces.]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [TomcatServletWebServerFactory] - [Code archive: /home/kv3rk/.m2/repository/org/springframework/boot/spring-boot/3.3.2/spring-boot-3.3.2.jar]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [TomcatServletWebServerFactory] - [Code archive: /home/kv3rk/.m2/repository/org/springframework/boot/spring-boot/3.3.2/spring-boot-3.3.2.jar]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [TomcatServletWebServerFactory] - [None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.]
-[2026-05-22 16-11] [restartedMain] [INFO ] [TomcatWebServer] - [Tomcat initialized with port 8080 (http)]
-[2026-05-22 16-11] [restartedMain] [INFO ] [Http11NioProtocol] - [Initializing ProtocolHandler ["http-nio-8080"]]
-[2026-05-22 16-11] [restartedMain] [INFO ] [StandardService] - [Starting service [Tomcat]]
-[2026-05-22 16-11] [restartedMain] [INFO ] [StandardEngine] - [Starting Servlet engine: [Apache Tomcat/10.1.26]]
-[2026-05-22 16-11] [restartedMain] [INFO ] [[/]] - [Initializing Spring embedded WebApplicationContext]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [ServletWebServerApplicationContext] - [Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]]
-[2026-05-22 16-11] [restartedMain] [INFO ] [ServletWebServerApplicationContext] - [Root WebApplicationContext: initialization completed in 2107 ms]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [ConfigurationPropertySourcesPropertyResolver$DefaultResolver] - [Found key 'DB_PASSWORD' in PropertySource 'systemEnvironment' with value of type String]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [ConfigurationPropertySourcesPropertyResolver$DefaultResolver] - [Found key 'DB_URL' in PropertySource 'systemEnvironment' with value of type String]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [ConfigurationPropertySourcesPropertyResolver$DefaultResolver] - [Found key 'DB_USER' in PropertySource 'systemEnvironment' with value of type String]
-[2026-05-22 16-11] [restartedMain] [INFO ] [HikariDataSource] - [HikariPool-1 - Starting...]
-[2026-05-22 16-11] [restartedMain] [INFO ] [HikariPool] - [HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4161b6e3]
-[2026-05-22 16-11] [restartedMain] [INFO ] [HikariDataSource] - [HikariPool-1 - Start completed.]
-[2026-05-22 16-11] [restartedMain] [INFO ] [H2ConsoleAutoConfiguration] - [H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/daily_plan_project']
-[2026-05-22 16-11] [restartedMain] [DEBUG] [ServletContextInitializerBeans] - [Mapping filters: webMvcObservationFilter urls=[/*] order=-2147483647, springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [ServletContextInitializerBeans] - [Mapping servlets: dispatcherServlet urls=[/], h2Console urls=[/h2-console/*]]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [OrderedRequestContextFilter] - [Filter 'requestContextFilter' configured for use]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [OrderedCharacterEncodingFilter] - [Filter 'characterEncodingFilter' configured for use]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [DelegatingFilterProxyRegistrationBean$1] - [Filter 'springSecurityFilterChain' configured for use]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [OrderedFormContentFilter] - [Filter 'formContentFilter' configured for use]
-[2026-05-22 16-11] [restartedMain] [INFO ] [LogHelper] - [HHH000204: Processing PersistenceUnitInfo [name: default]]
-[2026-05-22 16-11] [restartedMain] [INFO ] [Version] - [HHH000412: Hibernate ORM core version 6.5.2.Final]
-[2026-05-22 16-11] [restartedMain] [INFO ] [RegionFactoryInitiator] - [HHH000026: Second-level cache disabled]
-[2026-05-22 16-11] [restartedMain] [INFO ] [SpringPersistenceUnitInfo] - [No LoadTimeWeaver setup: ignoring JPA class transformer]
-[2026-05-22 16-11] [restartedMain] [WARN ] [deprecation] - [HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)]
-[2026-05-22 16-11] [restartedMain] [INFO ] [JtaPlatformInitiator] - [HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)]
-[2026-05-22 16-11] [restartedMain] [INFO ] [LocalContainerEntityManagerFactoryBean] - [Initialized JPA EntityManagerFactory for persistence unit 'default']
-[2026-05-22 16-11] [restartedMain] [WARN ] [JpaBaseConfiguration$JpaWebConfiguration] - [spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [ConfigurationPropertySourcesPropertyResolver$DefaultResolver] - [Found key 'USER_LOGIN' in PropertySource 'systemEnvironment' with value of type String]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [ConfigurationPropertySourcesPropertyResolver$DefaultResolver] - [Found key 'USER_PASSWORD' in PropertySource 'systemEnvironment' with value of type String]
-[2026-05-22 16-11] [restartedMain] [INFO ] [InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer] - [Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService]
-[2026-05-22 16-11] [restartedMain] [INFO ] [EndpointLinksResolver] - [Exposing 3 endpoints beneath base path '/actuator']
-[2026-05-22 16-11] [restartedMain] [DEBUG] [LiveReloadServer] - [Starting live reload server on port 35729]
-[2026-05-22 16-11] [restartedMain] [INFO ] [OptionalLiveReloadServer] - [LiveReload server is running on port 35729]
-[2026-05-22 16-11] [restartedMain] [INFO ] [Http11NioProtocol] - [Starting ProtocolHandler ["http-nio-8080"]]
-[2026-05-22 16-11] [restartedMain] [INFO ] [TomcatWebServer] - [Tomcat started on port 8080 (http) with context path '/']
-[2026-05-22 16-11] [restartedMain] [DEBUG] [ConditionEvaluationReportLogger] - [
+[2026-05-26 01-16] [background-preinit] [INFO ] [Version] - [HV000001: Hibernate Validator 8.0.1.Final]
+[2026-05-26 01-16] [restartedMain] [INFO ] [PlanApplication] - [Starting PlanApplication using Java 21.0.10 with PID 121199 (/home/kv3rk/full_projects/DailyPlan/target/classes started by kv3rk in /home/kv3rk/full_projects/DailyPlan)]
+[2026-05-26 01-16] [restartedMain] [INFO ] [PlanApplication] - [The following 1 profile is active: "prod"]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [SpringApplication] - [Loading source class com.daily.plan.PlanApplication]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [ChangeableUrls] - [Matching URLs for reloading : [file:/home/kv3rk/full_projects/DailyPlan/target/classes/]]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [DevToolsSettings] - [Included patterns for restart : []]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [DevToolsSettings] - [Excluded patterns for restart : [/spring-boot-starter-[\w-]+/, /spring-boot/(bin|build|out)/, /spring-boot-starter/(bin|build|out)/, /spring-boot-devtools/(bin|build|out)/, /spring-boot-actuator/(bin|build|out)/, /spring-boot-autoconfigure/(bin|build|out)/]]
+[2026-05-26 01-16] [restartedMain] [INFO ] [DevToolsPropertyDefaultsPostProcessor] - [Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable]
+[2026-05-26 01-16] [restartedMain] [INFO ] [DevToolsPropertyDefaultsPostProcessor] - [For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG']
+[2026-05-26 01-16] [restartedMain] [DEBUG] [AnnotationConfigServletWebServerApplicationContext] - [Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@224d4a3c]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [ConfigurationPropertySourcesPropertyResolver$DefaultResolver] - [Found key 'DB_URL' in PropertySource 'systemEnvironment' with value of type String]
+[2026-05-26 01-16] [restartedMain] [INFO ] [RepositoryConfigurationDelegate] - [Bootstrapping Spring Data JPA repositories in DEFAULT mode.]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [AutoConfigurationPackages] - [@EnableAutoConfiguration was declared on a class in the package 'com.daily.plan'. Automatic @Repository and @Entity scanning is enabled.]
+[2026-05-26 01-16] [restartedMain] [INFO ] [RepositoryConfigurationDelegate] - [Finished Spring Data repository scanning in 44 ms. Found 4 JPA repository interfaces.]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [TomcatServletWebServerFactory] - [Code archive: /home/kv3rk/.m2/repository/org/springframework/boot/spring-boot/3.3.2/spring-boot-3.3.2.jar]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [TomcatServletWebServerFactory] - [Code archive: /home/kv3rk/.m2/repository/org/springframework/boot/spring-boot/3.3.2/spring-boot-3.3.2.jar]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [TomcatServletWebServerFactory] - [None of the document roots [src/main/webapp, public, static] point to a directory and will be ignored.]
+[2026-05-26 01-16] [restartedMain] [INFO ] [TomcatWebServer] - [Tomcat initialized with port 8080 (http)]
+[2026-05-26 01-16] [restartedMain] [INFO ] [Http11NioProtocol] - [Initializing ProtocolHandler ["http-nio-8080"]]
+[2026-05-26 01-16] [restartedMain] [INFO ] [StandardService] - [Starting service [Tomcat]]
+[2026-05-26 01-16] [restartedMain] [INFO ] [StandardEngine] - [Starting Servlet engine: [Apache Tomcat/10.1.26]]
+[2026-05-26 01-16] [restartedMain] [INFO ] [[/]] - [Initializing Spring embedded WebApplicationContext]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [ServletWebServerApplicationContext] - [Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]]
+[2026-05-26 01-16] [restartedMain] [INFO ] [ServletWebServerApplicationContext] - [Root WebApplicationContext: initialization completed in 1823 ms]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [ConfigurationPropertySourcesPropertyResolver$DefaultResolver] - [Found key 'DB_PASSWORD' in PropertySource 'systemEnvironment' with value of type String]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [ConfigurationPropertySourcesPropertyResolver$DefaultResolver] - [Found key 'DB_URL' in PropertySource 'systemEnvironment' with value of type String]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [ConfigurationPropertySourcesPropertyResolver$DefaultResolver] - [Found key 'DB_USER' in PropertySource 'systemEnvironment' with value of type String]
+[2026-05-26 01-16] [restartedMain] [INFO ] [HikariDataSource] - [HikariPool-1 - Starting...]
+[2026-05-26 01-16] [restartedMain] [INFO ] [HikariPool] - [HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@9be9bad]
+[2026-05-26 01-16] [restartedMain] [INFO ] [HikariDataSource] - [HikariPool-1 - Start completed.]
+[2026-05-26 01-16] [restartedMain] [INFO ] [H2ConsoleAutoConfiguration] - [H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/daily_plan_project']
+[2026-05-26 01-16] [restartedMain] [DEBUG] [ServletContextInitializerBeans] - [Mapping filters: webMvcObservationFilter urls=[/*] order=-2147483647, springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [ServletContextInitializerBeans] - [Mapping servlets: dispatcherServlet urls=[/], h2Console urls=[/h2-console/*]]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [OrderedRequestContextFilter] - [Filter 'requestContextFilter' configured for use]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [OrderedCharacterEncodingFilter] - [Filter 'characterEncodingFilter' configured for use]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [DelegatingFilterProxyRegistrationBean$1] - [Filter 'springSecurityFilterChain' configured for use]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [OrderedFormContentFilter] - [Filter 'formContentFilter' configured for use]
+[2026-05-26 01-16] [restartedMain] [INFO ] [LogHelper] - [HHH000204: Processing PersistenceUnitInfo [name: default]]
+[2026-05-26 01-16] [restartedMain] [INFO ] [Version] - [HHH000412: Hibernate ORM core version 6.5.2.Final]
+[2026-05-26 01-16] [restartedMain] [INFO ] [RegionFactoryInitiator] - [HHH000026: Second-level cache disabled]
+[2026-05-26 01-16] [restartedMain] [INFO ] [SpringPersistenceUnitInfo] - [No LoadTimeWeaver setup: ignoring JPA class transformer]
+[2026-05-26 01-16] [restartedMain] [WARN ] [deprecation] - [HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)]
+[2026-05-26 01-16] [restartedMain] [INFO ] [JtaPlatformInitiator] - [HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)]
+[2026-05-26 01-16] [restartedMain] [INFO ] [LocalContainerEntityManagerFactoryBean] - [Initialized JPA EntityManagerFactory for persistence unit 'default']
+[2026-05-26 01-16] [restartedMain] [INFO ] [QueryEnhancerFactory] - [Hibernate is in classpath; If applicable, HQL parser will be used.]
+[2026-05-26 01-16] [restartedMain] [WARN ] [AnnotationConfigServletWebServerApplicationContext] - [Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'prodPerTimeCollectExecution' defined in file [/home/kv3rk/full_projects/DailyPlan/target/classes/com/daily/plan/DataAnalyzer/CollectExecution/ProdPerTimeCollectExecution.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'telegramBotLogic' defined in file [/home/kv3rk/full_projects/DailyPlan/target/classes/com/daily/plan/TgBot/TgBotLogic/TelegramBotLogic.class]: Unexpected exception during bean creation]
+[2026-05-26 01-16] [restartedMain] [INFO ] [LocalContainerEntityManagerFactoryBean] - [Closing JPA EntityManagerFactory for persistence unit 'default']
+[2026-05-26 01-16] [restartedMain] [INFO ] [HikariDataSource] - [HikariPool-1 - Shutdown initiated...]
+[2026-05-26 01-16] [restartedMain] [INFO ] [HikariDataSource] - [HikariPool-1 - Shutdown completed.]
+[2026-05-26 01-16] [restartedMain] [INFO ] [StandardService] - [Stopping service [Tomcat]]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [Restarter] - [Creating new Restarter for thread Thread[#1,main,5,main]]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [Restarter] - [Immediately restarting application]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [Restarter] - [Starting application com.daily.plan.PlanApplication with URLs [file:/home/kv3rk/full_projects/DailyPlan/target/classes/]]
+[2026-05-26 01-16] [restartedMain] [DEBUG] [ConditionEvaluationReportLogger] - [
 
 
 ============================
@@ -1401,7 +1401,7 @@ Negative matches:
 
    HealthEndpointWebExtensionConfiguration.JerseyAdditionalHealthEndpointPathsConfiguration:
       Did not match:
-         - @ConditionalOnClass did not find required class 'org.glassfish.jersey.server.ResourceConfig' (OnClassCondition)
+         - @ConditionalOnMissingClass found unwanted class 'org.springframework.web.servlet.DispatcherServlet' (OnClassCondition)
 
    HeapDumpWebEndpointAutoConfiguration:
       Did not match:
@@ -1515,7 +1515,7 @@ Negative matches:
 
    JerseySameManagementContextConfiguration:
       Did not match:
-         - @ConditionalOnClass did not find required class 'org.glassfish.jersey.server.ResourceConfig' (OnClassCondition)
+         - @ConditionalOnMissingClass found unwanted class 'org.springframework.web.servlet.DispatcherServlet' (OnClassCondition)
 
    JerseyServerMetricsAutoConfiguration:
       Did not match:
@@ -1523,7 +1523,10 @@ Negative matches:
 
    JerseyWebEndpointManagementContextConfiguration:
       Did not match:
-         - @ConditionalOnClass did not find required class 'org.glassfish.jersey.server.ResourceConfig' (OnClassCondition)
+         - @ConditionalOnMissingBean (types: org.springframework.web.servlet.DispatcherServlet; SearchStrategy: all) found beans of type 'org.springframework.web.servlet.DispatcherServlet' dispatcherServlet (OnBeanCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'org.glassfish.jersey.server.ResourceConfig' (OnClassCondition)
+         - found 'session' scope (OnWebApplicationCondition)
 
    JettyMetricsAutoConfiguration:
       Did not match:
@@ -2017,7 +2020,7 @@ Negative matches:
 
    SecurityRequestMatchersManagementContextConfiguration.JerseyRequestMatcherConfiguration:
       Did not match:
-         - @ConditionalOnClass did not find required class 'org.glassfish.jersey.server.ResourceConfig' (OnClassCondition)
+         - @ConditionalOnMissingClass found unwanted class 'org.springframework.web.servlet.DispatcherServlet' (OnClassCondition)
 
    SendGridAutoConfiguration:
       Did not match:
@@ -2025,7 +2028,7 @@ Negative matches:
 
    ServletEndpointManagementContextConfiguration.JerseyServletEndpointManagementContextConfiguration:
       Did not match:
-         - @ConditionalOnClass did not find required class 'org.glassfish.jersey.server.ResourceConfig' (OnClassCondition)
+         - @ConditionalOnMissingClass found unwanted class 'org.springframework.web.servlet.DispatcherServlet' (OnClassCondition)
 
    ServletManagementContextAutoConfiguration.ApplicationContextFilterConfiguration:
       Did not match:
@@ -2384,90 +2387,69 @@ Unconditional classes:
 
 
 ]
-[2026-05-22 16-11] [restartedMain] [INFO ] [PlanApplication] - [Started PlanApplication in 6.165 seconds (process running for 6.553)]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [ApplicationAvailabilityBean] - [Application availability state LivenessState changed to CORRECT]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [Restarter] - [Creating new Restarter for thread Thread[#1,main,5,main]]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [Restarter] - [Immediately restarting application]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [Restarter] - [Starting application com.daily.plan.PlanApplication with URLs [file:/home/kv3rk/full_projects/DailyPlan/target/classes/]]
-[2026-05-22 16-11] [restartedMain] [DEBUG] [ApplicationAvailabilityBean] - [Application availability state ReadinessState changed to ACCEPTING_TRAFFIC]
-[2026-05-22 16-11] [http-nio-8080-exec-1] [INFO ] [[/]] - [Initializing Spring DispatcherServlet 'dispatcherServlet']
-[2026-05-22 16-11] [http-nio-8080-exec-1] [INFO ] [DispatcherServlet] - [Initializing Servlet 'dispatcherServlet']
-[2026-05-22 16-11] [http-nio-8080-exec-1] [INFO ] [DispatcherServlet] - [Completed initialization in 2 ms]
-[2026-05-22 16-11] [http-nio-8080-exec-4] [INFO ] [DailyPlanController] - [Entered endpoint [daily/main]]
-[2026-05-22 16-11] [http-nio-8080-exec-4] [DEBUG] [SQL] - [select ge1_0.id,ge1_0.done_flag,ge1_0.goal_date,ge1_0.goal_text from daily_goals ge1_0 where ge1_0.done_flag=? and ge1_0.goal_date=?]
-[2026-05-22 16-11] [http-nio-8080-exec-4] [TRACE] [bind] - [binding parameter (1:BOOLEAN) <- [false]]
-[2026-05-22 16-11] [http-nio-8080-exec-4] [TRACE] [bind] - [binding parameter (2:DATE) <- [2026-05-22]]
-[2026-05-22 16-11] [http-nio-8080-exec-4] [INFO ] [DailyPlanService] - [Return list of ACTIVE goals in size [0]]
-[2026-05-22 16-11] [http-nio-8080-exec-4] [DEBUG] [SQL] - [select ge1_0.id,ge1_0.done_flag,ge1_0.goal_date,ge1_0.goal_text from daily_goals ge1_0 where ge1_0.done_flag=? and ge1_0.goal_date=?]
-[2026-05-22 16-11] [http-nio-8080-exec-4] [TRACE] [bind] - [binding parameter (1:BOOLEAN) <- [true]]
-[2026-05-22 16-11] [http-nio-8080-exec-4] [TRACE] [bind] - [binding parameter (2:DATE) <- [2026-05-22]]
-[2026-05-22 16-11] [http-nio-8080-exec-4] [INFO ] [DailyPlanService] - [Return list of ACCOMPLISHED goals in size [3]]
-[2026-05-22 16-12] [http-nio-8080-exec-8] [DEBUG] [SQL] - [select ge1_0.id,ge1_0.done_flag,ge1_0.goal_date,ge1_0.goal_text from daily_goals ge1_0 where ge1_0.done_flag=? and ge1_0.goal_date=?]
-[2026-05-22 16-12] [http-nio-8080-exec-8] [TRACE] [bind] - [binding parameter (1:BOOLEAN) <- [false]]
-[2026-05-22 16-12] [http-nio-8080-exec-8] [TRACE] [bind] - [binding parameter (2:DATE) <- [2026-05-22]]
-[2026-05-22 16-12] [http-nio-8080-exec-8] [INFO ] [DailyPlanService] - [Return list of ACTIVE goals in size [0]]
-[2026-05-22 16-12] [http-nio-8080-exec-7] [DEBUG] [SQL] - [select ge1_0.id,ge1_0.done_flag,ge1_0.goal_date,ge1_0.goal_text from daily_goals ge1_0 where ge1_0.done_flag=? and ge1_0.goal_date=?]
-[2026-05-22 16-12] [http-nio-8080-exec-7] [TRACE] [bind] - [binding parameter (1:BOOLEAN) <- [true]]
-[2026-05-22 16-12] [http-nio-8080-exec-7] [TRACE] [bind] - [binding parameter (2:DATE) <- [2026-05-22]]
-[2026-05-22 16-12] [http-nio-8080-exec-7] [INFO ] [DailyPlanService] - [Return list of ACCOMPLISHED goals in size [3]]
-[2026-05-22 16-13] [http-nio-8080-exec-6] [DEBUG] [SQL] - [select ge1_0.id,ge1_0.done_flag,ge1_0.goal_date,ge1_0.goal_text from daily_goals ge1_0 where ge1_0.done_flag=? and ge1_0.goal_date=?]
-[2026-05-22 16-13] [http-nio-8080-exec-6] [TRACE] [bind] - [binding parameter (1:BOOLEAN) <- [false]]
-[2026-05-22 16-13] [http-nio-8080-exec-6] [TRACE] [bind] - [binding parameter (2:DATE) <- [2026-05-22]]
-[2026-05-22 16-13] [http-nio-8080-exec-6] [INFO ] [DailyPlanService] - [Return list of ACTIVE goals in size [0]]
-[2026-05-22 16-13] [http-nio-8080-exec-9] [DEBUG] [SQL] - [select ge1_0.id,ge1_0.done_flag,ge1_0.goal_date,ge1_0.goal_text from daily_goals ge1_0 where ge1_0.done_flag=? and ge1_0.goal_date=?]
-[2026-05-22 16-13] [http-nio-8080-exec-9] [TRACE] [bind] - [binding parameter (1:BOOLEAN) <- [true]]
-[2026-05-22 16-13] [http-nio-8080-exec-9] [TRACE] [bind] - [binding parameter (2:DATE) <- [2026-05-22]]
-[2026-05-22 16-13] [http-nio-8080-exec-9] [INFO ] [DailyPlanService] - [Return list of ACCOMPLISHED goals in size [3]]
-[2026-05-22 16-14] [http-nio-8080-exec-2] [DEBUG] [SQL] - [select ge1_0.id,ge1_0.done_flag,ge1_0.goal_date,ge1_0.goal_text from daily_goals ge1_0 where ge1_0.done_flag=? and ge1_0.goal_date=?]
-[2026-05-22 16-14] [http-nio-8080-exec-2] [TRACE] [bind] - [binding parameter (1:BOOLEAN) <- [false]]
-[2026-05-22 16-14] [http-nio-8080-exec-2] [TRACE] [bind] - [binding parameter (2:DATE) <- [2026-05-22]]
-[2026-05-22 16-14] [http-nio-8080-exec-2] [INFO ] [DailyPlanService] - [Return list of ACTIVE goals in size [0]]
-[2026-05-22 16-14] [http-nio-8080-exec-3] [DEBUG] [SQL] - [select ge1_0.id,ge1_0.done_flag,ge1_0.goal_date,ge1_0.goal_text from daily_goals ge1_0 where ge1_0.done_flag=? and ge1_0.goal_date=?]
-[2026-05-22 16-14] [http-nio-8080-exec-3] [TRACE] [bind] - [binding parameter (1:BOOLEAN) <- [true]]
-[2026-05-22 16-14] [http-nio-8080-exec-3] [TRACE] [bind] - [binding parameter (2:DATE) <- [2026-05-22]]
-[2026-05-22 16-14] [http-nio-8080-exec-3] [INFO ] [DailyPlanService] - [Return list of ACCOMPLISHED goals in size [3]]
-[2026-05-22 16-15] [http-nio-8080-exec-1] [DEBUG] [SQL] - [select ge1_0.id,ge1_0.done_flag,ge1_0.goal_date,ge1_0.goal_text from daily_goals ge1_0 where ge1_0.done_flag=? and ge1_0.goal_date=?]
-[2026-05-22 16-15] [http-nio-8080-exec-1] [TRACE] [bind] - [binding parameter (1:BOOLEAN) <- [false]]
-[2026-05-22 16-15] [http-nio-8080-exec-1] [TRACE] [bind] - [binding parameter (2:DATE) <- [2026-05-22]]
-[2026-05-22 16-15] [http-nio-8080-exec-1] [INFO ] [DailyPlanService] - [Return list of ACTIVE goals in size [0]]
-[2026-05-22 16-15] [http-nio-8080-exec-4] [DEBUG] [SQL] - [select ge1_0.id,ge1_0.done_flag,ge1_0.goal_date,ge1_0.goal_text from daily_goals ge1_0 where ge1_0.done_flag=? and ge1_0.goal_date=?]
-[2026-05-22 16-15] [http-nio-8080-exec-4] [TRACE] [bind] - [binding parameter (1:BOOLEAN) <- [true]]
-[2026-05-22 16-15] [http-nio-8080-exec-4] [TRACE] [bind] - [binding parameter (2:DATE) <- [2026-05-22]]
-[2026-05-22 16-15] [http-nio-8080-exec-4] [INFO ] [DailyPlanService] - [Return list of ACCOMPLISHED goals in size [3]]
-[2026-05-22 16-16] [http-nio-8080-exec-5] [DEBUG] [SQL] - [select ge1_0.id,ge1_0.done_flag,ge1_0.goal_date,ge1_0.goal_text from daily_goals ge1_0 where ge1_0.done_flag=? and ge1_0.goal_date=?]
-[2026-05-22 16-16] [http-nio-8080-exec-5] [TRACE] [bind] - [binding parameter (1:BOOLEAN) <- [false]]
-[2026-05-22 16-16] [http-nio-8080-exec-5] [TRACE] [bind] - [binding parameter (2:DATE) <- [2026-05-22]]
-[2026-05-22 16-16] [http-nio-8080-exec-5] [INFO ] [DailyPlanService] - [Return list of ACTIVE goals in size [0]]
-[2026-05-22 16-16] [http-nio-8080-exec-8] [DEBUG] [SQL] - [select ge1_0.id,ge1_0.done_flag,ge1_0.goal_date,ge1_0.goal_text from daily_goals ge1_0 where ge1_0.done_flag=? and ge1_0.goal_date=?]
-[2026-05-22 16-16] [http-nio-8080-exec-8] [TRACE] [bind] - [binding parameter (1:BOOLEAN) <- [true]]
-[2026-05-22 16-16] [http-nio-8080-exec-8] [TRACE] [bind] - [binding parameter (2:DATE) <- [2026-05-22]]
-[2026-05-22 16-16] [http-nio-8080-exec-8] [INFO ] [DailyPlanService] - [Return list of ACCOMPLISHED goals in size [3]]
-[2026-05-22 16-17] [http-nio-8080-exec-7] [DEBUG] [SQL] - [select ge1_0.id,ge1_0.done_flag,ge1_0.goal_date,ge1_0.goal_text from daily_goals ge1_0 where ge1_0.done_flag=? and ge1_0.goal_date=?]
-[2026-05-22 16-17] [http-nio-8080-exec-7] [TRACE] [bind] - [binding parameter (1:BOOLEAN) <- [false]]
-[2026-05-22 16-17] [http-nio-8080-exec-7] [TRACE] [bind] - [binding parameter (2:DATE) <- [2026-05-22]]
-[2026-05-22 16-17] [http-nio-8080-exec-7] [INFO ] [DailyPlanService] - [Return list of ACTIVE goals in size [0]]
-[2026-05-22 16-17] [http-nio-8080-exec-6] [DEBUG] [SQL] - [select ge1_0.id,ge1_0.done_flag,ge1_0.goal_date,ge1_0.goal_text from daily_goals ge1_0 where ge1_0.done_flag=? and ge1_0.goal_date=?]
-[2026-05-22 16-17] [http-nio-8080-exec-6] [TRACE] [bind] - [binding parameter (1:BOOLEAN) <- [true]]
-[2026-05-22 16-17] [http-nio-8080-exec-6] [TRACE] [bind] - [binding parameter (2:DATE) <- [2026-05-22]]
-[2026-05-22 16-17] [http-nio-8080-exec-6] [INFO ] [DailyPlanService] - [Return list of ACCOMPLISHED goals in size [3]]
-[2026-05-22 16-19] [http-nio-8080-exec-10] [DEBUG] [SQL] - [select ge1_0.id,ge1_0.done_flag,ge1_0.goal_date,ge1_0.goal_text from daily_goals ge1_0 where ge1_0.done_flag=? and ge1_0.goal_date=?]
-[2026-05-22 16-19] [http-nio-8080-exec-10] [TRACE] [bind] - [binding parameter (1:BOOLEAN) <- [false]]
-[2026-05-22 16-19] [http-nio-8080-exec-10] [TRACE] [bind] - [binding parameter (2:DATE) <- [2026-05-22]]
-[2026-05-22 16-19] [http-nio-8080-exec-10] [INFO ] [DailyPlanService] - [Return list of ACTIVE goals in size [0]]
-[2026-05-22 16-19] [http-nio-8080-exec-2] [DEBUG] [SQL] - [select ge1_0.id,ge1_0.done_flag,ge1_0.goal_date,ge1_0.goal_text from daily_goals ge1_0 where ge1_0.done_flag=? and ge1_0.goal_date=?]
-[2026-05-22 16-19] [http-nio-8080-exec-2] [TRACE] [bind] - [binding parameter (1:BOOLEAN) <- [true]]
-[2026-05-22 16-19] [http-nio-8080-exec-2] [TRACE] [bind] - [binding parameter (2:DATE) <- [2026-05-22]]
-[2026-05-22 16-19] [http-nio-8080-exec-2] [INFO ] [DailyPlanService] - [Return list of ACCOMPLISHED goals in size [3]]
-[2026-05-22 16-19] [http-nio-8080-exec-3] [INFO ] [TimerController] - [Entered endpoint ["daily/save/timer/activity"]]
-[2026-05-22 16-19] [http-nio-8080-exec-3] [INFO ] [TimerService] - [Saved TimerEntity with values [backend], [        ], [8]]
-[2026-05-22 16-19] [http-nio-8080-exec-3] [DEBUG] [SQL] - [insert into timer_activity (activity_date,activity_type,comment,time,id) values (?,?,?,?,?)]
-[2026-05-22 16-19] [http-nio-8080-exec-3] [TRACE] [bind] - [binding parameter (1:DATE) <- [2026-05-22]]
-[2026-05-22 16-19] [http-nio-8080-exec-3] [TRACE] [bind] - [binding parameter (2:VARCHAR) <- [backend]]
-[2026-05-22 16-19] [http-nio-8080-exec-3] [TRACE] [bind] - [binding parameter (3:VARCHAR) <- [        ]]
-[2026-05-22 16-19] [http-nio-8080-exec-3] [TRACE] [bind] - [binding parameter (4:TINYINT) <- [8]]
-[2026-05-22 16-19] [http-nio-8080-exec-3] [TRACE] [bind] - [binding parameter (5:UUID) <- [3b4c1aee-c604-40a0-9a58-092a5f5c8a84]]
-[2026-05-22 16-19] [SpringApplicationShutdownHook] [DEBUG] [ApplicationAvailabilityBean] - [Application availability state ReadinessState changed from ACCEPTING_TRAFFIC to REFUSING_TRAFFIC]
-[2026-05-22 16-19] [SpringApplicationShutdownHook] [DEBUG] [AnnotationConfigServletWebServerApplicationContext] - [Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@26ce493a, started on Fri May 22 16:11:03 MSK 2026]
-[2026-05-22 16-19] [SpringApplicationShutdownHook] [INFO ] [LocalContainerEntityManagerFactoryBean] - [Closing JPA EntityManagerFactory for persistence unit 'default']
-[2026-05-22 16-19] [SpringApplicationShutdownHook] [INFO ] [HikariDataSource] - [HikariPool-1 - Shutdown initiated...]
-[2026-05-22 16-19] [SpringApplicationShutdownHook] [INFO ] [HikariDataSource] - [HikariPool-1 - Shutdown completed.]
+[2026-05-26 01-16] [restartedMain] [ERROR] [SpringApplication] - [Application run failed]
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'prodPerTimeCollectExecution' defined in file [/home/kv3rk/full_projects/DailyPlan/target/classes/com/daily/plan/DataAnalyzer/CollectExecution/ProdPerTimeCollectExecution.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'telegramBotLogic' defined in file [/home/kv3rk/full_projects/DailyPlan/target/classes/com/daily/plan/TgBot/TgBotLogic/TelegramBotLogic.class]: Unexpected exception during bean creation
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1375)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1212)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:971)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.daily.plan.PlanApplication.main(PlanApplication.java:10)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'telegramBotLogic' defined in file [/home/kv3rk/full_projects/DailyPlan/target/classes/com/daily/plan/TgBot/TgBotLogic/TelegramBotLogic.class]: Unexpected exception during bean creation
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:535)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
+	... 22 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'TELEGRAM_BOT_USERNAME' in value "${TELEGRAM_BOT_USERNAME}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
+	at org.springframework.core.env.AbstractPropertyResolver.resolveNestedPlaceholders(AbstractPropertyResolver.java:230)
+	at org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertyResolver.getProperty(ConfigurationPropertySourcesPropertyResolver.java:80)
+	at org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertyResolver.getProperty(ConfigurationPropertySourcesPropertyResolver.java:61)
+	at org.springframework.core.env.AbstractEnvironment.getProperty(AbstractEnvironment.java:552)
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer$1.getProperty(PropertySourcesPlaceholderConfigurer.java:153)
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer$1.getProperty(PropertySourcesPlaceholderConfigurer.java:149)
+	at org.springframework.core.env.PropertySourcesPropertyResolver.getProperty(PropertySourcesPropertyResolver.java:85)
+	at org.springframework.core.env.PropertySourcesPropertyResolver.getPropertyAsRawString(PropertySourcesPropertyResolver.java:74)
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:153)
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:200)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:964)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1374)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1375)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1212)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	... 31 common frames omitted
