@@ -1,5 +1,6 @@
 package com.daily.plan.DataAnalyzer.Service;
 
+import com.daily.plan.DataAnalyzer.DTO.ActivityBigDecimalDTO;
 import com.daily.plan.DataAnalyzer.DTO.ActivityDTO;
 import com.daily.plan.DataAnalyzer.Repository.DataActivityAnalyzerRepository;
 import com.daily.plan.DataAnalyzer.Repository.DataGoalsAnalyzerRepository;
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -91,6 +93,37 @@ public class WeeklyDataAnalyzerService {
                 count, LocalDateTime.now());
 
         return result;
+    }
+
+    @Transactional
+    public List<ActivityBigDecimalDTO> getInfoOfAllWeeklyActivities() {
+
+        List<ActivityDTO> list =
+                activityAnalyzerRepository.sumOfTimeAllActivities(
+                        LocalDate.now()
+                                .minusWeeks(1)
+                );
+
+        List<ActivityBigDecimalDTO> resultList = new ArrayList<>();
+
+        list.forEach(
+                dto -> {
+
+                    resultList.addLast(
+                            new ActivityBigDecimalDTO(
+                                    dto.getActivityType(),
+                                    BigDecimal.valueOf(dto.getTimer())
+                                            .divide(BigDecimal.valueOf(60), 2, RoundingMode.HALF_UP)
+                            )
+                    );
+                }
+        );
+
+        log.info("Return list of weekly activities in size [{}] in time [{}]",
+                list.size(), LocalDateTime.now());
+
+        return resultList;
+
     }
 
     @Transactional

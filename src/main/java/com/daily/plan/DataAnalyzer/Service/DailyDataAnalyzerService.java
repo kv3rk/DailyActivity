@@ -1,5 +1,6 @@
 package com.daily.plan.DataAnalyzer.Service;
 
+import com.daily.plan.DataAnalyzer.DTO.ActivityBigDecimalDTO;
 import com.daily.plan.DataAnalyzer.DTO.ActivityDTO;
 import com.daily.plan.DataAnalyzer.Repository.DataActivityAnalyzerRepository;
 import com.daily.plan.DataAnalyzer.Repository.DataGoalsAnalyzerRepository;
@@ -12,9 +13,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -94,6 +93,36 @@ public class DailyDataAnalyzerService {
                 count, LocalDateTime.now());
 
         return count;
+    }
+
+    @Transactional
+    public List<ActivityBigDecimalDTO> getInfoOfAllTodayActivities() {
+
+        List<ActivityDTO> list =
+                activityAnalyzerRepository.sumOfTimeAllActivities(
+                        LocalDate.now()
+                );
+
+        List<ActivityBigDecimalDTO> resultList = new ArrayList<>();
+
+        list.forEach(
+                dto -> {
+
+                    resultList.addLast(
+                            new ActivityBigDecimalDTO(
+                                    dto.getActivityType(),
+                                    BigDecimal.valueOf(dto.getTimer())
+                                            .divide(BigDecimal.valueOf(60), 2, RoundingMode.HALF_UP)
+                            )
+                    );
+                }
+        );
+
+        log.info("Return list of daily activities in size [{}] in time [{}]",
+                list.size(), LocalDateTime.now());
+
+        return resultList;
+
     }
 
     public Long calculatePercentageCompletion(Long active, Long total) {

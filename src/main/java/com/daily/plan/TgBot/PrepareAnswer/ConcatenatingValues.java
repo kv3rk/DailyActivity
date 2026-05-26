@@ -1,5 +1,6 @@
 package com.daily.plan.TgBot.PrepareAnswer;
 
+import com.daily.plan.DataAnalyzer.DTO.ActivityBigDecimalDTO;
 import com.daily.plan.DataAnalyzer.Service.DailyDataAnalyzerService;
 import com.daily.plan.DataAnalyzer.Service.WeeklyDataAnalyzerService;
 import lombok.extern.slf4j.Slf4j;
@@ -7,11 +8,11 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.Formatter;
+import java.util.List;
 
 @Component
 @Slf4j
-@Profile("prod")
+@Profile({"dev", "prod"})
 public class ConcatenatingValues {
     public final DailyDataAnalyzerService dailyDataAnalyzerService;
     private final WeeklyDataAnalyzerService weeklyDataAnalyzerService;
@@ -33,6 +34,21 @@ public class ConcatenatingValues {
 
         Long totalActivityAmount = dailyDataAnalyzerService.getAmountTodayActivities().orElse(0L);
 
+        List<ActivityBigDecimalDTO> listOfAllActivities = dailyDataAnalyzerService.getInfoOfAllTodayActivities();
+
+        StringBuilder listActivitiesString = new StringBuilder();
+
+        listOfAllActivities.forEach(
+                (dto) -> {
+
+                    listActivitiesString.append(dto.getActivityType())
+                            .append(": ")
+                            .append(dto.getTimer())
+                            .append(" hours\n");
+
+                }
+        );
+
         BigDecimal timeSpendOnActivities = dailyDataAnalyzerService.getAmountTimeSpendOnActivitiesToday();
 
         StringBuilder string = new StringBuilder();
@@ -44,6 +60,7 @@ public class ConcatenatingValues {
                 .append("Percentage completion: ").append(percentageCompletion).append("%")
                 .append("\n✅\n")
                 .append("Amount of activities today: ").append(totalActivityAmount).append("\n")
+                .append(listActivitiesString)
                 .append("Total time spend on activities: ").append(timeSpendOnActivities).append(" hours").append("\n")
                 .append("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
 
@@ -66,6 +83,22 @@ public class ConcatenatingValues {
 
         Long totalActivityAmount = weeklyDataAnalyzerService.getAmountWeeklyActivities().orElse(0L);
 
+
+        List<ActivityBigDecimalDTO> listOfAllActivities = weeklyDataAnalyzerService.getInfoOfAllWeeklyActivities();
+
+        StringBuilder listActivitiesString = new StringBuilder();
+
+        listOfAllActivities.forEach(
+                (dto) -> {
+
+                    listActivitiesString.append(dto.getActivityType())
+                            .append(": ")
+                            .append(dto.getTimer())
+                            .append(" hours\n");
+
+                }
+        );
+
         BigDecimal timeSpendOnActivities = weeklyDataAnalyzerService.
                 getAmountTimeSpendOnActivitiesWeekly();
 
@@ -78,6 +111,7 @@ public class ConcatenatingValues {
                 .append("Percentage completion: ").append(percentageCompletion).append("%")
                 .append("\n✅\n")
                 .append("Amount of activities weekly: ").append(totalActivityAmount).append("\n")
+                .append(listActivitiesString)
                 .append("Total time spend on activities: ").append(timeSpendOnActivities).append(" hours").append("\n")
                 .append("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
 
