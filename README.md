@@ -25,3 +25,10 @@
 ## API Documentation
 
 Swagger
+
+## Running project
+
+
+## URL
+
+http://194.33.35.224:8080/daily/main
