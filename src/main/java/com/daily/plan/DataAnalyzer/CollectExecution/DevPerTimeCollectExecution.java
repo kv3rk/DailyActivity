@@ -1,5 +1,6 @@
 package com.daily.plan.DataAnalyzer.CollectExecution;
 
+import com.daily.plan.StatsStorage.Service.StatsService;
 import com.daily.plan.TgBot.PrepareAnswer.ConcatenatingValues;
 import com.daily.plan.common.blueprint.PerTimeCollectExecution;
 import lombok.extern.slf4j.Slf4j;
@@ -15,10 +16,12 @@ import org.springframework.stereotype.Component;
 public class DevPerTimeCollectExecution implements PerTimeCollectExecution {
 
     private final ConcatenatingValues concatenatingValues;
+    private final StatsService statsService;
 
-    public DevPerTimeCollectExecution(ConcatenatingValues concatenatingValues) {
+    public DevPerTimeCollectExecution(ConcatenatingValues concatenatingValues, StatsService statsService) {
 
         this.concatenatingValues = concatenatingValues;
+        this.statsService = statsService;
     }
 
 
@@ -28,7 +31,7 @@ public class DevPerTimeCollectExecution implements PerTimeCollectExecution {
 
         log.info(
                 "\n {}",
-                concatenatingValues.answerDailyRollover()
+                concatenatingValues.answerDailyRollover(statsService.saveDaily())
         );
     }
 
@@ -38,7 +41,7 @@ public class DevPerTimeCollectExecution implements PerTimeCollectExecution {
 
         log.info(
                 "\n {}",
-                concatenatingValues.answerWeeklyRollover()
+                concatenatingValues.answerWeeklyRollover(statsService.saveWeekly())
         );
 
     }

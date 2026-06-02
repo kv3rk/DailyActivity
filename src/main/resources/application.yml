@@ -2,9 +2,11 @@ spring:
   application:
     name: DailyPlan
   profiles:
-    active: dev
+    active: prod
   main:
     banner-mode: off
+  flyway:
+    baseline-on-migrate: true
 telegram:
   bot:
     username: ${TELEGRAM_BOT_USERNAME}

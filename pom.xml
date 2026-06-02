@@ -68,10 +68,15 @@
         </dependency>
 
         <!-- FLYWAY -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.flywaydb</groupId>-->
-        <!--            <artifactId>flyway-core</artifactId>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-database-postgresql</artifactId>
+        </dependency>
 
 
         <!-- LOMBOK -->
@@ -123,7 +128,7 @@
             <version>2.6.0</version>
         </dependency>
 
-        <!--        Telegram main API-->
+        <!--        Telegram API-->
         <dependency>
             <groupId>org.telegram</groupId>
             <artifactId>telegrambots-spring-boot-starter</artifactId>
@@ -148,13 +153,13 @@
     <build>
         <plugins>
 
-            <!-- 🔥 ОБЯЗАТЕЛЬНЫЙ ПЛАГИН ДЛЯ SPRING BOOT -->
+            <!-- ОБЯЗАТЕЛЬНЫЙ ПЛАГИН ДЛЯ SPRING BOOT -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-            <!-- 🔧 КОМПИЛЯЦИЯ + LOMBOK + MAPSTRUCT -->
+            <!-- КОМПИЛЯЦИЯ + LOMBOK + MAPSTRUCT -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

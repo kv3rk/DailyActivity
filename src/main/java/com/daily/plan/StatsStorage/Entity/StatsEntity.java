@@ -1,0 +1,40 @@
+package com.daily.plan.StatsStorage.Entity;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.math.BigDecimal;
+import java.util.UUID;
+
+@Getter @Setter
+@NoArgsConstructor
+@Entity
+@Table(name = "stats_storage")
+public class StatsEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @Column(nullable = false)
+    private String term;
+
+    private Long amountGoals;
+
+    private Long percentageCompletion;
+
+    private Long amountActivities;
+
+    @Column(precision = 10, scale = 2)
+    private BigDecimal backend = BigDecimal.ZERO;
+
+    @Column(precision = 10, scale = 2)
+    private BigDecimal games = BigDecimal.ZERO;
+
+    @Column(precision = 10, scale = 2)
+    private BigDecimal english = BigDecimal.ZERO;
+
+    @Column(precision = 10, scale = 2)
+    private BigDecimal timeActivities;
+}

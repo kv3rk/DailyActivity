@@ -1,5 +1,6 @@
 package com.daily.plan.DataAnalyzer.CollectExecution;
 
+import com.daily.plan.StatsStorage.Service.StatsService;
 import com.daily.plan.TgBot.PrepareAnswer.ConcatenatingValues;
 import com.daily.plan.TgBot.TgBotLogic.TelegramBotLogic;
 import com.daily.plan.common.blueprint.PerTimeCollectExecution;
@@ -19,13 +20,15 @@ public class ProdPerTimeCollectExecution implements PerTimeCollectExecution {
     private final ConcatenatingValues concatenatingValues;
     private final TelegramBotLogic telegramBotLogic;
     private final String chatId;
+    private final StatsService statsService;
 
     public ProdPerTimeCollectExecution(ConcatenatingValues concatenatingValues,
                                        TelegramBotLogic telegramBotLogic,
-                                       @Value("${telegram.bot.chat.id}") String chatId) {
+                                       @Value("${telegram.bot.chat.id}") String chatId, StatsService statsService) {
         this.concatenatingValues = concatenatingValues;
         this.telegramBotLogic = telegramBotLogic;
         this.chatId = chatId;
+        this.statsService = statsService;
     }
 
     @Override
@@ -34,17 +37,17 @@ public class ProdPerTimeCollectExecution implements PerTimeCollectExecution {
 
         telegramBotLogic.sendToChat(
                 chatId,
-                concatenatingValues.answerDailyRollover()
+                concatenatingValues.answerDailyRollover(statsService.saveDaily())
         );
     }
 
     @Override
-    @Scheduled(cron = "0 55 23 * * 6/6", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 55 23 * * 7/7", zone = "Europe/Moscow")
     public void weeklyRollover() {
 
         telegramBotLogic.sendToChat(
                 chatId,
-                concatenatingValues.answerWeeklyRollover()
+                concatenatingValues.answerWeeklyRollover(statsService.saveWeekly())
         );
     }
 

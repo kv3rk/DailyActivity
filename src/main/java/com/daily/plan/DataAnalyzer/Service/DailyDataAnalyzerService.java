@@ -13,7 +13,10 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -125,12 +128,12 @@ public class DailyDataAnalyzerService {
 
     }
 
-    public Long calculatePercentageCompletion(Long active, Long total) {
+    public Long calculatePercentageCompletion(Long done, Long total) {
 
-        Long value = (long) ((double) active / total * 100);
+        Long value = (long) ((double) done / total * 100);
 
-        log.info("Calculated active goals [{}] and total goals [{}] to percentage ratio [{}%]",
-                active, total, value);
+        log.info("Calculated done goals [{}] and total goals [{}] to percentage ratio [{}%]",
+                done, total, value);
 
         return value;
     }

@@ -138,4 +138,14 @@ public class WeeklyDataAnalyzerService {
         return count;
     }
 
+    public Long calculatePercentageCompletion(Long done, Long total) {
+
+        Long value = (long) ((double) done / total * 100);
+
+        log.info("Calculated done goals [{}] and total goals [{}] to percentage ratio [{}%]",
+                done, total, value);
+
+        return value;
+    }
+
 }
