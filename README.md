@@ -1,10 +1,8 @@
 ## DailyActivity
 
-Веб-приложение для учета ежедневных задач и активностей с автоматическим сбором
-статистики и интеграцией с Telegram.
+Web application for tracking daily tasks and activities with automatic statistics collection and Telegram integration.
 
-Проект разработан для личного использования и позволяет отслеживать выполнение целей,
-фиксировать активности через таймер и получать автоматические отчеты о прогрессе
+The project is developed for personal use and allows tracking goal completion, recording activities via a timer, and receiving automated progress reports.
 
 ## Tech Stack
 
@@ -25,9 +23,19 @@
 ## API Documentation
 
 Swagger
+http://194.33.35.224:8080/swagger-ui/index.html
 
 ## Running project
-
+1. Clone repository
+2. Create .env file
+   USER_LOGIN=your_login
+   USER_PASSWORD=your_password
+   TELEGRAM_BOT_USERNAME=your_bot_username
+   TELEGRAM_BOT_TOKEN=your_bot_token
+   TELEGRAM_BOT_CHAT_ID=your_chat_id
+3. Start application
+   docker compose up --build
+4. Open URL
 
 ## URL
 
