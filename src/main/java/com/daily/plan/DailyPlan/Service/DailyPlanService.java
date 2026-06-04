@@ -8,14 +8,9 @@ import com.daily.plan.common.exception.DuplicateGoalException;
 import com.daily.plan.common.mapper.GoalMapper;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
-import org.springframework.orm.jpa.persistenceunit.PersistenceManagedTypes;
-import org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j

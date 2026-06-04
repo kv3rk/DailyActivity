@@ -1,6 +1,5 @@
 package com.daily.plan.DailyPlan.Entity;
 
-import com.daily.plan.DataAnalyzer.DTO.ActivityDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
