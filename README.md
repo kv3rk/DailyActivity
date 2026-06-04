@@ -19,6 +19,14 @@ The project is developed for personal use and allows tracking goal completion, r
 
 ## Screenshots
 
+<p align="center">
+  <img src="src/main/resources/static/images/readme-images/login-page.png" width="450">
+  <img src="src/main/resources/static/images/readme-images/main-page.png" width="450">
+  <img src="src/main/resources/static/images/readme-images/error-notification.png" width="450">
+  <img src="src/main/resources/static/images/readme-images/error-page.png" width="450">
+  <img src="src/main/resources/static/images/readme-images/Telegram-report.png" width="450">
+   
+</p>
 
 ## API Documentation
 
@@ -27,15 +35,20 @@ http://194.33.35.224:8080/swagger-ui/index.html
 
 ## Running project
 1. Clone repository
-2. Create .env file
-   USER_LOGIN=your_login
-   USER_PASSWORD=your_password
-   TELEGRAM_BOT_USERNAME=your_bot_username
-   TELEGRAM_BOT_TOKEN=your_bot_token
-   TELEGRAM_BOT_CHAT_ID=your_chat_id
-3. Start application
+   
+3. Create .env file
+   
+   * USER_LOGIN=your_login
+   * USER_PASSWORD=your_password
+   * TELEGRAM_BOT_USERNAME=your_bot_username
+   * TELEGRAM_BOT_TOKEN=your_bot_token
+   * TELEGRAM_BOT_CHAT_ID=your_chat_id
+   
+4. Start application
+   
    docker compose up --build
-4. Open URL
+
+5. Open URL
 
 ## URL
 
