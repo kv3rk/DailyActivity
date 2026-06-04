@@ -4,8 +4,10 @@ import com.daily.plan.StatsStorage.DTO.StatsDTO;
 import com.daily.plan.StatsStorage.Entity.StatsEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+@Profile("disabled")
 @Component
 @Mapper(componentModel = "spring")
 public interface StatsMapper {

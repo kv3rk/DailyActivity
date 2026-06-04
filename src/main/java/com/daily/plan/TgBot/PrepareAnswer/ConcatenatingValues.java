@@ -5,36 +5,21 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Component
 @Slf4j
 @Profile({"dev", "prod"})
 public class ConcatenatingValues {
 
-    public String listActivitiesString(Double backend, Double games, Double english) {
-
-        List<Double> result = new ArrayList<>(
-                List.of(
-                        backend,
-                        games,
-                        english
-                )
-        ).stream().filter(x -> x > 0).sorted(Collections.reverseOrder()).toList();
+    public String listActivitiesString(Map<String, Double> result) {
 
         StringBuilder string = new StringBuilder();
 
         result.forEach(
-                x -> {
-                    if (Objects.equals(x, backend)) {
-                        string.append("backend: ").append(x).append(" hours\n");
-                    } else if (Objects.equals(x, games)) {
-                        string.append("games: ").append(x).append(" hours\n");
-                    } else if (Objects.equals(x, english)) {
-                        string.append("english: ").append(x).append(" hours\n");
+                (x, y) -> {
+                    if (y > 0) {
+                        string.append(x).append(": ").append(y).append(" hours");
                     }
                 }
         );
@@ -54,11 +39,7 @@ public class ConcatenatingValues {
                 .append("Percentage completion: ").append(statsDTO.percentageCompletion()).append("%")
                 .append("\n✅\n")
                 .append("Amount of activities today: ").append(statsDTO.amountActivities()).append("\n")
-                .append(listActivitiesString(
-                        statsDTO.backend().doubleValue(),
-                        statsDTO.games().doubleValue(),
-                        statsDTO.english().doubleValue()
-                ))
+                .append(listActivitiesString(statsDTO.activitiesList()))
                 .append("Total time spend on activities: ").append(statsDTO.timeActivities()).append(" hours").append("\n")
                 .append("➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
 
@@ -79,11 +60,7 @@ public class ConcatenatingValues {
                 .append("Percentage completion: ").append(statsDTO.percentageCompletion()).append("%")
                 .append("\n✅\n")
                 .append("Amount of activities weekly: ").append(statsDTO.amountActivities()).append("\n")
-                .append(listActivitiesString(
-                        statsDTO.backend().doubleValue(),
-                        statsDTO.games().doubleValue(),
-                        statsDTO.english().doubleValue()
-                ))
+                .append(listActivitiesString(statsDTO.activitiesList()))
                 .append("Total time spend on activities: ").append(statsDTO.timeActivities()).append(" hours").append("\n")
                 .append("➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
 

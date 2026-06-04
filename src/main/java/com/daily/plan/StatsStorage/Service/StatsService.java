@@ -11,6 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.*;
+
 @Slf4j
 @Service
 @Profile({"dev", "prod"})
@@ -18,15 +21,13 @@ public class StatsService {
     private final StatsRepository statsRepository;
     private final DailyDataAnalyzerService dailyDataAnalyzerService;
     private final WeeklyDataAnalyzerService weeklyDataAnalyzerService;
-    private final StatsMapper statsMapper;
 
     public StatsService(StatsRepository statsRepository,
                         DailyDataAnalyzerService dailyDataAnalyzerService,
-                        WeeklyDataAnalyzerService weeklyDataAnalyzerService, StatsMapper statsMapper) {
+                        WeeklyDataAnalyzerService weeklyDataAnalyzerService) {
         this.statsRepository = statsRepository;
         this.dailyDataAnalyzerService = dailyDataAnalyzerService;
         this.weeklyDataAnalyzerService = weeklyDataAnalyzerService;
-        this.statsMapper = statsMapper;
     }
 
     @Transactional
@@ -74,14 +75,28 @@ public class StatsService {
         statsEntity.setTimeActivities(
                 dailyDataAnalyzerService.getAmountTimeSpendOnActivitiesToday()
         );
-
-        log.info("Saved stats of daily activity");
-
         statsRepository.save(
                 statsEntity
         );
 
-        return statsMapper.statsToStatsDTO(statsEntity);
+        log.info("Saved stats of daily activity");
+
+        StatsDTO statsDTO = new StatsDTO(
+                statsEntity.getTerm(),
+                statsEntity.getAmountGoals(),
+                statsEntity.getPercentageCompletion(),
+                statsEntity.getAmountActivities(),
+                new TreeMap<>(
+                        Map.of(
+                                "backend", statsEntity.getBackend().doubleValue(),
+                                "games", statsEntity.getGames().doubleValue(),
+                                "english", statsEntity.getEnglish().doubleValue()
+                        )
+                ),
+                statsEntity.getTimeActivities()
+        );
+
+        return statsDTO;
     }
 
     @Transactional
@@ -130,14 +145,28 @@ public class StatsService {
                 weeklyDataAnalyzerService.getAmountTimeSpendOnActivitiesWeekly()
         );
 
-        log.info("Saved stats of weekly activity");
-
         statsRepository.save(
                 statsEntity
         );
 
+        log.info("Saved stats of weekly activity");
 
-        return statsMapper.statsToStatsDTO(statsEntity);
+        StatsDTO statsDTO = new StatsDTO(
+                statsEntity.getTerm(),
+                statsEntity.getAmountGoals(),
+                statsEntity.getPercentageCompletion(),
+                statsEntity.getAmountActivities(),
+                new TreeMap<>(
+                        Map.of(
+                                "backend", statsEntity.getBackend().doubleValue(),
+                                "games", statsEntity.getGames().doubleValue(),
+                                "english", statsEntity.getEnglish().doubleValue()
+                        )
+                ),
+                statsEntity.getTimeActivities()
+        );
+
+        return statsDTO;
     }
 
 }

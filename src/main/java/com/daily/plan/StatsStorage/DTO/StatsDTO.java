@@ -1,15 +1,14 @@
 package com.daily.plan.StatsStorage.DTO;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 public record StatsDTO(
         String term,
         Long amountGoals,
         Long percentageCompletion,
         Long amountActivities,
-        BigDecimal backend,
-        BigDecimal games,
-        BigDecimal english,
+        Map<String, Double> activitiesList,
         BigDecimal timeActivities
 ) {
 }
