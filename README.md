@@ -20,11 +20,11 @@ The project is developed for personal use and allows tracking goal completion, r
 ## Screenshots
 
 <p align="center">
-  <img src="src/main/resources/static/images/readme-images/login-page.png" width="700">
-  <img src="src/main/resources/static/images/readme-images/main-page.png" width="700">
-  <img src="src/main/resources/static/images/readme-images/error-notification.png" width="700">
-  <img src="src/main/resources/static/images/readme-images/error-page.png" width="700">
-  <img src="src/main/resources/static/images/readme-images/Telegram-report.png" width="700">
+  <img src="src/main/resources/static/images/readme-images/login-page.png" width="450">
+  <img src="src/main/resources/static/images/readme-images/main-page.png" width="450">
+  <img src="src/main/resources/static/images/readme-images/error-notification.png" width="450">
+  <img src="src/main/resources/static/images/readme-images/error-page.png" width="450">
+  <img src="src/main/resources/static/images/readme-images/Telegram-report.png" width="450">
    
 </p>
 
