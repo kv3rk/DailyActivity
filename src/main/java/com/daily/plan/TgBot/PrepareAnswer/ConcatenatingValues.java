@@ -19,7 +19,8 @@ public class ConcatenatingValues {
         result.forEach(
                 (x, y) -> {
                     if (y > 0) {
-                        string.append(x).append(": ").append(y).append(" hours");
+                        string.append(x).append(": ").append(y)
+                                .append(" hours\n");
                     }
                 }
         );
@@ -41,7 +42,11 @@ public class ConcatenatingValues {
                 .append("Amount of activities today: ").append(statsDTO.amountActivities()).append("\n")
                 .append(listActivitiesString(statsDTO.activitiesList()))
                 .append("Total time spend on activities: ").append(statsDTO.timeActivities()).append(" hours").append("\n")
-                .append("➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
+                .append("➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
+                .append("0\uFE0F⃣").append("1\uFE0F⃣").append("\uD83D\uDD06")
+                .append("▶\uFE0F").append("\uD83D\uDD34").append("\uD83D\uDFE9")
+                .append("\uD83D\uDD39").append("➡\uFE0F").append("❌").append("⚔\uFE0F")
+                .append("9\uFE0F⃣  2\uFE0F⃣  3\uFE0F⃣  4\uFE0F⃣  5\uFE0F⃣  6\uFE0F⃣  7\uFE0F⃣  8\uFE0F⃣");
 
         log.info("Prepared answer for daily TG mail in size [{}]",
                 string.length());
