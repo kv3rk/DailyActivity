@@ -5,13 +5,11 @@ import com.daily.plan.DataAnalyzer.Service.WeeklyDataAnalyzerService;
 import com.daily.plan.StatsStorage.DTO.StatsDTO;
 import com.daily.plan.StatsStorage.Entity.StatsEntity;
 import com.daily.plan.StatsStorage.Repository.StatsRepository;
-import com.daily.plan.common.mapper.StatsMapper;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.*;
 
 @Slf4j
