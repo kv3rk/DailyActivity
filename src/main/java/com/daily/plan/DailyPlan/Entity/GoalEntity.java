@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.UUID;
 
 @Getter
@@ -26,8 +26,10 @@ public class GoalEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @CreationTimestamp
-    private LocalDate goalDate;
+    @Column(nullable = false)
+    private LocalDate goalDate = LocalDate.now(
+            ZoneId.of("Europe/Moscow")
+    );
 
     @Column(nullable = false)
     private String goalText;

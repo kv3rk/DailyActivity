@@ -1,4 +1,4 @@
-package com.daily.plan.DataAnalyzer.CollectExecution;
+package com.daily.plan.DataAnalyzer.CollectedInformationOutputSchedule;
 
 import com.daily.plan.StatsStorage.Service.StatsService;
 import com.daily.plan.TgBot.PrepareAnswer.ConcatenatingValues;
@@ -13,12 +13,12 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @EnableScheduling
 @Profile("dev")
-public class DevPerTimeCollectExecution implements PerTimeCollectExecution {
+public class DevOutputSchedule implements PerTimeCollectExecution {
 
     private final ConcatenatingValues concatenatingValues;
     private final StatsService statsService;
 
-    public DevPerTimeCollectExecution(ConcatenatingValues concatenatingValues, StatsService statsService) {
+    public DevOutputSchedule(ConcatenatingValues concatenatingValues, StatsService statsService) {
 
         this.concatenatingValues = concatenatingValues;
         this.statsService = statsService;

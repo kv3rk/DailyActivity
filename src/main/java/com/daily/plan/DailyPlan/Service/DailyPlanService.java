@@ -6,6 +6,7 @@ import com.daily.plan.DailyPlan.Entity.GoalEntity;
 import com.daily.plan.DailyPlan.Repository.GoalRepository;
 import com.daily.plan.common.exception.DuplicateGoalException;
 import com.daily.plan.common.mapper.GoalMapper;
+import com.daily.plan.common.unit.CurrentDateTime;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,10 +20,12 @@ public class DailyPlanService {
 
     private final GoalRepository goalRepository;
     private final GoalMapper goalMapper;
+    private final CurrentDateTime currentDateTime;
 
-    public DailyPlanService(GoalRepository goalRepository, GoalMapper goalMapper) {
+    public DailyPlanService(GoalRepository goalRepository, GoalMapper goalMapper, CurrentDateTime currentDateTime) {
         this.goalRepository = goalRepository;
         this.goalMapper = goalMapper;
+        this.currentDateTime = currentDateTime;
     }
 
     @Transactional
@@ -33,7 +36,7 @@ public class DailyPlanService {
 
         boolean exists =
                 goalRepository.existsByGoalDateAndGoalText(
-                        LocalDate.now(),
+                        currentDateTime.getCurrentDate(),
                         goalDTO.goalText()
                 );
 
@@ -54,7 +57,9 @@ public class DailyPlanService {
     }
 
     public List<GoalDTO> getActiveGoals() {
-        List<GoalDTO> goalDTOList = goalRepository.findAllByDoneFlagAndGoalDate(false, LocalDate.now())
+        List<GoalDTO> goalDTOList = goalRepository.findAllByDoneFlagAndGoalDate(
+                        false, currentDateTime.getCurrentDate()
+                )
                 .stream()
                 .map(goalMapper::goalToGoalDTO)
                 .toList();
@@ -65,7 +70,9 @@ public class DailyPlanService {
     }
 
     public List<GoalDTO> getDoneGoals() {
-        List<GoalDTO> goalDTOList = goalRepository.findAllByDoneFlagAndGoalDate(true, LocalDate.now())
+        List<GoalDTO> goalDTOList = goalRepository.findAllByDoneFlagAndGoalDate(
+                        true, currentDateTime.getCurrentDate()
+                )
                 .stream()
                 .map(goalMapper::goalToGoalDTO)
                 .toList();
@@ -90,8 +97,6 @@ public class DailyPlanService {
             log.info("Updated goal [{}] with text [{}] to flag [{}]",
                     goalEntity.getId(), goalEntity.getGoalText(), goalEntity.getDoneFlag());
 
-            log.info("Flushed data in DB after update");
-
             GoalDTO fullGoalDTO = goalMapper.goalToGoalDTO(goalEntity);
 
             log.info("Return full DTO [{}] with text [{}], flag [{}]",
@@ -104,7 +109,9 @@ public class DailyPlanService {
     @Transactional
     public void deleteAll() {
 
-        goalRepository.deleteAllByGoalDateBefore(LocalDate.now().minusWeeks(2));
+        goalRepository.deleteAllByGoalDateBefore(
+                currentDateTime.getCurrentDate().minusWeeks(2)
+        );
     }
 }
 

@@ -23,7 +23,7 @@ public class TimerController {
     @ResponseBody
     public void saveTimerActivity(@RequestBody TimerDTO timerDTO) {
 
-        log.info("Entered endpoint [\"daily/save/timer/activity\"]");
+        log.info("Entered endpoint [daily/save/timer/activity]");
 
         timerService.saveTimerActivity(timerDTO);
     }

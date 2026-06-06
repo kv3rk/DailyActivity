@@ -5,9 +5,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.UUID;
 
 @Getter
@@ -42,8 +42,11 @@ public class TimerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @CreationTimestamp
-    private LocalDate activityDate;
+
+    @Column(nullable = false)
+    private LocalDate activityDate = LocalDate.now(
+            ZoneId.of("Europe/Moscow")
+    );
     private String activityType;
     private String comment;
     private Long timer;

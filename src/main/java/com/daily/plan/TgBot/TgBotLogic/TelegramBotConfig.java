@@ -19,11 +19,16 @@ public class TelegramBotConfig {
     @PostConstruct
     public void registerBot() {
         try {
+
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
             botsApi.registerBot(telegramBotLogic);
+
             log.info("TELEGRAM BOT REGISTERED");
+
         } catch (Exception e) {
+
             log.error("BOT REGISTRATION FAILED", e);
+
         }
     }
 }

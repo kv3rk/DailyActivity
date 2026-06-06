@@ -1,4 +1,4 @@
-package com.daily.plan.DataAnalyzer.CollectExecution;
+package com.daily.plan.DataAnalyzer.CollectedInformationOutputSchedule;
 
 import com.daily.plan.StatsStorage.Service.StatsService;
 import com.daily.plan.TgBot.PrepareAnswer.ConcatenatingValues;
@@ -15,16 +15,16 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @EnableScheduling
 @Profile("prod")
-public class ProdPerTimeCollectExecution implements PerTimeCollectExecution {
+public class ProdOutputSchedule implements PerTimeCollectExecution {
 
     private final ConcatenatingValues concatenatingValues;
     private final TelegramBotLogic telegramBotLogic;
     private final String chatId;
     private final StatsService statsService;
 
-    public ProdPerTimeCollectExecution(ConcatenatingValues concatenatingValues,
-                                       TelegramBotLogic telegramBotLogic,
-                                       @Value("${telegram.bot.chat.id}") String chatId, StatsService statsService) {
+    public ProdOutputSchedule(ConcatenatingValues concatenatingValues,
+                              TelegramBotLogic telegramBotLogic,
+                              @Value("${telegram.bot.chat.id}") String chatId, StatsService statsService) {
         this.concatenatingValues = concatenatingValues;
         this.telegramBotLogic = telegramBotLogic;
         this.chatId = chatId;
@@ -42,7 +42,7 @@ public class ProdPerTimeCollectExecution implements PerTimeCollectExecution {
     }
 
     @Override
-    @Scheduled(cron = "0 55 23 * * 7/7", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 55 23 * * SUN", zone = "Europe/Moscow")
     public void weeklyRollover() {
 
         telegramBotLogic.sendToChat(

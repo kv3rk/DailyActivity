@@ -3,19 +3,20 @@ package com.daily.plan.Timer.Service;
 import com.daily.plan.Timer.DTO.TimerDTO;
 import com.daily.plan.Timer.Entity.TimerEntity;
 import com.daily.plan.Timer.Repository.TimerRepository;
+import com.daily.plan.common.unit.CurrentDateTime;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 
 @Service
 @Slf4j
 public class TimerService {
     private final TimerRepository timerRepository;
+    private final CurrentDateTime currentDateTime;
 
-    public TimerService(TimerRepository timerRepository) {
+    public TimerService(TimerRepository timerRepository, CurrentDateTime currentDateTime) {
         this.timerRepository = timerRepository;
+        this.currentDateTime = currentDateTime;
     }
 
     @Transactional
@@ -37,6 +38,6 @@ public class TimerService {
     @Transactional
     public void deleteAll() {
 
-        timerRepository.deleteAllByActivityDateBefore(LocalDate.now().minusWeeks(2));
+        timerRepository.deleteAllByActivityDateBefore(currentDateTime.getCurrentDate().minusWeeks(2));
     }
 }

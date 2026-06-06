@@ -4,15 +4,13 @@ import com.daily.plan.DataAnalyzer.DTO.ActivityBigDecimalDTO;
 import com.daily.plan.DataAnalyzer.DTO.ActivityDTO;
 import com.daily.plan.DataAnalyzer.Repository.DataActivityAnalyzerRepository;
 import com.daily.plan.DataAnalyzer.Repository.DataGoalsAnalyzerRepository;
-import com.daily.plan.common.mapper.GoalMapper;
+import com.daily.plan.common.unit.CurrentDateTime;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -24,42 +22,42 @@ public class DailyDataAnalyzerService {
 
     public final DataGoalsAnalyzerRepository goalsAnalyzerRepository;
     public final DataActivityAnalyzerRepository activityAnalyzerRepository;
-    public final GoalMapper goalMapper;
+    private final CurrentDateTime currentDateTime;
 
     public DailyDataAnalyzerService(DataGoalsAnalyzerRepository goalsAnalyzerRepository,
                                     DataActivityAnalyzerRepository activityAnalyzerRepository,
-                                    GoalMapper goalMapper) {
+                                    CurrentDateTime currentDateTime) {
         this.goalsAnalyzerRepository = goalsAnalyzerRepository;
         this.activityAnalyzerRepository = activityAnalyzerRepository;
-        this.goalMapper = goalMapper;
+        this.currentDateTime = currentDateTime;
     }
 
     @Transactional
     public Optional<Long> getAmountTodayGoals() {
-        Optional<Long> count = goalsAnalyzerRepository.countAllGoals(LocalDate.now());
+        Optional<Long> count = goalsAnalyzerRepository.countAllGoals(currentDateTime.getCurrentDate());
 
         log.info("Return amount of all daily goals in size [{}] in time [{}]",
-                count, LocalDateTime.now());
+                count, currentDateTime.getFormattedTime());
 
         return count;
     }
 
     @Transactional
     public Optional<Long> getAmountTodayActiveGoals() {
-        Optional<Long> count = goalsAnalyzerRepository.countAllStatusGoals(LocalDate.now(), false);
+        Optional<Long> count = goalsAnalyzerRepository.countAllStatusGoals(currentDateTime.getCurrentDate(), false);
 
         log.info("Return amount of all daily ACTIVE goals in size [{}] in time [{}]",
-                count, LocalDateTime.now());
+                count, currentDateTime.getFormattedTime());
 
         return count;
     }
 
     @Transactional
     public Optional<Long> getAmountTodayDoneGoals() {
-        Optional<Long> count = goalsAnalyzerRepository.countAllStatusGoals(LocalDate.now(), true);
+        Optional<Long> count = goalsAnalyzerRepository.countAllStatusGoals(currentDateTime.getCurrentDate(), true);
 
         log.info("Return amount of all daily ACCOMPLISHED goals in size [{}] in time [{}]",
-                count, LocalDateTime.now());
+                count, currentDateTime.getFormattedTime());
 
         return count;
     }
@@ -69,7 +67,7 @@ public class DailyDataAnalyzerService {
 
         List<ActivityDTO> list =
                 activityAnalyzerRepository.sumOfTimeAllActivities(
-                        LocalDate.now()
+                        currentDateTime.getCurrentDate()
                 );
 
         Long count = list.stream()
@@ -82,7 +80,7 @@ public class DailyDataAnalyzerService {
                 .divide(BigDecimal.valueOf(60), 2, RoundingMode.HALF_UP);
 
         log.info("Return amount of time spending on all activities today with value [{}] in time [{}]",
-                count, LocalDateTime.now());
+                count, currentDateTime.getFormattedTime());
 
         return result;
     }
@@ -90,10 +88,10 @@ public class DailyDataAnalyzerService {
     @Transactional
     public Optional<Long> getAmountTodayActivities() {
         Optional<Long> count = activityAnalyzerRepository.countAllActivities(
-                LocalDate.now()
+                currentDateTime.getCurrentDate()
         );
         log.info("Return amount ALL TODAY ACTIVITIES in size [{}] in time [{}]",
-                count, LocalDateTime.now());
+                count, currentDateTime.getFormattedTime());
 
         return count;
     }
@@ -103,7 +101,7 @@ public class DailyDataAnalyzerService {
 
         List<ActivityDTO> list =
                 activityAnalyzerRepository.sumOfTimeAllActivities(
-                        LocalDate.now()
+                        currentDateTime.getCurrentDate()
                 );
 
         List<ActivityBigDecimalDTO> resultList = new ArrayList<>();
@@ -122,7 +120,7 @@ public class DailyDataAnalyzerService {
         );
 
         log.info("Return list of daily activities in size [{}] in time [{}]",
-                list.size(), LocalDateTime.now());
+                list.size(), currentDateTime.getFormattedTime());
 
         return resultList;
 
