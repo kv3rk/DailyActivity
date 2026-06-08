@@ -11,26 +11,21 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDate;
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
-public class TestDailyDataAnalyzerService {
+public class TestWeeklyDataAnalyzerService {
 
     @Mock
-    public DataGoalsAnalyzerRepository goalsAnalyzerRepository;
+    private DataGoalsAnalyzerRepository goalsAnalyzerRepository;
     @Mock
-    public DataActivityAnalyzerRepository activityAnalyzerRepository;
+    private DataActivityAnalyzerRepository activityAnalyzerRepository;
     @Mock
     private CurrentDateTime currentDateTime;
 
     @InjectMocks
-    DailyDataAnalyzerService dailyDataAnalyzerService;
+    private WeeklyDataAnalyzerService weeklyDataAnalyzerService;
 
     @Test
     @DisplayName("Calculate percentage all values not null")
@@ -38,7 +33,7 @@ public class TestDailyDataAnalyzerService {
     void calculatePercentageCompletionNotNullAllNumbers() {
 
         assertEquals(50L,
-                dailyDataAnalyzerService.calculatePercentageCompletion(2L, 4L),
+                weeklyDataAnalyzerService.calculatePercentageCompletion(2L, 4L),
                 "Must complete. Check your code for mistakes");
 
     }
@@ -49,7 +44,7 @@ public class TestDailyDataAnalyzerService {
     void calculatePercentageCompletionDividendIsNull() {
 
         assertEquals(0L,
-                dailyDataAnalyzerService.calculatePercentageCompletion(0L, 4L),
+                weeklyDataAnalyzerService.calculatePercentageCompletion(0L, 4L),
                 "Must be 0 result. Check your code for rightness divide or persistence operations");
 
     }
@@ -59,25 +54,9 @@ public class TestDailyDataAnalyzerService {
     @Tag("DataAnalyzer")
     void calculatePercentageCompletionDividerIsNull() {
 
-        assertFalse(50L == dailyDataAnalyzerService
+        assertFalse(50L == weeklyDataAnalyzerService
                         .calculatePercentageCompletion(2L, 0L),
                 "Shouldn't ever be reached. Total goals cant be less than done goals");
 
     }
-
-    @Test
-    @DisplayName("Correct logic work - get full amount of goals")
-    @Tag("DataAnalyzer")
-    void getAmountTodayGoalsContainsOneGoal() {
-
-        given(currentDateTime.getCurrentDate()).willReturn(LocalDate.ofEpochDay(2026 - 6 - 8));
-        given(goalsAnalyzerRepository.countAllGoals(currentDateTime.getCurrentDate())).willReturn(Optional.of(1L));
-
-        Optional<Long> result = dailyDataAnalyzerService.getAmountTodayGoals();
-
-        assertThat(result).isNotEmpty();
-        assertThat(result).isEqualTo(Optional.of(1L));
-
-    }
-
 }
