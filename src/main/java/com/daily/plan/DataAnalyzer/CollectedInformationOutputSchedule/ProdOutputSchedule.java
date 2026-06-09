@@ -24,7 +24,8 @@ public class ProdOutputSchedule implements PerTimeCollectExecution {
 
     public ProdOutputSchedule(ConcatenatingValues concatenatingValues,
                               TelegramBotLogic telegramBotLogic,
-                              @Value("${telegram.bot.chat.id}") String chatId, StatsService statsService) {
+                              @Value("${telegram.bot.chat.id}") String chatId,
+                              StatsService statsService) {
         this.concatenatingValues = concatenatingValues;
         this.telegramBotLogic = telegramBotLogic;
         this.chatId = chatId;

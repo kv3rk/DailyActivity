@@ -2,7 +2,7 @@ spring:
   application:
     name: DailyPlan
   profiles:
-    active: test
+    active: prod
   main:
     banner-mode: off
   flyway:
@@ -13,3 +13,13 @@ telegram:
     token: ${TELEGRAM_BOT_TOKEN}
     chat:
       id: ${TELEGRAM_BOT_CHAT_ID}
+default:
+  goal:
+    number1: ${DEFAULT_GOAL_NUMBER1}
+    number2: ${DEFAULT_GOAL_NUMBER2}
+    number3: ${DEFAULT_GOAL_NUMBER3}
+    number4: ${DEFAULT_GOAL_NUMBER4}
+    number5: ${DEFAULT_GOAL_NUMBER5}
+    number6: ${DEFAULT_GOAL_NUMBER6}
+    number7: ${DEFAULT_GOAL_NUMBER7}
+    number8: ${DEFAULT_GOAL_NUMBER8}
