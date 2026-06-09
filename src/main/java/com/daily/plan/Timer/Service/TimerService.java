@@ -22,6 +22,7 @@ public class TimerService {
     private final String activityType3;
     private final String activityType4;
     private final String activityType5;
+    private final String activityType6;
 
     public TimerService(TimerRepository timerRepository,
                         CurrentDateTime currentDateTime,
@@ -29,7 +30,8 @@ public class TimerService {
                         @Value("${activity.type.2}") String activityType2,
                         @Value("${activity.type.3}") String activityType3,
                         @Value("${activity.type.4}") String activityType4,
-                        @Value("${activity.type.5}") String activityType5) {
+                        @Value("${activity.type.5}") String activityType5,
+                        @Value("${activity.type.6}") String activityType6) {
         this.timerRepository = timerRepository;
         this.currentDateTime = currentDateTime;
         this.activityType1 = activityType1;
@@ -37,6 +39,7 @@ public class TimerService {
         this.activityType3 = activityType3;
         this.activityType4 = activityType4;
         this.activityType5 = activityType5;
+        this.activityType6 = activityType6;
     }
 
     @Transactional
@@ -66,7 +69,7 @@ public class TimerService {
         List<String> activityList = new ArrayList<>(
                 List.of(
                         activityType1, activityType2, activityType3,
-                        activityType4, activityType5
+                        activityType4, activityType5, activityType6
                 )
         );
 

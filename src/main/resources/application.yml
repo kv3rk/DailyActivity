@@ -23,6 +23,10 @@ default:
     number6: ${DEFAULT_GOAL_NUMBER6}
     number7: ${DEFAULT_GOAL_NUMBER7}
     number8: ${DEFAULT_GOAL_NUMBER8}
+    number9: ${DEFAULT_GOAL_NUMBER9}
+    number10: ${DEFAULT_GOAL_NUMBER10}
+    number11: ${DEFAULT_GOAL_NUMBER11}
+    number12: ${DEFAULT_GOAL_NUMBER12}
 activity:
   type:
     1: ${ACTIVITY_TYPE_1}
@@ -30,3 +34,4 @@ activity:
     3: ${ACTIVITY_TYPE_3}
     4: ${ACTIVITY_TYPE_4}
     5: ${ACTIVITY_TYPE_5}
+    6: ${ACTIVITY_TYPE_6}

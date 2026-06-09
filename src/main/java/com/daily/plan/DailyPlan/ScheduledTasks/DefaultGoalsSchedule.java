@@ -2,6 +2,7 @@ package com.daily.plan.DailyPlan.ScheduledTasks;
 
 import com.daily.plan.DailyPlan.DTO.GoalDTO;
 import com.daily.plan.DailyPlan.Service.DailyPlanService;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
@@ -25,6 +26,10 @@ public class DefaultGoalsSchedule {
     private final String defaultGoalNumber6;
     private final String defaultGoalNumber7;
     private final String defaultGoalNumber8;
+    private final String defaultGoalNumber9;
+    private final String defaultGoalNumber10;
+    private final String defaultGoalNumber11;
+    private final String defaultGoalNumber12;
 
     public DefaultGoalsSchedule(DailyPlanService dailyPlanService,
 
@@ -35,7 +40,11 @@ public class DefaultGoalsSchedule {
                                 @Value("${default.goal.number5}") String defaultGoalNumber5,
                                 @Value("${default.goal.number6}") String defaultGoalNumber6,
                                 @Value("${default.goal.number7}") String defaultGoalNumber7,
-                                @Value("${default.goal.number8}") String defaultGoalNumber8) {
+                                @Value("${default.goal.number8}") String defaultGoalNumber8,
+                                @Value("${default.goal.number9}") String defaultGoalNumber9,
+                                @Value("${default.goal.number10}") String defaultGoalNumber10,
+                                @Value("${default.goal.number11}") String defaultGoalNumber11,
+                                @Value("${default.goal.number12}") String defaultGoalNumber12) {
         this.dailyPlanService = dailyPlanService;
         this.defaultGoalNumber1 = defaultGoalNumber1;
         this.defaultGoalNumber2 = defaultGoalNumber2;
@@ -45,6 +54,10 @@ public class DefaultGoalsSchedule {
         this.defaultGoalNumber6 = defaultGoalNumber6;
         this.defaultGoalNumber7 = defaultGoalNumber7;
         this.defaultGoalNumber8 = defaultGoalNumber8;
+        this.defaultGoalNumber9 = defaultGoalNumber9;
+        this.defaultGoalNumber10 = defaultGoalNumber10;
+        this.defaultGoalNumber11 = defaultGoalNumber11;
+        this.defaultGoalNumber12 = defaultGoalNumber12;
     }
 
     public void createGoal(String text) {
@@ -121,4 +134,40 @@ public class DefaultGoalsSchedule {
         createGoal(defaultGoalNumber8);
 
     }
+
+    @Async("asyncTaskExecutor")
+    @Scheduled(cron = "0 1 0 1/1 * TUE,THU,SAT", zone = "Europe/Moscow")
+    public void addNumber9ScheduledGoal() {
+
+        createGoal(defaultGoalNumber9);
+
+    }
+
+    @Async("asyncTaskExecutor")
+    @Scheduled(cron = "0 1 0 1/1 * MON,WED,FRI", zone = "Europe/Moscow")
+    public void addNumber10ScheduledGoal() {
+
+        createGoal(defaultGoalNumber10);
+
+    }
+
+    @Async("asyncTaskExecutor")
+    @Scheduled(cron = "0 1 0 1/1 * MON,WED,FRI", zone = "Europe/Moscow")
+    public void addNumber11ScheduledGoal() {
+
+        createGoal(defaultGoalNumber11);
+
+    }
+
+    @Async("asyncTaskExecutor")
+    @Scheduled(cron = "0 1 0 1/1 * *", zone = "Europe/Moscow")
+    @Transactional
+    public void addNumber12ScheduledGoal() {
+
+        createGoal(defaultGoalNumber12);
+        createGoal(defaultGoalNumber12);
+        createGoal(defaultGoalNumber12);
+
+    }
+
 }

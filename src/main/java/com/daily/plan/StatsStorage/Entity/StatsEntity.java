@@ -42,5 +42,8 @@ public class StatsEntity {
     private BigDecimal activity_type_5 = BigDecimal.ZERO;
 
     @Column(precision = 10, scale = 2)
+    private BigDecimal activity_type_6 = BigDecimal.ZERO;
+
+    @Column(precision = 10, scale = 2)
     private BigDecimal timeActivities;
 }

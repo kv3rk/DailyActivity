@@ -26,6 +26,7 @@ public class StatsService {
     private final String activity_type_3;
     private final String activity_type_4;
     private final String activity_type_5;
+    private final String activity_type_6;
 
     public StatsService(StatsRepository statsRepository,
                         DailyDataAnalyzerService dailyDataAnalyzerService,
@@ -34,7 +35,8 @@ public class StatsService {
                         @Value("${activity.type.2}") String activityType2,
                         @Value("${activity.type.3}") String activityType3,
                         @Value("${activity.type.4}") String activityType4,
-                        @Value("${activity.type.5}") String activityType5) {
+                        @Value("${activity.type.5}") String activityType5,
+                        @Value("${activity.type.6}") String activityType6) {
         this.statsRepository = statsRepository;
         this.dailyDataAnalyzerService = dailyDataAnalyzerService;
         this.weeklyDataAnalyzerService = weeklyDataAnalyzerService;
@@ -43,6 +45,7 @@ public class StatsService {
         this.activity_type_3 = activityType3;
         this.activity_type_4 = activityType4;
         this.activity_type_5 = activityType5;
+        this.activity_type_6 = activityType6;
     }
 
     @Transactional
@@ -90,6 +93,10 @@ public class StatsService {
                             } else if (dto.getActivityType().equals(activity_type_5)) {
 
                                 statsEntity.setActivity_type_5(dto.getTimer());
+
+                            } else if (dto.getActivityType().equals(activity_type_6)) {
+
+                                statsEntity.setActivity_type_6(dto.getTimer());
                             }
 
                         }
@@ -116,7 +123,8 @@ public class StatsService {
                                 activity_type_2, statsEntity.getActivity_type_2().doubleValue(),
                                 activity_type_3, statsEntity.getActivity_type_3().doubleValue(),
                                 activity_type_4, statsEntity.getActivity_type_4().doubleValue(),
-                                activity_type_5, statsEntity.getActivity_type_5().doubleValue()
+                                activity_type_5, statsEntity.getActivity_type_5().doubleValue(),
+                                activity_type_6, statsEntity.getActivity_type_5().doubleValue()
                         )
                 ),
                 statsEntity.getTimeActivities()
@@ -170,6 +178,10 @@ public class StatsService {
                             } else if (dto.getActivityType().equals(activity_type_5)) {
 
                                 statsEntity.setActivity_type_5(dto.getTimer());
+
+                            } else if (dto.getActivityType().equals(activity_type_6)) {
+
+                                statsEntity.setActivity_type_6(dto.getTimer());
                             }
 
                         }
@@ -197,7 +209,8 @@ public class StatsService {
                                 activity_type_2, statsEntity.getActivity_type_2().doubleValue(),
                                 activity_type_3, statsEntity.getActivity_type_3().doubleValue(),
                                 activity_type_4, statsEntity.getActivity_type_4().doubleValue(),
-                                activity_type_5, statsEntity.getActivity_type_5().doubleValue()
+                                activity_type_5, statsEntity.getActivity_type_5().doubleValue(),
+                                activity_type_6, statsEntity.getActivity_type_5().doubleValue()
                         )
                 ),
                 statsEntity.getTimeActivities()
