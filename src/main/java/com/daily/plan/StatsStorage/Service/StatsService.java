@@ -7,6 +7,8 @@ import com.daily.plan.StatsStorage.Entity.StatsEntity;
 import com.daily.plan.StatsStorage.Repository.StatsRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +21,22 @@ public class StatsService {
     private final StatsRepository statsRepository;
     private final DailyDataAnalyzerService dailyDataAnalyzerService;
     private final WeeklyDataAnalyzerService weeklyDataAnalyzerService;
+    private final String activity_type_1;
+    private final String activity_type_2;
+    private final String activity_type_3;
 
     public StatsService(StatsRepository statsRepository,
                         DailyDataAnalyzerService dailyDataAnalyzerService,
-                        WeeklyDataAnalyzerService weeklyDataAnalyzerService) {
+                        WeeklyDataAnalyzerService weeklyDataAnalyzerService,
+                        @Value("${activity.type.1}") String activityType1,
+                        @Value("${activity.type.2}") String activityType2,
+                        @Value("${activity.type.3}") String activityType3) {
         this.statsRepository = statsRepository;
         this.dailyDataAnalyzerService = dailyDataAnalyzerService;
         this.weeklyDataAnalyzerService = weeklyDataAnalyzerService;
+        this.activity_type_1 = activityType1;
+        this.activity_type_2 = activityType2;
+        this.activity_type_3 = activityType3;
     }
 
     @Transactional
@@ -54,16 +65,17 @@ public class StatsService {
                 .forEach(
                         dto -> {
 
-                            switch (dto.getActivityType()) {
-                                case "backend" -> statsEntity.setBackend(
-                                        dto.getTimer()
-                                );
-                                case "games" -> statsEntity.setGames(
-                                        dto.getTimer()
-                                );
-                                case "english" -> statsEntity.setEnglish(
-                                        dto.getTimer()
-                                );
+                            if (dto.getActivityType().equals(activity_type_1)) {
+
+                                statsEntity.setActivity_type_1(dto.getTimer());
+
+                            } else if (dto.getActivityType().equals(activity_type_2)) {
+
+                                statsEntity.setActivity_type_2(dto.getTimer());
+
+                            } else if (dto.getActivityType().equals(activity_type_3)) {
+
+                                statsEntity.setActivity_type_3(dto.getTimer());
                             }
 
                         }
@@ -86,9 +98,9 @@ public class StatsService {
                 statsEntity.getAmountActivities(),
                 new TreeMap<>(
                         Map.of(
-                                "backend", statsEntity.getBackend().doubleValue(),
-                                "games", statsEntity.getGames().doubleValue(),
-                                "english", statsEntity.getEnglish().doubleValue()
+                                activity_type_1, statsEntity.getActivity_type_1().doubleValue(),
+                                activity_type_2, statsEntity.getActivity_type_2().doubleValue(),
+                                activity_type_3, statsEntity.getActivity_type_3().doubleValue()
                         )
                 ),
                 statsEntity.getTimeActivities()
@@ -123,16 +135,17 @@ public class StatsService {
                 .forEach(
                         dto -> {
 
-                            switch (dto.getActivityType()) {
-                                case "backend" -> statsEntity.setBackend(
-                                        dto.getTimer()
-                                );
-                                case "games" -> statsEntity.setGames(
-                                        dto.getTimer()
-                                );
-                                case "english" -> statsEntity.setEnglish(
-                                        dto.getTimer()
-                                );
+                            if (dto.getActivityType().equals(activity_type_1)) {
+
+                                statsEntity.setActivity_type_1(dto.getTimer());
+
+                            } else if (dto.getActivityType().equals(activity_type_2)) {
+
+                                statsEntity.setActivity_type_2(dto.getTimer());
+
+                            } else if (dto.getActivityType().equals(activity_type_3)) {
+
+                                statsEntity.setActivity_type_3(dto.getTimer());
                             }
 
                         }
@@ -156,9 +169,9 @@ public class StatsService {
                 statsEntity.getAmountActivities(),
                 new TreeMap<>(
                         Map.of(
-                                "backend", statsEntity.getBackend().doubleValue(),
-                                "games", statsEntity.getGames().doubleValue(),
-                                "english", statsEntity.getEnglish().doubleValue()
+                                activity_type_1, statsEntity.getActivity_type_1().doubleValue(),
+                                activity_type_2, statsEntity.getActivity_type_2().doubleValue(),
+                                activity_type_3, statsEntity.getActivity_type_3().doubleValue()
                         )
                 ),
                 statsEntity.getTimeActivities()

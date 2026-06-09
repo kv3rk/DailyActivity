@@ -27,13 +27,13 @@ public class StatsEntity {
     private Long amountActivities;
 
     @Column(precision = 10, scale = 2)
-    private BigDecimal backend = BigDecimal.ZERO;
+    private BigDecimal activity_type_1 = BigDecimal.ZERO;
 
     @Column(precision = 10, scale = 2)
-    private BigDecimal games = BigDecimal.ZERO;
+    private BigDecimal activity_type_2 = BigDecimal.ZERO;
 
     @Column(precision = 10, scale = 2)
-    private BigDecimal english = BigDecimal.ZERO;
+    private BigDecimal activity_type_3 = BigDecimal.ZERO;
 
     @Column(precision = 10, scale = 2)
     private BigDecimal timeActivities;
