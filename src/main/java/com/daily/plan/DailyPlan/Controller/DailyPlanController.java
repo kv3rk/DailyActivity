@@ -3,6 +3,7 @@ package com.daily.plan.DailyPlan.Controller;
 import com.daily.plan.DailyPlan.DTO.GoalDTO;
 import com.daily.plan.DailyPlan.DTO.ToggleFlagDTO;
 import com.daily.plan.DailyPlan.Service.DailyPlanService;
+import com.daily.plan.Timer.Service.TimerService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -17,9 +18,11 @@ import java.util.List;
 public class DailyPlanController {
 
     private final DailyPlanService dailyPlanService;
+    private final TimerService timerService;
 
-    public DailyPlanController(DailyPlanService dailyPlanService) {
+    public DailyPlanController(DailyPlanService dailyPlanService, TimerService timerService) {
         this.dailyPlanService = dailyPlanService;
+        this.timerService = timerService;
     }
 
     @GetMapping("/main")
@@ -29,6 +32,7 @@ public class DailyPlanController {
 
         model.addAttribute("active_goals", dailyPlanService.getActiveGoals());
         model.addAttribute("done_goals", dailyPlanService.getDoneGoals());
+        model.addAttribute("activity_types", timerService.getAllActivityTypes());
 
         return "main/main_page";
     }

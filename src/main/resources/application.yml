@@ -2,7 +2,7 @@ spring:
   application:
     name: DailyPlan
   profiles:
-    active: prod
+    active: dev
   main:
     banner-mode: off
   flyway:
@@ -23,3 +23,8 @@ default:
     number6: ${DEFAULT_GOAL_NUMBER6}
     number7: ${DEFAULT_GOAL_NUMBER7}
     number8: ${DEFAULT_GOAL_NUMBER8}
+activity:
+  type:
+    1: ${ACTIVITY_TYPE_1}
+    2: ${ACTIVITY_TYPE_2}
+    3: ${ACTIVITY_TYPE_3}

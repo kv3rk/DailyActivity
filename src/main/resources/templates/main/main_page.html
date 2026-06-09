@@ -228,16 +228,9 @@
 
         <select id="activity-type">
 
-            <option value="backend">
+            <option th:each="element : ${activity_types}"
+                    th:value="${element}" th:text="${element}">
                 Backend
-            </option>
-
-            <option value="games">
-                Games
-            </option>
-
-            <option value="english">
-                English
             </option>
 
         </select>
