@@ -28,3 +28,5 @@ activity:
     1: ${ACTIVITY_TYPE_1}
     2: ${ACTIVITY_TYPE_2}
     3: ${ACTIVITY_TYPE_3}
+    4: ${ACTIVITY_TYPE_4}
+    5: ${ACTIVITY_TYPE_5}
