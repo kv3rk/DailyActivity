@@ -28,7 +28,7 @@ public class DailyPlanService {
         this.currentDateTime = currentDateTime;
     }
 
-    @Transactional
+    @Transactional(value = Transactional.TxType.REQUIRES_NEW)
     public GoalDTO save(GoalDTO goalDTO) {
         GoalEntity goalEntity = new GoalEntity();
 
