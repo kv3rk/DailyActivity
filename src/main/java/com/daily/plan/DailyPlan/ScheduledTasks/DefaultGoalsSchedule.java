@@ -2,7 +2,6 @@ package com.daily.plan.DailyPlan.ScheduledTasks;
 
 import com.daily.plan.DailyPlan.DTO.GoalDTO;
 import com.daily.plan.DailyPlan.Service.DailyPlanService;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
@@ -159,13 +158,10 @@ public class DefaultGoalsSchedule {
 
     }
 
-    @Transactional
     @Async("asyncTaskExecutor")
     @Scheduled(cron = "0/30 * * * * *", zone = "Europe/Moscow")
     public void addNumber12ScheduledGoal() {
 
-        createGoal(defaultGoalNumber12);
-        createGoal(defaultGoalNumber12);
         createGoal(defaultGoalNumber12);
 
     }

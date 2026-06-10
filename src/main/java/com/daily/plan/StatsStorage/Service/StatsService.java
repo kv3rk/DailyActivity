@@ -1,5 +1,6 @@
 package com.daily.plan.StatsStorage.Service;
 
+import com.daily.plan.DataAnalyzer.DTO.ActivityBigDecimalDTO;
 import com.daily.plan.DataAnalyzer.Service.DailyDataAnalyzerService;
 import com.daily.plan.DataAnalyzer.Service.WeeklyDataAnalyzerService;
 import com.daily.plan.StatsStorage.DTO.StatsDTO;
@@ -48,6 +49,60 @@ public class StatsService {
         this.activity_type_6 = activityType6;
     }
 
+    public StatsDTO createStatsDTO(StatsEntity statsEntity) {
+
+        StatsDTO statsDTO = new StatsDTO(
+                statsEntity.getTerm(),
+                statsEntity.getAmountGoals(),
+                statsEntity.getPercentageCompletion(),
+                statsEntity.getAmountActivities(),
+                new TreeMap<>(
+                        Map.of(
+                                activity_type_1, statsEntity.getActivity_type_1().doubleValue(),
+                                activity_type_2, statsEntity.getActivity_type_2().doubleValue(),
+                                activity_type_3, statsEntity.getActivity_type_3().doubleValue(),
+                                activity_type_4, statsEntity.getActivity_type_4().doubleValue(),
+                                activity_type_5, statsEntity.getActivity_type_5().doubleValue(),
+                                activity_type_6, statsEntity.getActivity_type_5().doubleValue()
+                        )
+                ),
+                statsEntity.getTimeActivities()
+        );
+
+        return statsDTO;
+
+    }
+
+    public void mappingActivityTypesToEntity(ActivityBigDecimalDTO dto,
+                                             StatsEntity statsEntity) {
+
+        if (dto.getActivityType().equals(activity_type_1)) {
+
+            statsEntity.setActivity_type_1(dto.getTimer());
+
+        } else if (dto.getActivityType().equals(activity_type_2)) {
+
+            statsEntity.setActivity_type_2(dto.getTimer());
+
+        } else if (dto.getActivityType().equals(activity_type_3)) {
+
+            statsEntity.setActivity_type_3(dto.getTimer());
+
+        } else if (dto.getActivityType().equals(activity_type_4)) {
+
+            statsEntity.setActivity_type_4(dto.getTimer());
+
+        } else if (dto.getActivityType().equals(activity_type_5)) {
+
+            statsEntity.setActivity_type_5(dto.getTimer());
+
+        } else if (dto.getActivityType().equals(activity_type_6)) {
+
+            statsEntity.setActivity_type_6(dto.getTimer());
+        }
+
+    }
+
     @Transactional
     public StatsDTO saveDaily() {
 
@@ -72,34 +127,7 @@ public class StatsService {
 
         dailyDataAnalyzerService.getInfoOfAllTodayActivities()
                 .forEach(
-                        dto -> {
-
-                            if (dto.getActivityType().equals(activity_type_1)) {
-
-                                statsEntity.setActivity_type_1(dto.getTimer());
-
-                            } else if (dto.getActivityType().equals(activity_type_2)) {
-
-                                statsEntity.setActivity_type_2(dto.getTimer());
-
-                            } else if (dto.getActivityType().equals(activity_type_3)) {
-
-                                statsEntity.setActivity_type_3(dto.getTimer());
-
-                            } else if (dto.getActivityType().equals(activity_type_4)) {
-
-                                statsEntity.setActivity_type_4(dto.getTimer());
-
-                            } else if (dto.getActivityType().equals(activity_type_5)) {
-
-                                statsEntity.setActivity_type_5(dto.getTimer());
-
-                            } else if (dto.getActivityType().equals(activity_type_6)) {
-
-                                statsEntity.setActivity_type_6(dto.getTimer());
-                            }
-
-                        }
+                        dto -> mappingActivityTypesToEntity(dto, statsEntity)
                 );
 
 
@@ -112,25 +140,7 @@ public class StatsService {
 
         log.info("Saved stats of daily activity");
 
-        StatsDTO statsDTO = new StatsDTO(
-                statsEntity.getTerm(),
-                statsEntity.getAmountGoals(),
-                statsEntity.getPercentageCompletion(),
-                statsEntity.getAmountActivities(),
-                new TreeMap<>(
-                        Map.of(
-                                activity_type_1, statsEntity.getActivity_type_1().doubleValue(),
-                                activity_type_2, statsEntity.getActivity_type_2().doubleValue(),
-                                activity_type_3, statsEntity.getActivity_type_3().doubleValue(),
-                                activity_type_4, statsEntity.getActivity_type_4().doubleValue(),
-                                activity_type_5, statsEntity.getActivity_type_5().doubleValue(),
-                                activity_type_6, statsEntity.getActivity_type_5().doubleValue()
-                        )
-                ),
-                statsEntity.getTimeActivities()
-        );
-
-        return statsDTO;
+        return createStatsDTO(statsEntity);
     }
 
     @Transactional
@@ -157,34 +167,7 @@ public class StatsService {
 
         weeklyDataAnalyzerService.getInfoOfAllWeeklyActivities()
                 .forEach(
-                        dto -> {
-
-                            if (dto.getActivityType().equals(activity_type_1)) {
-
-                                statsEntity.setActivity_type_1(dto.getTimer());
-
-                            } else if (dto.getActivityType().equals(activity_type_2)) {
-
-                                statsEntity.setActivity_type_2(dto.getTimer());
-
-                            } else if (dto.getActivityType().equals(activity_type_3)) {
-
-                                statsEntity.setActivity_type_3(dto.getTimer());
-
-                            } else if (dto.getActivityType().equals(activity_type_4)) {
-
-                                statsEntity.setActivity_type_4(dto.getTimer());
-
-                            } else if (dto.getActivityType().equals(activity_type_5)) {
-
-                                statsEntity.setActivity_type_5(dto.getTimer());
-
-                            } else if (dto.getActivityType().equals(activity_type_6)) {
-
-                                statsEntity.setActivity_type_6(dto.getTimer());
-                            }
-
-                        }
+                        dto -> mappingActivityTypesToEntity(dto, statsEntity)
                 );
 
 
@@ -198,25 +181,7 @@ public class StatsService {
 
         log.info("Saved stats of weekly activity");
 
-        StatsDTO statsDTO = new StatsDTO(
-                statsEntity.getTerm(),
-                statsEntity.getAmountGoals(),
-                statsEntity.getPercentageCompletion(),
-                statsEntity.getAmountActivities(),
-                new TreeMap<>(
-                        Map.of(
-                                activity_type_1, statsEntity.getActivity_type_1().doubleValue(),
-                                activity_type_2, statsEntity.getActivity_type_2().doubleValue(),
-                                activity_type_3, statsEntity.getActivity_type_3().doubleValue(),
-                                activity_type_4, statsEntity.getActivity_type_4().doubleValue(),
-                                activity_type_5, statsEntity.getActivity_type_5().doubleValue(),
-                                activity_type_6, statsEntity.getActivity_type_5().doubleValue()
-                        )
-                ),
-                statsEntity.getTimeActivities()
-        );
-
-        return statsDTO;
+        return createStatsDTO(statsEntity);
     }
 
 }
