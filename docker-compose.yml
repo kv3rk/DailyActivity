@@ -28,7 +28,7 @@ services:
 
     environment:
       SPRING_PROFILES_ACTIVE: prod
-      DB_URL: jdbc:postgresql://db:5432/daily_plan_project
+      DB_URL: ${DB_URL}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       USER_LOGIN: ${USER_LOGIN}
