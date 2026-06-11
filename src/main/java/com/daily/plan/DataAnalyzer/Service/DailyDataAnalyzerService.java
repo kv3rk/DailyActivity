@@ -14,7 +14,6 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -86,8 +85,8 @@ public class DailyDataAnalyzerService {
     }
 
     @Transactional
-    public Optional<Long> getAmountTodayActivities() {
-        Optional<Long> count = activityAnalyzerRepository.countAllActivities(
+    public Long getAmountTodayActivities() {
+        Long count = activityAnalyzerRepository.countAllActivities(
                 currentDateTime.getCurrentDate()
         );
         log.info("Return amount ALL TODAY ACTIVITIES in size [{}] in time [{}]",

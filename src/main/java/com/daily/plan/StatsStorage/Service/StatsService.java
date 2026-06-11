@@ -120,8 +120,7 @@ public class StatsService {
         );
 
         statsEntity.setAmountActivities(
-                dailyDataAnalyzerService.getAmountTodayActivities().orElse(0L)
-        );
+                dailyDataAnalyzerService.getAmountTodayActivities());
 
         dailyDataAnalyzerService.getInfoOfAllTodayActivities()
                 .forEach(
@@ -158,8 +157,7 @@ public class StatsService {
         );
 
         statsEntity.setAmountActivities(
-                weeklyDataAnalyzerService.getAmountWeeklyActivities().orElse(0L)
-        );
+                weeklyDataAnalyzerService.getAmountWeeklyActivities());
 
         weeklyDataAnalyzerService.getInfoOfAllWeeklyActivities()
                 .forEach(

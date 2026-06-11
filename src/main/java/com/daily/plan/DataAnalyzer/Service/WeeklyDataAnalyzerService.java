@@ -14,7 +14,6 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -126,8 +125,8 @@ public class WeeklyDataAnalyzerService {
     }
 
     @Transactional
-    public Optional<Long> getAmountWeeklyActivities() {
-        Optional<Long> count = activityAnalyzerRepository.countAllActivities(
+    public Long getAmountWeeklyActivities() {
+        Long count = activityAnalyzerRepository.countAllActivities(
                 currentDateTime.getCurrentDate()
                         .minusWeeks(1)
         );

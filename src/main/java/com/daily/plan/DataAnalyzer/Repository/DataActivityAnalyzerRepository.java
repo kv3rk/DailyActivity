@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -20,7 +19,7 @@ public interface DataActivityAnalyzerRepository
             value = "select count(id) from timer_activity where activity_date >= :date",
             nativeQuery = true
     )
-    Optional<Long> countAllActivities(
+    Long countAllActivities(
             @Param("date") LocalDate date
     );
 
