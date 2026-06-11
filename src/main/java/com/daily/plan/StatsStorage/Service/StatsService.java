@@ -111,14 +111,12 @@ public class StatsService {
         statsEntity.setTerm("daily");
 
         statsEntity.setAmountGoals(
-                dailyDataAnalyzerService.getAmountTodayGoals().orElse(0L)
-        );
+                dailyDataAnalyzerService.getAmountTodayGoals());
 
         statsEntity.setPercentageCompletion(
                 dailyDataAnalyzerService.calculatePercentageCompletion(
-                        dailyDataAnalyzerService.getAmountTodayDoneGoals().orElse(0L),
-                        dailyDataAnalyzerService.getAmountTodayGoals().orElse(0L)
-                )
+                        dailyDataAnalyzerService.getAmountTodayDoneGoals(),
+                        dailyDataAnalyzerService.getAmountTodayGoals())
         );
 
         statsEntity.setAmountActivities(
@@ -151,14 +149,12 @@ public class StatsService {
         statsEntity.setTerm("weekly");
 
         statsEntity.setAmountGoals(
-                weeklyDataAnalyzerService.getAmountWeeklyGoals().orElse(0L)
-        );
+                weeklyDataAnalyzerService.getAmountWeeklyGoals());
 
         statsEntity.setPercentageCompletion(
                 weeklyDataAnalyzerService.calculatePercentageCompletion(
-                        weeklyDataAnalyzerService.getAmountWeeklyDoneGoals().orElse(0L),
-                        weeklyDataAnalyzerService.getAmountWeeklyGoals().orElse(0L)
-                )
+                        weeklyDataAnalyzerService.getAmountWeeklyDoneGoals(),
+                        weeklyDataAnalyzerService.getAmountWeeklyGoals())
         );
 
         statsEntity.setAmountActivities(

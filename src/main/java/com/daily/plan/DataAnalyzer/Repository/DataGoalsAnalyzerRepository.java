@@ -17,7 +17,7 @@ public interface DataGoalsAnalyzerRepository extends JpaRepository<GoalEntity, U
             value = "select count(id) from daily_goals where goal_date >= :date",
             nativeQuery = true
     )
-    Optional<Long> countAllGoals(
+    Long countAllGoals(
             @Param("date") LocalDate date
     );
 
@@ -25,7 +25,7 @@ public interface DataGoalsAnalyzerRepository extends JpaRepository<GoalEntity, U
             value = "select count(id) from daily_goals where goal_date >= :date and done_flag = :flag",
             nativeQuery = true
     )
-    Optional<Long> countAllStatusGoals(
+    Long countAllStatusGoals(
             @Param("date") LocalDate date,
             @Param("flag") Boolean flag
     );

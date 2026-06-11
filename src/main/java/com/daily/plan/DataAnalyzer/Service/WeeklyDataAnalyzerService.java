@@ -32,8 +32,8 @@ public class WeeklyDataAnalyzerService {
     }
 
     @Transactional
-    public Optional<Long> getAmountWeeklyGoals() {
-        Optional<Long> count = goalsAnalyzerRepository.countAllGoals(
+    public Long getAmountWeeklyGoals() {
+        Long count = goalsAnalyzerRepository.countAllGoals(
                 currentDateTime.getCurrentDate()
                         .minusWeeks(1)
         );
@@ -45,8 +45,8 @@ public class WeeklyDataAnalyzerService {
     }
 
     @Transactional
-    public Optional<Long> getAmountWeeklyActiveGoals() {
-        Optional<Long> count = goalsAnalyzerRepository.countAllStatusGoals(
+    public Long getAmountWeeklyActiveGoals() {
+        Long count = goalsAnalyzerRepository.countAllStatusGoals(
                 currentDateTime.getCurrentDate()
                         .minusWeeks(1),
                 false);
@@ -58,8 +58,8 @@ public class WeeklyDataAnalyzerService {
     }
 
     @Transactional
-    public Optional<Long> getAmountWeeklyDoneGoals() {
-        Optional<Long> count = goalsAnalyzerRepository.countAllStatusGoals(
+    public Long getAmountWeeklyDoneGoals() {
+        Long count = goalsAnalyzerRepository.countAllStatusGoals(
                 currentDateTime.getCurrentDate()
                         .minusWeeks(1),
                 true);

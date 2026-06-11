@@ -16,7 +16,7 @@
 
     </springProfile>
 
-
+    <!--    Prod profile logs-->
     <springProfile name="prod">
 
         <variable name="LOG_PATH" value="./logs/active" />
@@ -57,9 +57,28 @@
             <appender-ref ref="FILE" />
         </root>
 
+        <!--    Test profile logs-->
 
 
     </springProfile>
+    <springProfile name="test">
+
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>[%thread] [%-5level] [%logger{0}] - %msg%n</pattern>
+            </encoder>
+        </appender>
+
+        <logger name="org.hibernate.orm.jdbc.bind" level="TRACE" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+
+    </springProfile>
+
 
 
 </configuration>

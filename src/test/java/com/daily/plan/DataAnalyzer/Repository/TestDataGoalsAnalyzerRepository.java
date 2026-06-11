@@ -1,42 +1,156 @@
 package com.daily.plan.DataAnalyzer.Repository;
 
 import com.daily.plan.DailyPlan.Entity.GoalEntity;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-public class TestDataGoalsAnalyzerRepository {
+@DisplayName("DataGoalsAnalyzerRepository Tests")
+@Tags({
+        @Tag("repository"),
+        @Tag("DataAnalyzer")
+})
+class TestDataGoalsAnalyzerRepository {
 
     @Autowired
-    private DataGoalsAnalyzerRepository dataGoalsAnalyzerRepository;
+    private DataGoalsAnalyzerRepository repository;
 
-    @Test
-    @DisplayName("Normal scenario")
-    @Tag("DataGoalsAnalyzerRepository")
-    void setDataGoalsAnalyzerRepositoryNormalScenario() {
+    @Nested
+    @DisplayName("countAllGoals()")
+    class CountAllGoalsTests {
 
-        GoalEntity goalEntity = new GoalEntity();
+        @Test
+        @DisplayName("Should count goal when goal date equals requested date")
+        void shouldCountGoalWhenDateEqualsBoundary() {
 
-        goalEntity.setGoalText("Test 1");
-        goalEntity.setDoneFlag(false);
+            GoalEntity goal = new GoalEntity();
+            goal.setGoalText("Goal");
+            goal.setDoneFlag(false);
+            goal.setGoalDate(LocalDate.now());
 
-        dataGoalsAnalyzerRepository.save(goalEntity);
+            repository.save(goal);
 
-        Optional<Long> result = dataGoalsAnalyzerRepository.countAllGoals(
-                LocalDate.now()
-        );
+            Long result = repository.countAllGoals(LocalDate.now());
 
-        assertThat(result).isNotEmpty();
-        assertThat(result).isEqualTo(Optional.of(1L));
+            assertThat(result).isEqualTo(1L);
+        }
 
+        @Test
+        @DisplayName("Should not count goal when goal date is before requested date")
+        void shouldNotCountGoalWhenDateIsBeforeBoundary() {
+
+            GoalEntity goal = new GoalEntity();
+            goal.setGoalText("Goal");
+            goal.setDoneFlag(false);
+            goal.setGoalDate(LocalDate.now().minusDays(1));
+
+            repository.save(goal);
+
+            Long result = repository.countAllGoals(LocalDate.now());
+
+            assertThat(result).isZero();
+        }
+
+        @Test
+        @DisplayName("Should count goal when goal date is after requested date")
+        void shouldCountGoalWhenDateIsAfterBoundary() {
+
+            GoalEntity goal = new GoalEntity();
+            goal.setGoalText("Goal");
+            goal.setDoneFlag(false);
+            goal.setGoalDate(LocalDate.now().plusDays(1));
+
+            repository.save(goal);
+
+            Long result = repository.countAllGoals(LocalDate.now());
+
+            assertThat(result).isEqualTo(1L);
+        }
     }
 
+    @Nested
+    @DisplayName("countAllStatusGoals()")
+    class CountAllStatusGoalsTests {
+
+        @Test
+        @DisplayName("Should count accomplished goal")
+        void shouldCountAccomplishedGoal() {
+
+            GoalEntity goal = new GoalEntity();
+            goal.setGoalText("Goal");
+            goal.setDoneFlag(true);
+            goal.setGoalDate(LocalDate.now());
+
+            repository.save(goal);
+
+            Long result = repository.countAllStatusGoals(
+                            LocalDate.now(),
+                            true
+                    );
+
+            assertThat(result).isEqualTo(1L);
+        }
+
+        @Test
+        @DisplayName("Should not count goal when status does not match")
+        void shouldNotCountGoalWhenStatusDoesNotMatch() {
+
+            GoalEntity goal = new GoalEntity();
+            goal.setGoalText("Goal");
+            goal.setDoneFlag(false);
+            goal.setGoalDate(LocalDate.now());
+
+            repository.save(goal);
+
+            Long result = repository.countAllStatusGoals(
+                            LocalDate.now(),
+                            true
+                    );
+
+            assertThat(result).isZero();
+        }
+
+        @Test
+        @DisplayName("Should not count goal when date is before boundary")
+        void shouldNotCountGoalWhenDateIsBeforeBoundary() {
+
+            GoalEntity goal = new GoalEntity();
+            goal.setGoalText("Goal");
+            goal.setDoneFlag(true);
+            goal.setGoalDate(LocalDate.now().minusDays(1));
+
+            repository.save(goal);
+
+            Long result = repository.countAllStatusGoals(
+                            LocalDate.now(),
+                            true
+                    );
+
+            assertThat(result).isZero();
+        }
+
+        @Test
+        @DisplayName("Should count goal when future date matches status")
+        void shouldCountFutureGoalWhenStatusMatches() {
+
+            GoalEntity goal = new GoalEntity();
+            goal.setGoalText("Goal");
+            goal.setDoneFlag(true);
+            goal.setGoalDate(LocalDate.now().plusDays(1));
+
+            repository.save(goal);
+
+            Long result = repository.countAllStatusGoals(
+                            LocalDate.now(),
+                            true
+                    );
+
+            assertThat(result).isEqualTo(1L);
+        }
+    }
 }

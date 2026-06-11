@@ -1,8 +1,8 @@
 alter table stats_storage
-    rename backend to activity_type_1;
+    rename column backend to activity_type_1;
 
 alter table stats_storage
-    rename games to activity_type_2;
+    rename column games to activity_type_2;
 
 alter table stats_storage
-    rename english to activity_type_3;
+    rename column english to activity_type_3;

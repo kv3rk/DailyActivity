@@ -33,8 +33,8 @@ public class DailyDataAnalyzerService {
     }
 
     @Transactional
-    public Optional<Long> getAmountTodayGoals() {
-        Optional<Long> count = goalsAnalyzerRepository.countAllGoals(currentDateTime.getCurrentDate());
+    public Long getAmountTodayGoals() {
+        Long count = goalsAnalyzerRepository.countAllGoals(currentDateTime.getCurrentDate());
 
         log.info("Return amount of all daily goals in size [{}] in time [{}]",
                 count, currentDateTime.getFormattedTime());
@@ -43,8 +43,8 @@ public class DailyDataAnalyzerService {
     }
 
     @Transactional
-    public Optional<Long> getAmountTodayActiveGoals() {
-        Optional<Long> count = goalsAnalyzerRepository.countAllStatusGoals(currentDateTime.getCurrentDate(), false);
+    public Long getAmountTodayActiveGoals() {
+        Long count = goalsAnalyzerRepository.countAllStatusGoals(currentDateTime.getCurrentDate(), false);
 
         log.info("Return amount of all daily ACTIVE goals in size [{}] in time [{}]",
                 count, currentDateTime.getFormattedTime());
@@ -53,8 +53,8 @@ public class DailyDataAnalyzerService {
     }
 
     @Transactional
-    public Optional<Long> getAmountTodayDoneGoals() {
-        Optional<Long> count = goalsAnalyzerRepository.countAllStatusGoals(currentDateTime.getCurrentDate(), true);
+    public Long getAmountTodayDoneGoals() {
+        Long count = goalsAnalyzerRepository.countAllStatusGoals(currentDateTime.getCurrentDate(), true);
 
         log.info("Return amount of all daily ACCOMPLISHED goals in size [{}] in time [{}]",
                 count, currentDateTime.getFormattedTime());
