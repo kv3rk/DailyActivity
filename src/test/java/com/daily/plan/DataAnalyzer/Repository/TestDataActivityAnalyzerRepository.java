@@ -1,6 +1,7 @@
 package com.daily.plan.DataAnalyzer.Repository;
 
 import com.daily.plan.DataAnalyzer.DTO.ActivityDTO;
+import com.daily.plan.Timer.Builder.TimerBuilder;
 import com.daily.plan.Timer.Entity.TimerEntity;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +31,8 @@ public class TestDataActivityAnalyzerRepository {
         @DisplayName("Should count activities when activities date equals requested date")
         void shouldCountAllActivitiesWhenDateEqualBoundary() {
 
-            TimerEntity timerEntity = new TimerEntity();
-
-            timerEntity.setActivityType("backend");
-            timerEntity.setComment("Test 1");
-            timerEntity.setTimer(10L);
-            timerEntity.setActivityDate(LocalDate.now());
+            TimerEntity timerEntity = new TimerBuilder()
+                    .build();
 
             repository.save(timerEntity);
 
@@ -48,12 +45,8 @@ public class TestDataActivityAnalyzerRepository {
         @DisplayName("Should count activities when activity date after requested date")
         void shouldCountAllActivitiesWhenDateAfterBoundary() {
 
-            TimerEntity timerEntity = new TimerEntity();
-
-            timerEntity.setActivityType("backend");
-            timerEntity.setComment("Test 1");
-            timerEntity.setTimer(10L);
-            timerEntity.setActivityDate(LocalDate.now().plusDays(2));
+            TimerEntity timerEntity = new TimerBuilder()
+                    .withDate(LocalDate.now().plusDays(2)).build();
 
             repository.save(timerEntity);
 
@@ -66,12 +59,8 @@ public class TestDataActivityAnalyzerRepository {
         @DisplayName("Should not count activities when activity date before requested date")
         void shouldNotCountAllActivitiesWhenDateBeforeBoundary() {
 
-            TimerEntity timerEntity = new TimerEntity();
-
-            timerEntity.setActivityType("backend");
-            timerEntity.setComment("Test 1");
-            timerEntity.setTimer(10L);
-            timerEntity.setActivityDate(LocalDate.now().minusDays(2));
+            TimerEntity timerEntity = new TimerBuilder()
+                    .withDate(LocalDate.now().minusDays(2)).build();
 
             repository.save(timerEntity);
 
@@ -90,18 +79,9 @@ public class TestDataActivityAnalyzerRepository {
         @DisplayName("Should summarize time and count distinct activities when activities date equals requested date")
         void shouldSumAllActivitiesTimeWhenDateEqualBoundary() {
 
-            TimerEntity timerEntity = new TimerEntity();
-            TimerEntity timerEntity2 = new TimerEntity();
-
-            timerEntity.setActivityType("backend");
-            timerEntity.setComment("Test 1");
-            timerEntity.setTimer(10L);
-            timerEntity.setActivityDate(LocalDate.now());
-
-            timerEntity2.setActivityType("games");
-            timerEntity2.setComment("Test 2");
-            timerEntity2.setTimer(20L);
-            timerEntity2.setActivityDate(LocalDate.now());
+            TimerEntity timerEntity = new TimerBuilder().build();
+            TimerEntity timerEntity2 = new TimerBuilder()
+                    .withTimer(20L).withActivityType("games").build();
 
             repository.save(timerEntity);
             repository.save(timerEntity2);
@@ -122,18 +102,10 @@ public class TestDataActivityAnalyzerRepository {
         @DisplayName("Should summarize time and count distinct activities when activity date after requested date")
         void shouldSumAllActivitiesTimeWhenDateAfterBoundary() {
 
-            TimerEntity timerEntity = new TimerEntity();
-            TimerEntity timerEntity2 = new TimerEntity();
-
-            timerEntity.setActivityType("backend");
-            timerEntity.setComment("Test 1");
-            timerEntity.setTimer(10L);
-            timerEntity.setActivityDate(LocalDate.now().plusDays(2));
-
-            timerEntity2.setActivityType("games");
-            timerEntity2.setComment("Test 2");
-            timerEntity2.setTimer(20L);
-            timerEntity2.setActivityDate(LocalDate.now().plusDays(2));
+            TimerEntity timerEntity = new TimerBuilder().build();
+            TimerEntity timerEntity2 = new TimerBuilder()
+                    .withTimer(20L).withActivityType("games")
+                    .withDate(LocalDate.now().plusDays(2)).build();
 
             repository.save(timerEntity);
             repository.save(timerEntity2);
@@ -154,18 +126,10 @@ public class TestDataActivityAnalyzerRepository {
         @DisplayName("Should not summarize time and count distinct activities when activity date before requested date")
         void shouldNotSumAllActivitiesTimeWhenDateBeforeBoundary() {
 
-            TimerEntity timerEntity = new TimerEntity();
-            TimerEntity timerEntity2 = new TimerEntity();
-
-            timerEntity.setActivityType("backend");
-            timerEntity.setComment("Test 1");
-            timerEntity.setTimer(10L);
-            timerEntity.setActivityDate(LocalDate.now().minusDays(2));
-
-            timerEntity2.setActivityType("games");
-            timerEntity2.setComment("Test 2");
-            timerEntity2.setTimer(20L);
-            timerEntity2.setActivityDate(LocalDate.now().minusDays(2));
+            TimerEntity timerEntity = new TimerBuilder().build();
+            TimerEntity timerEntity2 = new TimerBuilder()
+                    .withTimer(20L).withActivityType("games")
+                    .withDate(LocalDate.now().minusDays(2)).build();
 
             repository.save(timerEntity);
             repository.save(timerEntity2);
@@ -186,18 +150,10 @@ public class TestDataActivityAnalyzerRepository {
         @DisplayName("Should summarize time and count distinct activities with equal activity types and zero time duration")
         void shouldGroupActivitiesWithSameActivityType() {
 
-            TimerEntity timerEntity = new TimerEntity();
-            TimerEntity timerEntity2 = new TimerEntity();
-
-            timerEntity.setActivityType("backend");
-            timerEntity.setComment("Test 1");
-            timerEntity.setTimer(0L);
-            timerEntity.setActivityDate(LocalDate.now());
-
-            timerEntity2.setActivityType("backend");
-            timerEntity2.setComment("Test 2");
-            timerEntity2.setTimer(0L);
-            timerEntity2.setActivityDate(LocalDate.now());
+            TimerEntity timerEntity = new TimerBuilder()
+                    .withTimer(0L).build();
+            TimerEntity timerEntity2 = new TimerBuilder()
+                    .withTimer(0L).build();
 
             repository.save(timerEntity);
             repository.save(timerEntity2);
