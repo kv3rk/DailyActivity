@@ -10,8 +10,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDate;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 public class TestTimerRepository {
@@ -20,8 +20,8 @@ public class TestTimerRepository {
     private TimerRepository repository;
 
     @Nested
-    @DisplayName("findAllByDoneFlagAndGoalDate()")
-    class FindAllByDoneFlagAndGoalDateTest {
+    @DisplayName("deleteAllByActivityDateBefore()")
+    class DeleteAllByActivityDateBeforeTest {
 
         @Test
         @DisplayName("Should not delete activities with date after requested date")
