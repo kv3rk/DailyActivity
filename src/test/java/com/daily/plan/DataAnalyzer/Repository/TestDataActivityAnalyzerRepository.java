@@ -142,8 +142,8 @@ public class TestDataActivityAnalyzerRepository {
             long countGroupedActivities = resultList
                     .size();
 
-            assertThat(result).isZero();
-            assertThat(countGroupedActivities).isZero();
+            assertThat(result).isEqualTo(10L);
+            assertThat(countGroupedActivities).isEqualTo(1);
         }
 
         @Test
