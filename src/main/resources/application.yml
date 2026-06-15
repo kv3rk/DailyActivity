@@ -2,7 +2,7 @@ spring:
   application:
     name: DailyPlan
   profiles:
-    active: test
+    active: prod
   main:
     banner-mode: off
   flyway:
