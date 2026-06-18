@@ -29,6 +29,7 @@ public class DefaultGoalsSchedule {
     private final String defaultGoalNumber10;
     private final String defaultGoalNumber11;
     private final String defaultGoalNumber12;
+    private final String defaultGoalNumber13;
 
     public DefaultGoalsSchedule(DailyPlanService dailyPlanService,
 
@@ -43,7 +44,8 @@ public class DefaultGoalsSchedule {
                                 @Value("${default.goal.number9}") String defaultGoalNumber9,
                                 @Value("${default.goal.number10}") String defaultGoalNumber10,
                                 @Value("${default.goal.number11}") String defaultGoalNumber11,
-                                @Value("${default.goal.number12}") String defaultGoalNumber12) {
+                                @Value("${default.goal.number12}") String defaultGoalNumber12,
+                                @Value("${default.goal.number13}") String defaultGoalNumber13) {
         this.dailyPlanService = dailyPlanService;
         this.defaultGoalNumber1 = defaultGoalNumber1;
         this.defaultGoalNumber2 = defaultGoalNumber2;
@@ -57,6 +59,7 @@ public class DefaultGoalsSchedule {
         this.defaultGoalNumber10 = defaultGoalNumber10;
         this.defaultGoalNumber11 = defaultGoalNumber11;
         this.defaultGoalNumber12 = defaultGoalNumber12;
+        this.defaultGoalNumber13 = defaultGoalNumber13;
     }
 
     public void createGoal(String text) {
@@ -163,6 +166,14 @@ public class DefaultGoalsSchedule {
     public void addNumber12ScheduledGoal() {
 
         createGoal(defaultGoalNumber12);
+
+    }
+
+    @Async("asyncTaskExecutor")
+    @Scheduled(cron = "0 1 0 1/1 * *", zone = "Europe/Moscow")
+    public void addNumber13ScheduledGoal() {
+
+        createGoal(defaultGoalNumber13);
 
     }
 

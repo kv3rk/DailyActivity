@@ -63,7 +63,7 @@ public class StatsService {
                                 activity_type_3, statsEntity.getActivity_type_3().doubleValue(),
                                 activity_type_4, statsEntity.getActivity_type_4().doubleValue(),
                                 activity_type_5, statsEntity.getActivity_type_5().doubleValue(),
-                                activity_type_6, statsEntity.getActivity_type_5().doubleValue()
+                                activity_type_6, statsEntity.getActivity_type_6().doubleValue()
                         )
                 ),
                 statsEntity.getTimeActivities()
