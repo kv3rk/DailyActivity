@@ -13,3 +13,25 @@ spring:
   flyway:
     enabled: true
     locations: classpath:test-db/migration
+default:
+  goal:
+    number1: default_goal
+    number2: default_goal
+    number3: default_goal
+    number4: default_goal
+    number5: default_goal
+    number6: default_goal
+    number7: default_goal
+    number8: default_goal
+    number9: default_goal
+    number10: default_goal
+    number11: default_goal
+    number12: default_goal
+activity:
+  type:
+    1: activity_type
+    2: activity_type
+    3: activity_type
+    4: activity_type
+    5: activity_type
+    6: activity_type

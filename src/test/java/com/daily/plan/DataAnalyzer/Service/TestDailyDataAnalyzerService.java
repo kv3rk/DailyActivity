@@ -74,7 +74,6 @@ public class TestDailyDataAnalyzerService {
 
         Long result = dailyDataAnalyzerService.getAmountTodayGoals();
 
-        assertThat(result).isNull();
         assertThat(result).isEqualTo(1L);
 
     }
