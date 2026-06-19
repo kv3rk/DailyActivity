@@ -31,22 +31,26 @@ public class DefaultGoalsSchedule {
     private final String defaultGoalNumber12;
     private final String defaultGoalNumber13;
 
-    public DefaultGoalsSchedule(DailyPlanService dailyPlanService,
+    public DefaultGoalsSchedule(
 
-                                @Value("${default.goal.number1}") String defaultGoalNumber1,
-                                @Value("${default.goal.number2}") String defaultGoalNumber2,
-                                @Value("${default.goal.number3}") String defaultGoalNumber3,
-                                @Value("${default.goal.number4}") String defaultGoalNumber4,
-                                @Value("${default.goal.number5}") String defaultGoalNumber5,
-                                @Value("${default.goal.number6}") String defaultGoalNumber6,
-                                @Value("${default.goal.number7}") String defaultGoalNumber7,
-                                @Value("${default.goal.number8}") String defaultGoalNumber8,
-                                @Value("${default.goal.number9}") String defaultGoalNumber9,
-                                @Value("${default.goal.number10}") String defaultGoalNumber10,
-                                @Value("${default.goal.number11}") String defaultGoalNumber11,
-                                @Value("${default.goal.number12}") String defaultGoalNumber12,
-                                @Value("${default.goal.number13}") String defaultGoalNumber13) {
+            DailyPlanService dailyPlanService,
+
+            @Value("${default.goal.number1}") String defaultGoalNumber1,
+            @Value("${default.goal.number2}") String defaultGoalNumber2,
+            @Value("${default.goal.number3}") String defaultGoalNumber3,
+            @Value("${default.goal.number4}") String defaultGoalNumber4,
+            @Value("${default.goal.number5}") String defaultGoalNumber5,
+            @Value("${default.goal.number6}") String defaultGoalNumber6,
+            @Value("${default.goal.number7}") String defaultGoalNumber7,
+            @Value("${default.goal.number8}") String defaultGoalNumber8,
+            @Value("${default.goal.number9}") String defaultGoalNumber9,
+            @Value("${default.goal.number10}") String defaultGoalNumber10,
+            @Value("${default.goal.number11}") String defaultGoalNumber11,
+            @Value("${default.goal.number12}") String defaultGoalNumber12,
+            @Value("${default.goal.number13}") String defaultGoalNumber13) {
+
         this.dailyPlanService = dailyPlanService;
+
         this.defaultGoalNumber1 = defaultGoalNumber1;
         this.defaultGoalNumber2 = defaultGoalNumber2;
         this.defaultGoalNumber3 = defaultGoalNumber3;
