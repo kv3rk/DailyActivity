@@ -66,7 +66,6 @@ public class GlobalExceptionHandler {
     ) {
         String uri = request.getRequestURI();
 
-        // API calls -> JSON
         if (uri.startsWith("/daily/save")
                 || uri.startsWith("/daily/toggle")
                 || uri.startsWith("/daily/active")
@@ -80,7 +79,6 @@ public class GlobalExceptionHandler {
             return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        // page rendering -> redirect
         return "redirect:/daily/error";
     }
 }
