@@ -134,7 +134,7 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 4 * * 1-6", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 1 0 * * 1-6", zone = "Europe/Moscow")
     public void addAlmostDailyScheduledGoal() {
 
         createGoal(defaultGoalNumber1);
@@ -144,7 +144,7 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 4 * * SUN", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 1 0 * * SUN", zone = "Europe/Moscow")
     public void addSundayScheduledGoal() {
 
         createGoal(defaultGoalNumber6);
@@ -154,7 +154,7 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 4 * * MON,THU", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 1 0 * * MON,THU", zone = "Europe/Moscow")
     public void addMonANDThuScheduledGoal() {
 
         createGoal(defaultGoalNumber3);
@@ -162,7 +162,7 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 4 * * TUE,FRI", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 1 0 * * TUE,FRI", zone = "Europe/Moscow")
     public void addTueANDFriScheduledGoal() {
 
         createGoal(defaultGoalNumber4);
@@ -170,7 +170,7 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 4 * * WED,SAT", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 1 0 * * WED,SAT", zone = "Europe/Moscow")
     public void addWedANDSatScheduledGoal() {
 
         createGoal(defaultGoalNumber5);
@@ -179,7 +179,7 @@ public class DefaultGoalsSchedule {
 
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 4 * * MON,WED,FRI,SUN", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 1 0 * * MON,WED,FRI,SUN", zone = "Europe/Moscow")
     public void addMonANDWedANDFriANDSunScheduledGoal() {
 
         createGoal(defaultGoalNumber7);
@@ -187,7 +187,7 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 4 * * TUE,THU,SAT", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 1 0 * * TUE,THU,SAT", zone = "Europe/Moscow")
     public void addTueANDThuANDSatScheduledGoal() {
 
         createGoal(defaultGoalNumber9);
@@ -195,7 +195,7 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 4 * * MON,WED,FRI", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 1 0 * * MON,WED,FRI", zone = "Europe/Moscow")
     public void addMonANDWedANDFriScheduledGoal() {
 
         createGoal(defaultGoalNumber10);
@@ -204,7 +204,7 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 4 * * TUE,THU,SAT,SUN", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 1 0 * * TUE,THU,SAT,SUN", zone = "Europe/Moscow")
     public void addTueANDThuANDSatANDSunScheduledGoal() {
 
         createGoal(defaultGoalNumber18);
@@ -212,7 +212,7 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 4 * * MON,FRI", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 1 0 * * MON,FRI", zone = "Europe/Moscow")
     public void addMonAndFriScheduledGoal() {
 
         createGoal(defaultGoalNumber20);
@@ -220,7 +220,7 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 4 * * TUE,SAT", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 1 0 * * TUE,SAT", zone = "Europe/Moscow")
     public void addThuAndSatScheduledGoal() {
 
         createGoal(defaultGoalNumber21);
@@ -228,7 +228,7 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 4 * * WED", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 1 0 * * WED", zone = "Europe/Moscow")
     public void addOnlyWednesdayScheduledGoal() {
 
         createGoal(defaultGoalNumber22);
@@ -236,7 +236,7 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 4 * * THU", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 1 0 * * THU", zone = "Europe/Moscow")
     public void addOnlyThursdayScheduledGoal() {
 
         createGoal(defaultGoalNumber23);
