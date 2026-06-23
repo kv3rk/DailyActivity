@@ -28,6 +28,20 @@ default:
     number11: default_goal
     number12: default_goal
     number13: default_goal
+    number14: default_goal
+    number15: default_goal
+    number16: default_goal
+    number17: default_goal
+    number18: default_goal
+    number19: default_goal
+    number20: default_goal
+    number21: default_goal
+    number22: default_goal
+    number23: default_goal
+    number24: default_goal
+    number25: default_goal
+    number26: default_goal
+    number27: default_goal
 activity:
   type:
     1: activity_type

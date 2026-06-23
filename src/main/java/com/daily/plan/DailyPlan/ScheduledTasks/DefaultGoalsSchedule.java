@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 public class DefaultGoalsSchedule {
 
     private final DailyPlanService dailyPlanService;
+
     private final String defaultGoalNumber1;
     private final String defaultGoalNumber2;
     private final String defaultGoalNumber3;
@@ -30,6 +31,20 @@ public class DefaultGoalsSchedule {
     private final String defaultGoalNumber11;
     private final String defaultGoalNumber12;
     private final String defaultGoalNumber13;
+    private final String defaultGoalNumber14;
+    private final String defaultGoalNumber15;
+    private final String defaultGoalNumber16;
+    private final String defaultGoalNumber17;
+    private final String defaultGoalNumber18;
+    private final String defaultGoalNumber19;
+    private final String defaultGoalNumber20;
+    private final String defaultGoalNumber21;
+    private final String defaultGoalNumber22;
+    private final String defaultGoalNumber23;
+    private final String defaultGoalNumber24;
+    private final String defaultGoalNumber25;
+    private final String defaultGoalNumber26;
+    private final String defaultGoalNumber27;
 
     public DefaultGoalsSchedule(
 
@@ -47,7 +62,21 @@ public class DefaultGoalsSchedule {
             @Value("${default.goal.number10}") String defaultGoalNumber10,
             @Value("${default.goal.number11}") String defaultGoalNumber11,
             @Value("${default.goal.number12}") String defaultGoalNumber12,
-            @Value("${default.goal.number13}") String defaultGoalNumber13) {
+            @Value("${default.goal.number13}") String defaultGoalNumber13,
+            @Value("${default.goal.number14}") String defaultGoalNumber14,
+            @Value("${default.goal.number15}") String defaultGoalNumber15,
+            @Value("${default.goal.number16}") String defaultGoalNumber16,
+            @Value("${default.goal.number17}") String defaultGoalNumber17,
+            @Value("${default.goal.number18}") String defaultGoalNumber18,
+            @Value("${default.goal.number19}") String defaultGoalNumber19,
+            @Value("${default.goal.number20}") String defaultGoalNumber20,
+            @Value("${default.goal.number21}") String defaultGoalNumber21,
+            @Value("${default.goal.number22}") String defaultGoalNumber22,
+            @Value("${default.goal.number23}") String defaultGoalNumber23,
+            @Value("${default.goal.number24}") String defaultGoalNumber24,
+            @Value("${default.goal.number25}") String defaultGoalNumber25,
+            @Value("${default.goal.number26}") String defaultGoalNumber26,
+            @Value("${default.goal.number27}") String defaultGoalNumber27) {
 
         this.dailyPlanService = dailyPlanService;
 
@@ -64,6 +93,20 @@ public class DefaultGoalsSchedule {
         this.defaultGoalNumber11 = defaultGoalNumber11;
         this.defaultGoalNumber12 = defaultGoalNumber12;
         this.defaultGoalNumber13 = defaultGoalNumber13;
+        this.defaultGoalNumber14 = defaultGoalNumber14;
+        this.defaultGoalNumber15 = defaultGoalNumber15;
+        this.defaultGoalNumber16 = defaultGoalNumber16;
+        this.defaultGoalNumber17 = defaultGoalNumber17;
+        this.defaultGoalNumber18 = defaultGoalNumber18;
+        this.defaultGoalNumber19 = defaultGoalNumber19;
+        this.defaultGoalNumber20 = defaultGoalNumber20;
+        this.defaultGoalNumber21 = defaultGoalNumber21;
+        this.defaultGoalNumber22 = defaultGoalNumber22;
+        this.defaultGoalNumber23 = defaultGoalNumber23;
+        this.defaultGoalNumber24 = defaultGoalNumber24;
+        this.defaultGoalNumber25 = defaultGoalNumber25;
+        this.defaultGoalNumber26 = defaultGoalNumber26;
+        this.defaultGoalNumber27 = defaultGoalNumber27;
     }
 
     public void createGoal(String text) {
@@ -77,107 +120,130 @@ public class DefaultGoalsSchedule {
         log.info("Created DEFAULT goal with text [{}]", defaultGoalDTO.goalText());
     }
 
+
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 1 0 1/1 * 1-6", zone = "Europe/Moscow")
-    public void addNumber1ScheduledGoal() {
+    @Scheduled(cron = "0 0 4 1/1 * *", zone = "Europe/Moscow")
+    public void addDailyScheduledGoal() {
+
+        createGoal(defaultGoalNumber8);
+        createGoal(defaultGoalNumber12);
+        createGoal(defaultGoalNumber13);
+        createGoal(defaultGoalNumber14);
+        createGoal(defaultGoalNumber15);
+        createGoal(defaultGoalNumber16);
+        createGoal(defaultGoalNumber17);
+        createGoal(defaultGoalNumber19);
+
+    }
+
+    @Async("asyncTaskExecutor")
+    @Scheduled(cron = "0 0 4 * * 1-6", zone = "Europe/Moscow")
+    public void addAlmostDailyScheduledGoal() {
 
         createGoal(defaultGoalNumber1);
-
-    }
-
-    @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 1 0 1/1 * 1-6", zone = "Europe/Moscow")
-    public void addNumber2ScheduledGoal() {
-
         createGoal(defaultGoalNumber2);
+        createGoal(defaultGoalNumber26);
+        createGoal(defaultGoalNumber27);
 
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 1 0 * * MON,THU", zone = "Europe/Moscow")
-    public void addNumber3ScheduledGoal() {
+    @Scheduled(cron = "0 0 4 * * SUN", zone = "Europe/Moscow")
+    public void addSundayScheduledGoal() {
+
+        createGoal(defaultGoalNumber6);
+        createGoal(defaultGoalNumber24);
+        createGoal(defaultGoalNumber25);
+
+    }
+
+    @Async("asyncTaskExecutor")
+    @Scheduled(cron = "0 0 4 * * MON,THU", zone = "Europe/Moscow")
+    public void addMonANDThuScheduledGoal() {
 
         createGoal(defaultGoalNumber3);
 
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 1 0 * * TUE,FRI", zone = "Europe/Moscow")
-    public void addNumber4ScheduledGoal() {
+    @Scheduled(cron = "0 0 4 * * TUE,FRI", zone = "Europe/Moscow")
+    public void addTueANDFriScheduledGoal() {
 
         createGoal(defaultGoalNumber4);
 
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 1 0 * * WED,SAT", zone = "Europe/Moscow")
-    public void addNumber5ScheduledGoal() {
+    @Scheduled(cron = "0 0 4 * * WED,SAT", zone = "Europe/Moscow")
+    public void addWedANDSatScheduledGoal() {
 
         createGoal(defaultGoalNumber5);
 
     }
 
-    @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 1 0 * * SUN", zone = "Europe/Moscow")
-    public void addNumber6ScheduledGoal() {
-
-        createGoal(defaultGoalNumber6);
-
-    }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 1 0 1/1 * MON,WED,FRI,SUN", zone = "Europe/Moscow")
-    public void addNumber7ScheduledGoal() {
+    @Scheduled(cron = "0 0 4 * * MON,WED,FRI,SUN", zone = "Europe/Moscow")
+    public void addMonANDWedANDFriANDSunScheduledGoal() {
 
         createGoal(defaultGoalNumber7);
 
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 1 0 1/1 * 1-6", zone = "Europe/Moscow")
-    public void addNumber8ScheduledGoal() {
-
-        createGoal(defaultGoalNumber8);
-
-    }
-
-    @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 1 0 1/1 * TUE,THU,SAT", zone = "Europe/Moscow")
-    public void addNumber9ScheduledGoal() {
+    @Scheduled(cron = "0 0 4 * * TUE,THU,SAT", zone = "Europe/Moscow")
+    public void addTueANDThuANDSatScheduledGoal() {
 
         createGoal(defaultGoalNumber9);
 
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 1 0 1/1 * MON,WED,FRI", zone = "Europe/Moscow")
-    public void addNumber10ScheduledGoal() {
+    @Scheduled(cron = "0 0 4 * * MON,WED,FRI", zone = "Europe/Moscow")
+    public void addMonANDWedANDFriScheduledGoal() {
 
         createGoal(defaultGoalNumber10);
-
-    }
-
-    @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 1 0 1/1 * MON,WED,FRI", zone = "Europe/Moscow")
-    public void addNumber11ScheduledGoal() {
-
         createGoal(defaultGoalNumber11);
 
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 1 0 1/1 * *", zone = "Europe/Moscow")
-    public void addNumber12ScheduledGoal() {
+    @Scheduled(cron = "0 0 4 * * TUE,THU,SAT,SUN", zone = "Europe/Moscow")
+    public void addTueANDThuANDSatANDSunScheduledGoal() {
 
-        createGoal(defaultGoalNumber12);
+        createGoal(defaultGoalNumber18);
 
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 1 0 1/1 * *", zone = "Europe/Moscow")
-    public void addNumber13ScheduledGoal() {
+    @Scheduled(cron = "0 0 4 * * MON,FRI", zone = "Europe/Moscow")
+    public void addMonAndFriScheduledGoal() {
 
-        createGoal(defaultGoalNumber13);
+        createGoal(defaultGoalNumber20);
+
+    }
+
+    @Async("asyncTaskExecutor")
+    @Scheduled(cron = "0 0 4 * * TUE,SAT", zone = "Europe/Moscow")
+    public void addThuAndSatScheduledGoal() {
+
+        createGoal(defaultGoalNumber21);
+
+    }
+
+    @Async("asyncTaskExecutor")
+    @Scheduled(cron = "0 0 4 * * WED", zone = "Europe/Moscow")
+    public void addOnlyWednesdayScheduledGoal() {
+
+        createGoal(defaultGoalNumber22);
+
+    }
+
+    @Async("asyncTaskExecutor")
+    @Scheduled(cron = "0 0 4 * * THU", zone = "Europe/Moscow")
+    public void addOnlyThursdayScheduledGoal() {
+
+        createGoal(defaultGoalNumber23);
 
     }
 
