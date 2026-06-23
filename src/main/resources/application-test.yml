@@ -41,7 +41,6 @@ default:
     number24: default_goal
     number25: default_goal
     number26: default_goal
-    number27: default_goal
 activity:
   type:
     1: activity_type

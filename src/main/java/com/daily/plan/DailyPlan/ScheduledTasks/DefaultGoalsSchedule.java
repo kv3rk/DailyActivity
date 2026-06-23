@@ -44,7 +44,6 @@ public class DefaultGoalsSchedule {
     private final String defaultGoalNumber24;
     private final String defaultGoalNumber25;
     private final String defaultGoalNumber26;
-    private final String defaultGoalNumber27;
 
     public DefaultGoalsSchedule(
 
@@ -75,8 +74,7 @@ public class DefaultGoalsSchedule {
             @Value("${default.goal.number23}") String defaultGoalNumber23,
             @Value("${default.goal.number24}") String defaultGoalNumber24,
             @Value("${default.goal.number25}") String defaultGoalNumber25,
-            @Value("${default.goal.number26}") String defaultGoalNumber26,
-            @Value("${default.goal.number27}") String defaultGoalNumber27) {
+            @Value("${default.goal.number26}") String defaultGoalNumber26) {
 
         this.dailyPlanService = dailyPlanService;
 
@@ -106,7 +104,6 @@ public class DefaultGoalsSchedule {
         this.defaultGoalNumber24 = defaultGoalNumber24;
         this.defaultGoalNumber25 = defaultGoalNumber25;
         this.defaultGoalNumber26 = defaultGoalNumber26;
-        this.defaultGoalNumber27 = defaultGoalNumber27;
     }
 
     public void createGoal(String text) {
@@ -143,7 +140,6 @@ public class DefaultGoalsSchedule {
         createGoal(defaultGoalNumber1);
         createGoal(defaultGoalNumber2);
         createGoal(defaultGoalNumber26);
-        createGoal(defaultGoalNumber27);
 
     }
 
