@@ -4,7 +4,7 @@
 
 body {
     margin: 0;
-    background: linear-gradient(135deg, #e7ecef 0%, #d7e3fc 100%);
+    background: linear-gradient(135deg, #dde4ed 0%, #c8d6e8 100%);
     font-family: Arial, sans-serif;
     overflow: hidden;
 }
@@ -30,15 +30,15 @@ body {
     padding: 16px 28px;
     border-radius: 999px;
     text-align: center;
-    background: linear-gradient(135deg, #a3cef1, #90dbf4);
-    color: #274c77;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    background: linear-gradient(135deg, #7ba3d0, #5b87bf);
+    color: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .hero-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
 }
 
 .hero-title {
@@ -46,12 +46,14 @@ body {
     font-size: 36px;
     font-weight: 700;
     letter-spacing: 1px;
+    color: #ffffff;
 }
 
 .hero-subtitle {
     margin: 4px 0 0;
     opacity: 0.75;
     font-size: 15px;
+    color: #ffffff;
 }
 
 /* MAIN CONTENT */
@@ -60,6 +62,12 @@ body {
     display: flex;
     gap: 24px;
     overflow: hidden;
+    /* сверху: место чтобы карточки поднимались при hover без обрезки */
+    padding-top: 8px;
+    margin-top: -8px;
+    /* снизу: место чтобы тень не обрезалась контейнером */
+    padding-bottom: 16px;
+    margin-bottom: -16px;
 }
 
 /* CARDS */
@@ -71,21 +79,21 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.72);
     backdrop-filter: blur(8px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* CARD HEADER */
 .card-header {
-    background: linear-gradient(135deg, #a3cef1, #90dbf4);
-    color: #274c77;
+    background: linear-gradient(135deg, #7ba3d0, #5b87bf);
+    color: #ffffff;
     border: none;
     font-size: 24px;
     font-weight: 700;
@@ -111,7 +119,7 @@ body {
 }
 
 .goals-scroll-area::-webkit-scrollbar-thumb {
-    background: rgba(39, 76, 119, 0.25);
+    background: rgba(91, 135, 191, 0.25);
     border-radius: 999px;
 }
 
@@ -123,29 +131,34 @@ body {
 
 #textfield-goals {
     border-radius: 14px;
-    border: none;
+    border: 1px solid #c2cfe0;
+    background: #f4f7fb;
     padding: 12px;
+    color: #5b87bf;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 #textfield-goals:focus {
     transform: scale(1.01);
-    box-shadow: 0 0 0 4px rgba(144, 219, 244, 0.35);
+    box-shadow: 0 0 0 4px rgba(91, 135, 191, 0.2);
     outline: none;
+    border-color: #5b87bf;
 }
 
 /* ADD BUTTON */
 #addition-button {
     border: none;
     border-radius: 14px;
-    background: #274c77;
+    background: linear-gradient(135deg, #7ba3d0, #5b87bf);
+    color: #ffffff;
+    font-weight: 600;
     min-width: 90px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 #addition-button:hover {
     transform: scale(1.04);
-    box-shadow: 0 6px 16px rgba(39, 76, 119, 0.3);
+    box-shadow: 0 6px 16px rgba(91, 135, 191, 0.4);
 }
 
 /* GOAL ITEM */
@@ -158,39 +171,44 @@ body {
     margin-bottom: 12px;
     border: none;
     border-radius: 16px;
-    background: #d7e3fc;
-    color: #274c77;
+    background: #dce7f5;
+    /* цвет текста задач — тот же синий что в хедерах */
+    color: #5b87bf;
     font-weight: bold;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .goal-item:hover {
     transform: translateY(-1px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
 }
 
 .goal-text {
     flex: 1;
     word-break: break-word;
     text-align: left;
+    color: #5b87bf;
 }
 
-/* DONE BUTTON */
+/* DONE BUTTON — тот же оттенок что Stop */
 .done-button {
     flex-shrink: 0;
     border-radius: 10px;
+    background: #b03030 !important;
+    border-color: #b03030 !important;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .done-button:hover {
     transform: scale(1.06);
-    box-shadow: 0 6px 14px rgba(255, 0, 0, 0.25);
+    box-shadow: 0 6px 14px rgba(176, 48, 48, 0.32);
 }
 
 /* DONE GOALS */
 .element-done-goal {
-    background: rgba(76, 201, 140, 0.25);
+    background: rgba(144, 190, 230, 0.22);
+    color: #5b87bf;
     text-decoration: line-through;
 }
 
@@ -213,11 +231,11 @@ body {
     gap: 20px;
 }
 
-/* TIMER DISPLAY */
+/* TIMER DISPLAY — синий хедерный цвет */
 #timer-display {
     font-size: 72px;
     font-weight: 700;
-    color: #274c77;
+    color: #5b87bf;
     font-family: "Courier New", monospace;
     letter-spacing: 3px;
 }
@@ -230,8 +248,10 @@ body {
 #minutes-input {
     text-align: center;
     border-radius: 14px;
-    border: none;
+    border: 1px solid #c2cfe0;
+    background: #f4f7fb;
     padding: 10px;
+    color: #5b87bf;
 }
 
 /* TIMER FOOTER */
@@ -240,6 +260,8 @@ body {
     justify-content: center;
     gap: 18px;
     padding: 18px;
+    background: transparent;
+    border-top: 1px solid rgba(0,0,0,0.06);
 }
 
 /* TIMER BUTTONS */
@@ -256,29 +278,26 @@ body {
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
 }
 
-/* START */
 #start-timer-btn {
-    background: #274c77;
-    color: white;
+    background: linear-gradient(135deg, #7ba3d0, #5b87bf);
+    color: #ffffff;
 }
 
-/* PAUSE */
 #pause-timer-btn {
-    background: #ffb703;
-    color: #274c77;
+    background: #c98a20;
+    color: #ffffff;
 }
 
-/* STOP */
 #stop-timer-btn {
-    background: #d62828;
-    color: white;
+    background: #b03030;
+    color: #ffffff;
 }
 
 /* MODAL OVERLAY */
 #activity-modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.42);
     backdrop-filter: blur(6px);
     display: none;
     justify-content: center;
@@ -312,47 +331,56 @@ body {
 
 #activity-modal-title {
     margin: 0;
-    color: #274c77;
+    color: #1e2d40;
     font-size: 28px;
     font-weight: 700;
 }
 
 #activity-modal-subtitle {
     margin: 0;
-    color: #5c677d;
+    color: #1e2d40;
 }
 
 #activity-type {
-    border: none;
+    border: 1px solid #c2cfe0;
     border-radius: 14px;
     padding: 12px;
-    background: #d7e3fc;
-    color: #274c77;
+    background: #dce7f5;
+    color: #1e2d40;
     font-size: 16px;
 }
 
 #activity-comment {
     min-height: 120px;
     resize: none;
-    border: none;
+    border: 1px solid #c2cfe0;
     border-radius: 16px;
     padding: 14px;
-    background: #eef4ff;
-    color: #274c77;
+    background: #eef3fa;
+    color: #1e2d40;
     font-size: 15px;
 }
 
-#activity-comment:focus, #activity-type:focus {
+#activity-comment:focus,
+#activity-type:focus {
     outline: none;
-    box-shadow: 0 0 0 4px rgba(144, 219, 244, 0.35);
+    box-shadow: 0 0 0 4px rgba(91, 135, 191, 0.2);
+    border-color: #5b87bf;
 }
 
 #activity-submit-btn {
     border: none;
     border-radius: 14px;
     padding: 14px;
-    background: #274c77;
-    color: white;
+    background: linear-gradient(135deg, #7ba3d0, #5b87bf);
+    color: #ffffff;
     font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#activity-submit-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 16px rgba(91, 135, 191, 0.4);
 }
