@@ -26,8 +26,6 @@ public class DefaultGoalsSchedule {
     private final String defaultGoalNumber6;
     private final String defaultGoalNumber7;
     private final String defaultGoalNumber8;
-    private final String defaultGoalNumber9;
-    private final String defaultGoalNumber10;
     private final String defaultGoalNumber11;
     private final String defaultGoalNumber12;
     private final String defaultGoalNumber13;
@@ -35,8 +33,6 @@ public class DefaultGoalsSchedule {
     private final String defaultGoalNumber15;
     private final String defaultGoalNumber16;
     private final String defaultGoalNumber17;
-    private final String defaultGoalNumber18;
-    private final String defaultGoalNumber19;
     private final String defaultGoalNumber20;
     private final String defaultGoalNumber21;
     private final String defaultGoalNumber22;
@@ -57,8 +53,6 @@ public class DefaultGoalsSchedule {
             @Value("${default.goal.number6}") String defaultGoalNumber6,
             @Value("${default.goal.number7}") String defaultGoalNumber7,
             @Value("${default.goal.number8}") String defaultGoalNumber8,
-            @Value("${default.goal.number9}") String defaultGoalNumber9,
-            @Value("${default.goal.number10}") String defaultGoalNumber10,
             @Value("${default.goal.number11}") String defaultGoalNumber11,
             @Value("${default.goal.number12}") String defaultGoalNumber12,
             @Value("${default.goal.number13}") String defaultGoalNumber13,
@@ -66,8 +60,6 @@ public class DefaultGoalsSchedule {
             @Value("${default.goal.number15}") String defaultGoalNumber15,
             @Value("${default.goal.number16}") String defaultGoalNumber16,
             @Value("${default.goal.number17}") String defaultGoalNumber17,
-            @Value("${default.goal.number18}") String defaultGoalNumber18,
-            @Value("${default.goal.number19}") String defaultGoalNumber19,
             @Value("${default.goal.number20}") String defaultGoalNumber20,
             @Value("${default.goal.number21}") String defaultGoalNumber21,
             @Value("${default.goal.number22}") String defaultGoalNumber22,
@@ -86,8 +78,6 @@ public class DefaultGoalsSchedule {
         this.defaultGoalNumber6 = defaultGoalNumber6;
         this.defaultGoalNumber7 = defaultGoalNumber7;
         this.defaultGoalNumber8 = defaultGoalNumber8;
-        this.defaultGoalNumber9 = defaultGoalNumber9;
-        this.defaultGoalNumber10 = defaultGoalNumber10;
         this.defaultGoalNumber11 = defaultGoalNumber11;
         this.defaultGoalNumber12 = defaultGoalNumber12;
         this.defaultGoalNumber13 = defaultGoalNumber13;
@@ -95,8 +85,6 @@ public class DefaultGoalsSchedule {
         this.defaultGoalNumber15 = defaultGoalNumber15;
         this.defaultGoalNumber16 = defaultGoalNumber16;
         this.defaultGoalNumber17 = defaultGoalNumber17;
-        this.defaultGoalNumber18 = defaultGoalNumber18;
-        this.defaultGoalNumber19 = defaultGoalNumber19;
         this.defaultGoalNumber20 = defaultGoalNumber20;
         this.defaultGoalNumber21 = defaultGoalNumber21;
         this.defaultGoalNumber22 = defaultGoalNumber22;
@@ -122,14 +110,12 @@ public class DefaultGoalsSchedule {
     @Scheduled(cron = "0 0 4 1/1 * *", zone = "Europe/Moscow")
     public void addDailyScheduledGoal() {
 
-        createGoal(defaultGoalNumber8);
         createGoal(defaultGoalNumber12);
         createGoal(defaultGoalNumber13);
         createGoal(defaultGoalNumber14);
         createGoal(defaultGoalNumber15);
         createGoal(defaultGoalNumber16);
         createGoal(defaultGoalNumber17);
-        createGoal(defaultGoalNumber19);
 
     }
 
@@ -190,7 +176,7 @@ public class DefaultGoalsSchedule {
     @Scheduled(cron = "0 1 0 * * TUE,THU,SAT", zone = "Europe/Moscow")
     public void addTueANDThuANDSatScheduledGoal() {
 
-        createGoal(defaultGoalNumber9);
+        createGoal(defaultGoalNumber8);
 
     }
 
@@ -198,16 +184,7 @@ public class DefaultGoalsSchedule {
     @Scheduled(cron = "0 1 0 * * MON,WED,FRI", zone = "Europe/Moscow")
     public void addMonANDWedANDFriScheduledGoal() {
 
-        createGoal(defaultGoalNumber10);
         createGoal(defaultGoalNumber11);
-
-    }
-
-    @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 1 0 * * TUE,THU,SAT,SUN", zone = "Europe/Moscow")
-    public void addTueANDThuANDSatANDSunScheduledGoal() {
-
-        createGoal(defaultGoalNumber18);
 
     }
 

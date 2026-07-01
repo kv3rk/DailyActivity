@@ -23,8 +23,6 @@ default:
     number6: default_goal
     number7: default_goal
     number8: default_goal
-    number9: default_goal
-    number10: default_goal
     number11: default_goal
     number12: default_goal
     number13: default_goal
@@ -32,8 +30,6 @@ default:
     number15: default_goal
     number16: default_goal
     number17: default_goal
-    number18: default_goal
-    number19: default_goal
     number20: default_goal
     number21: default_goal
     number22: default_goal
