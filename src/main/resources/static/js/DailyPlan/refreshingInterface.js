@@ -13,13 +13,11 @@ async function refreshActiveGoals() {
 
     const data = await res.json();
 
-    const activeGoalsList =
-        document.getElementById("list-active-goals");
+    const activeGoalsList = document.getElementById("list-active-goals");
 
     activeGoalsList.innerHTML = "";
 
     data.forEach(goal => {
-
         createActiveListElement(goal);
     });
 }
@@ -30,13 +28,11 @@ async function refreshDoneGoals() {
 
     const data = await res.json();
 
-    const doneGoalsList =
-        document.getElementById("list-done-goals");
+    const doneGoalsList = document.getElementById("list-done-goals");
 
     doneGoalsList.innerHTML = "";
 
     data.forEach(goal => {
-
         createDoneListElement(goal);
     });
 }

@@ -4,6 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 *.Identifier
+src/main/resources/templates/future-patterns/**
 
 ### STS ###
 .apt_generated

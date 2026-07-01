@@ -32,22 +32,23 @@ async function createActiveListElement(data) {
     const activeGoalsList = document.getElementById("list-active-goals");
 
     const li = document.createElement("li");
-
     li.id = data.id;
-    li.className = "list-group-item goal-item";
+    li.className = "goal-item element-active-goal";
+
+    const dot = document.createElement("div");
+    dot.className = "goal-dot";
 
     const span = document.createElement("span");
-
     span.innerText = data.goalText;
     span.className = "goal-text";
 
     const button = document.createElement("button");
-
     button.type = "button";
     button.innerText = "Done";
-    button.className = "btn btn-danger btn-sm done-button";
+    button.className = "done-button";
     button.onclick = toggleFlag;
 
+    li.appendChild(dot);
     li.appendChild(span);
     li.appendChild(button);
 
@@ -64,13 +65,10 @@ async function toggleFlag(event) {
     try {
 
         const res = await fetch('/daily/toggle', {
-
             method: 'POST',
-
             headers: {
                 'Content-Type': 'application/json',
             },
-
             body: JSON.stringify({
                 id: li.id,
                 doneFlag: true
@@ -93,9 +91,17 @@ async function createDoneListElement(data) {
     const doneGoalsList = document.getElementById("list-done-goals");
 
     const li = document.createElement("li");
+    li.className = "goal-item element-done-goal";
 
-    li.innerText = data.goalText;
-    li.className = "list-group-item goal-item element-done-goal";
+    const dot = document.createElement("div");
+    dot.className = "goal-dot";
+
+    const span = document.createElement("span");
+    span.innerText = data.goalText;
+    span.className = "goal-text";
+
+    li.appendChild(dot);
+    li.appendChild(span);
 
     doneGoalsList.appendChild(li);
 }
