@@ -107,7 +107,7 @@ public class DefaultGoalsSchedule {
 
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 4 1/1 * *", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 1 0 1/1 * *", zone = "Europe/Moscow")
     public void addDailyScheduledGoal() {
 
         createGoal(defaultGoalNumber12);
