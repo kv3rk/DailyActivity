@@ -1,3 +1,15 @@
+let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+document.addEventListener("click", () => {
+    if (audioCtx.state === "suspended") {
+        audioCtx.resume();
+    }
+});
+
+
+let repeatAlarmInterval = null;
+
+
 let timer = null;
 let totalSeconds = 2700;
 let endTime = null;
@@ -42,14 +54,33 @@ function updateDisplay() {
 }
 
 function playSound() {
-    const audio = new Audio(
-        "https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"
-    );
+    if (audioCtx.state === "suspended") {
+        audioCtx.resume();
+    }
 
-    audio.play().catch(error => {
-        console.warn("Sound playback blocked:", error);
-    });
+    const beep = (startTime) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = "sine";
+        osc.frequency.value = 750;
+        gain.gain.value = 0.75;
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(startTime);
+        osc.stop(startTime + 1);
+    };
+
+    const now = audioCtx.currentTime;
+
+    beep(now);
+    beep(now + 1.50);
+    beep(now + 3.00);
 }
+
+
 
 function finishTimer() {
     clearInterval(timer);
@@ -61,7 +92,12 @@ function finishTimer() {
     updateDisplay();
     openActivityModal();
     playSound();
+
+    repeatAlarmInterval = setInterval(() => {
+        playSound();
+    }, 30000);
 }
+
 
 function startTimer() {
     if (isRunning || totalSeconds <= 0) {
@@ -100,6 +136,10 @@ function pauseTimer() {
     totalSeconds = Math.max(remaining, 0);
 
     updateDisplay();
+
+    clearInterval(repeatAlarmInterval);
+    repeatAlarmInterval = null;
+
 }
 
 function stopTimer() {
@@ -109,6 +149,10 @@ function stopTimer() {
     endTime = null;
 
     openActivityModal();
+
+    clearInterval(repeatAlarmInterval);
+    repeatAlarmInterval = null;
+
 }
 
 function updateTimerFromInput() {
@@ -167,5 +211,9 @@ activitySubmitButton.addEventListener("click", () => {
 
         totalSeconds = Number(minutesInput.value) * 60;
         updateDisplay();
+
+        clearInterval(repeatAlarmInterval);
+        repeatAlarmInterval = null;
+
     });
 });
