@@ -2,19 +2,27 @@ services:
 
   db:
     image: postgres:16
+
     container_name: daily-db
+
     restart: "no"
+
     environment:
       POSTGRES_DB: daily_plan_project
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_SHARED_BUFFERS: 32MB
+
     volumes:
       - pgdata:/var/lib/postgresql/data
+
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d daily_plan_project"]
       interval: 5s
       timeout: 5s
       retries: 10
+
+    mem_limit: 80m
 
   app:
     build:
@@ -27,6 +35,7 @@ services:
       - "8080:8080"
 
     environment:
+      JAVA_TOOL_OPTIONS: "-Xmx220m -Xms64m"
       SPRING_PROFILES_ACTIVE: prod
       DB_URL: ${DB_URL}
       DB_USER: ${DB_USER}
@@ -74,6 +83,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
+
+    mem_limit: 280m
 
 volumes:
   pgdata:
