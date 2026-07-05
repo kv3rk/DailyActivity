@@ -25,3 +25,9 @@ logging:
     org.flywaydb: DEBUG
     org.springframework.boot: DEBUG
     root: INFO
+
+server:
+  servlet:
+    session:
+      cookie:
+        name: DAILY_SESSION
