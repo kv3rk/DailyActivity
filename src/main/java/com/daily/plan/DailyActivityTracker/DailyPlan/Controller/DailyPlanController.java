@@ -39,6 +39,16 @@ public class DailyPlanController {
         return "main/main_page";
     }
 
+    @GetMapping("/settings")
+    public String settingsPage(Model model) {
+
+        log.info("Entered endpoint [daily/settings]");
+
+        model.addAttribute("username", dailyPlanService.getUsername());
+
+        return "settings-page/settings-page";
+    }
+
     @GetMapping("/error")
     public String errorPage() {
 

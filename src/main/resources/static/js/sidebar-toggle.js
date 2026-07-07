@@ -14,7 +14,9 @@ function highlightActivePage() {
     const pageMap = {
         '/': 'main',
         '/daily': 'main',
-        '/daily/': 'main'
+        '/daily/': 'main',
+        '/daily/main': 'main',
+        '/daily/settings': 'settings'
     };
 
     const activePage = pageMap[currentPath] || 'main';

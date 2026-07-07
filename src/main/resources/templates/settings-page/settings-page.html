@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings — Daily Plan</title>
+
+    <!--    ICON-->
+    <link rel="icon" type="image/x-icon" href="/images/clock.png"/>
+
+    <!--    CSS-->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="/css/sidebar.css"/>
+    <link rel="stylesheet" href="/css/settings-page/settings-page-style.css"/>
+
+    <!--    Scripts-->
+    <script defer src="/js/sidebar-toggle.js"></script>
+    <script defer src="/js/Settings/highlight-scroll.js"></script>
+
+
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-username" th:text="${username}">Username</div>
+    </div>
+    <div class="sidebar-divider"></div>
+    <ul class="sidebar-menu">
+        <li>
+            <a th:href="@{/daily/main}" class="sidebar-item" data-page="main">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                     stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                Daily Activity Tracker
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/daily/settings}" class="sidebar-item" data-page="settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                     stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                Settings
+            </a>
+        </li>
+        <li>
+            <form th:action="@{/logout}" method="post" class="sidebar-logout-form">
+                <button type="submit" class="sidebar-item logout" data-page="logout">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    Logout
+                </button>
+            </form>
+        </li>
+    </ul>
+</div>
+
+<!-- Topbar -->
+<div id="topbar">
+    <div class="topbar-left">
+        <button type="button" class="hamburger-btn" onclick="toggleSidebar()" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                 stroke-linejoin="round">
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        <div class="brand">
+            <div class="brand-icon">✓</div>
+            <span class="brand-name">Daily Plan</span>
+        </div>
+    </div>
+</div>
+
+<div class="settings-layout">
+
+    <!-- Left: Navigation Card -->
+    <aside class="settings-nav">
+        <div class="settings-nav-card">
+            <div class="settings-nav-title">Settings</div>
+            <nav class="settings-nav-list">
+                <a href="#theme" class="settings-nav-item active">Theme</a>
+                <a href="#notification-volume" class="settings-nav-item">Notification Volume</a>
+                <a href="#telegram" class="settings-nav-item">Telegram</a>
+                <a href="#default-goals" class="settings-nav-item">Default Goals</a>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Right: Content -->
+    <main class="settings-content">
+
+        <!-- Theme -->
+        <section id="theme" class="settings-section">
+            <h2 class="settings-section-title">Theme</h2>
+            <p class="settings-section-desc">Choose your preferred appearance for the application.</p>
+
+            <div class="settings-options">
+                <label class="settings-option">
+                    <input type="radio" name="theme" value="light" checked>
+                    <div class="settings-option-card">
+                        <div class="settings-option-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                            </svg>
+                        </div>
+                        <div class="settings-option-label">Light</div>
+                    </div>
+                </label>
+
+                <label class="settings-option">
+                    <input type="radio" name="theme" value="dark">
+                    <div class="settings-option-card">
+                        <div class="settings-option-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            </svg>
+                        </div>
+                        <div class="settings-option-label">Dark</div>
+                    </div>
+                </label>
+            </div>
+        </section>
+
+        <!-- Notification Volume -->
+        <section id="notification-volume" class="settings-section">
+            <h2 class="settings-section-title">Notification Volume</h2>
+            <p class="settings-section-desc">Adjust the volume for timer and stopwatch alerts.</p>
+
+            <div class="settings-range-wrap">
+                <div class="settings-range-header">
+                    <span class="settings-range-label">Volume</span>
+                    <span class="settings-range-value" id="volume-value">75%</span>
+                </div>
+                <input type="range" class="settings-range" min="0" max="100" value="75" id="volume-slider">
+            </div>
+        </section>
+
+        <!-- Telegram -->
+        <section id="telegram" class="settings-section">
+            <h2 class="settings-section-title">Telegram</h2>
+            <p class="settings-section-desc">Connect your Telegram account for daily reminders and notifications.</p>
+
+            <div class="settings-input-group">
+                <label class="settings-input-label">Telegram Username</label>
+                <input type="text" class="settings-input" placeholder="@username" id="telegram-username">
+            </div>
+
+            <div class="settings-toggle-wrap">
+                <label class="settings-toggle">
+                    <input type="checkbox" id="telegram-enabled">
+                    <span class="settings-toggle-slider"></span>
+                </label>
+                <span class="settings-toggle-label">Enable Telegram notifications</span>
+            </div>
+        </section>
+
+        <!-- Default Goals -->
+        <section id="default-goals" class="settings-section">
+            <h2 class="settings-section-title">Default Goals</h2>
+            <p class="settings-section-desc">Set goals that appear automatically in your daily list.</p>
+
+            <div class="settings-goals-list" id="default-goals-list">
+                <div class="settings-goal-item">
+                    <span class="settings-goal-text">Review yesterday's progress</span>
+                    <button type="button" class="settings-goal-remove">×</button>
+                </div>
+                <div class="settings-goal-item">
+                    <span class="settings-goal-text">Plan today's priorities</span>
+                    <button type="button" class="settings-goal-remove">×</button>
+                </div>
+            </div>
+
+            <div class="settings-goal-add">
+                <input type="text" class="settings-input" placeholder="Add a default goal..." id="new-default-goal">
+                <button type="button" class="settings-goal-add-btn">+ Add</button>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>
