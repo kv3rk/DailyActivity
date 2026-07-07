@@ -5,58 +5,33 @@
     <meta charset="UTF-8">
     <title>Error</title>
 
-    <link rel="icon" type="image/x-icon" href="/images/exclamation.png"/>
+    <!--    ICON-->
+    <link rel="icon" type="image/x-icon" href="/images/clock.png"/>
 
-    <style>
-        body {
-            margin: 0;
-            background: #1f1f1f;
-            color: white;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
+    <!--    CSS-->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="/css/error-page/error-page-style.css/">
 
-        .error-card {
-            background: darkred;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        h1 {
-            font-size: 48px;
-        }
-
-        p {
-            font-size: 20px;
-            margin-top: 10px;
-        }
-
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            background: white;
-            color: darkred;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-    </style>
 </head>
 
 <body>
 
 <div class="error-card">
 
-    <h1>Critical Error</h1>
+    <div class="error-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+    </div>
+
+    <h1>Something went wrong</h1>
 
     <p>
-        The application failed to load.
+        The application failed to load. Please try again or contact support if the problem persists.
     </p>
 
     <a href="/daily/main">
