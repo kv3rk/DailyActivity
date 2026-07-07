@@ -1,9 +1,10 @@
 package com.daily.plan.DailyPlan.Controller;
 
-import com.daily.plan.DailyPlan.DTO.GoalDTO;
-import com.daily.plan.DailyPlan.DTO.ToggleFlagDTO;
-import com.daily.plan.DailyPlan.Service.DailyPlanService;
-import com.daily.plan.Timer.Service.TimerService;
+import com.daily.plan.DailyActivityTracker.DailyPlan.Controller.DailyPlanController;
+import com.daily.plan.DailyActivityTracker.DailyPlan.DTO.GoalDTO;
+import com.daily.plan.DailyActivityTracker.DailyPlan.DTO.ToggleFlagDTO;
+import com.daily.plan.DailyActivityTracker.DailyPlan.Service.DailyPlanService;
+import com.daily.plan.DailyActivityTracker.Timer.Service.TimerService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

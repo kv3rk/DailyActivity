@@ -1,7 +1,8 @@
 package com.daily.plan.Timer.Repository;
 
+import com.daily.plan.DailyActivityTracker.Timer.Repository.TimerRepository;
 import com.daily.plan.Timer.Builder.TimerBuilder;
-import com.daily.plan.Timer.Entity.TimerEntity;
+import com.daily.plan.DailyActivityTracker.Timer.Entity.TimerEntity;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

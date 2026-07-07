@@ -1,8 +1,9 @@
 package com.daily.plan.DataAnalyzer.Service;
 
-import com.daily.plan.DataAnalyzer.Repository.DataActivityAnalyzerRepository;
-import com.daily.plan.DataAnalyzer.Repository.DataGoalsAnalyzerRepository;
-import com.daily.plan.common.unit.CurrentDateTime;
+import com.daily.plan.DailyActivityTracker.DataAnalyzer.Repository.DataActivityAnalyzerRepository;
+import com.daily.plan.DailyActivityTracker.DataAnalyzer.Repository.DataGoalsAnalyzerRepository;
+import com.daily.plan.DailyActivityTracker.DataAnalyzer.Service.WeeklyDataAnalyzerService;
+import com.daily.plan.DailyActivityTracker.common.unit.CurrentDateTime;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

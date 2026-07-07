@@ -1,6 +1,6 @@
 package com.daily.plan.Timer.Builder;
 
-import com.daily.plan.Timer.Entity.TimerEntity;
+import com.daily.plan.DailyActivityTracker.Timer.Entity.TimerEntity;
 
 import java.time.LocalDate;
 

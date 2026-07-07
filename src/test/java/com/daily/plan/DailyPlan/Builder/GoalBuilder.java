@@ -1,6 +1,6 @@
 package com.daily.plan.DailyPlan.Builder;
 
-import com.daily.plan.DailyPlan.Entity.GoalEntity;
+import com.daily.plan.DailyActivityTracker.DailyPlan.Entity.GoalEntity;
 
 import java.time.LocalDate;
 

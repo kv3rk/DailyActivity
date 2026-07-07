@@ -1,0 +1,48 @@
+package com.daily.plan.DailyActivityTracker.DataAnalyzer.CollectedInformationOutputSchedule;
+
+import com.daily.plan.DailyActivityTracker.StatsStorage.Service.StatsService;
+import com.daily.plan.DailyActivityTracker.TgBot.PrepareAnswer.ConcatenatingValues;
+import com.daily.plan.DailyActivityTracker.common.blueprint.PerTimeCollectExecution;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Profile;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+@Component
+@Slf4j
+@EnableScheduling
+@Profile("dev")
+public class DevOutputSchedule implements PerTimeCollectExecution {
+
+    private final ConcatenatingValues concatenatingValues;
+    private final StatsService statsService;
+
+    public DevOutputSchedule(ConcatenatingValues concatenatingValues, StatsService statsService) {
+
+        this.concatenatingValues = concatenatingValues;
+        this.statsService = statsService;
+    }
+
+
+    @Override
+    @Scheduled(cron = "0/15 * * * * * ", zone = "Europe/Moscow")
+    public void dailyRollover() {
+
+        log.info(
+                "\n {}",
+                concatenatingValues.answerDailyRollover(statsService.saveDaily())
+        );
+    }
+
+    @Override
+    @Scheduled(cron = "0/15 * * * * *", zone = "Europe/Moscow")
+    public void weeklyRollover() {
+
+        log.info(
+                "\n {}",
+                concatenatingValues.answerWeeklyRollover(statsService.saveWeekly())
+        );
+
+    }
+}

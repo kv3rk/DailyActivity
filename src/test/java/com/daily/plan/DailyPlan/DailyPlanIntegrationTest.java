@@ -1,7 +1,6 @@
 package com.daily.plan.DailyPlan;
 
-import com.daily.plan.DailyPlan.Repository.GoalRepository;
-import org.junit.jupiter.api.BeforeAll;
+import com.daily.plan.DailyActivityTracker.DailyPlan.Repository.GoalRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
