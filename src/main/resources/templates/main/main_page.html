@@ -1,22 +1,17 @@
 <!DOCTYPE html>
-
-
 <html xmlns:th="http://www.thymeleaf.org">
-
-
 <head>
-
 
     <meta charset="UTF-8">
 
     <title>Daily Plan</title>
-
 
     <!--    Icon-->
     <link rel="icon" type="image/x-icon" href="/images/clock.png"/>
 
     <!--    CSS-->
     <link rel="stylesheet" href="/css/main-page/style.css"/>
+    <link rel="stylesheet" href="/css/main-page/stopwatch.css"/>
     <link rel="stylesheet" href="/css/main-page/Error.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -24,8 +19,8 @@
     <script defer src="/js/DailyPlan/ErrorHandling.js"></script>
     <script defer src="/js/DailyPlan/script.js"></script>
     <script defer src="/js/TimerActivity/timer.js"></script>
+    <script defer src="/js/TimerActivity/Stopwatch.js"></script>
     <script defer src="/js/DailyPlan/refreshingInterface.js"></script>
-
 
 </head>
 <body>
@@ -74,16 +69,51 @@
         </div>
     </div>
 
+    <!-- Timer / Stopwatch Panel -->
     <div id="timer-panel">
-        <div class="timer-header">Activity Timer</div>
-        <div id="timer-display">45:00</div>
-        <div class="timer-sub">minutes remaining</div>
-        <input type="number" id="minutes-input" class="form-control" min="1" value="45">
-        <hr class="timer-divider">
-        <div class="timer-actions">
-            <button type="button" class="timer-btn" id="start-timer-btn">Start session</button>
-            <button type="button" class="timer-btn" id="pause-timer-btn">Pause</button>
-            <button type="button" class="timer-btn" id="stop-timer-btn">Stop & save</button>
+        <!-- Switcher -->
+        <div class="timer-mode-switcher">
+            <button type="button" class="mode-btn active" id="mode-timer-btn" onclick="switchToTimer()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                Timer
+            </button>
+            <button type="button" class="mode-btn" id="mode-stopwatch-btn" onclick="switchToStopwatch()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 8 14"></polyline>
+                </svg>
+                Stopwatch
+            </button>
+        </div>
+
+        <!-- Timer View -->
+        <div id="timer-view">
+            <div class="timer-header">Activity Timer</div>
+            <div id="timer-display">45:00</div>
+            <div class="timer-sub">minutes remaining</div>
+            <input type="number" id="minutes-input" class="form-control" min="1" value="45">
+            <hr class="timer-divider">
+            <div class="timer-actions">
+                <button type="button" class="timer-btn" id="start-timer-btn">Start session</button>
+                <button type="button" class="timer-btn" id="pause-timer-btn">Pause</button>
+                <button type="button" class="timer-btn" id="stop-timer-btn">Stop & save</button>
+            </div>
+        </div>
+
+        <!-- Stopwatch View -->
+        <div id="stopwatch-view" style="display: none;">
+            <div class="timer-header">Activity Stopwatch</div>
+            <div id="stopwatch-display">00:00:00</div>
+            <div class="timer-sub">elapsed time</div>
+            <hr class="timer-divider">
+            <div class="timer-actions">
+                <button type="button" class="timer-btn" id="start-stopwatch-btn">Start session</button>
+                <button type="button" class="timer-btn" id="pause-stopwatch-btn">Pause</button>
+                <button type="button" class="timer-btn" id="stop-stopwatch-btn">Stop & save</button>
+            </div>
         </div>
     </div>
 </div>

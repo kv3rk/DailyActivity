@@ -1,4 +1,4 @@
-let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+let audioCtx = new (window.AudioContext || window.webkitAudioContext());
 
 document.addEventListener("click", () => {
     if (audioCtx.state === "suspended") {
@@ -165,7 +165,6 @@ function updateTimerFromInput() {
 }
 
 
-// Когда вкладка снова стала активной — пересчитать
 document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible" && isRunning) {
         const remaining = Math.ceil((endTime - Date.now()) / 1000);
@@ -188,32 +187,18 @@ minutesInput.addEventListener("input", updateTimerFromInput);
 
 updateDisplay();
 
-activitySubmitButton.addEventListener("click", () => {
-    fetch('/daily/save/timer/activity', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            activityType: activityType.value,
-            comment: activityComment.value,
-            timer: Math.ceil(
-                (Number(minutesInput.value) * 60 - totalSeconds) / 60
-            )
-        })
-    }).then(() => {
-        closeActivityModal();
+// ========= MODE SWITCHING =========
 
-        clearInterval(timer);
-        timer = null;
-        isRunning = false;
-        endTime = null;
+function switchToTimer() {
+    document.getElementById("timer-view").style.display = "block";
+    document.getElementById("stopwatch-view").style.display = "none";
+    document.getElementById("mode-timer-btn").classList.add("active");
+    document.getElementById("mode-stopwatch-btn").classList.remove("active");
+}
 
-        totalSeconds = Number(minutesInput.value) * 60;
-        updateDisplay();
-
-        clearInterval(repeatAlarmInterval);
-        repeatAlarmInterval = null;
-
-    });
-});
+function switchToStopwatch() {
+    document.getElementById("timer-view").style.display = "none";
+    document.getElementById("stopwatch-view").style.display = "block";
+    document.getElementById("mode-timer-btn").classList.remove("active");
+    document.getElementById("mode-stopwatch-btn").classList.add("active");
+}
