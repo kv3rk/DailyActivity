@@ -20,7 +20,8 @@ public class DailyPlanController {
     private final DailyPlanService dailyPlanService;
     private final TimerService timerService;
 
-    public DailyPlanController(DailyPlanService dailyPlanService, TimerService timerService) {
+    public DailyPlanController(DailyPlanService dailyPlanService,
+                               TimerService timerService) {
         this.dailyPlanService = dailyPlanService;
         this.timerService = timerService;
     }
@@ -33,6 +34,7 @@ public class DailyPlanController {
         model.addAttribute("active_goals", dailyPlanService.getActiveGoals());
         model.addAttribute("done_goals", dailyPlanService.getDoneGoals());
         model.addAttribute("activity_types", timerService.getAllActivityTypes());
+        model.addAttribute("username", dailyPlanService.getUsername());
 
         return "main/main_page";
     }

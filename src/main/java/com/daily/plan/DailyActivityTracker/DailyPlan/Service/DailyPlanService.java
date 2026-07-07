@@ -9,6 +9,8 @@ import com.daily.plan.DailyActivityTracker.common.mapper.GoalMapper;
 import com.daily.plan.DailyActivityTracker.common.unit.CurrentDateTime;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -111,6 +113,13 @@ public class DailyPlanService {
         goalRepository.deleteAllByGoalDateBefore(
                 currentDateTime.getCurrentDate().minusWeeks(2)
         );
+    }
+
+    public String getUsername() {
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        return username;
     }
 }
 
