@@ -91,11 +91,30 @@
     text-decoration: none;
 }
 
+/* ========= АКТИВНАЯ СТРАНИЦА ========= */
+
+.sidebar-item.active {
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-weight: 600;
+}
+
+.sidebar-item.active svg {
+    stroke: var(--green-dark);
+}
+
+/* ========= LOGOUT ========= */
+
 .sidebar-item.logout {
     color: #ef4444;
 }
 
 .sidebar-item.logout:hover {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.sidebar-item.logout.active {
     background: #fef2f2;
     color: #dc2626;
 }
