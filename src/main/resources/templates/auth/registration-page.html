@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/clock.png"/>
+    <link href="/css/auth/auth-pages.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="auth-card">
+
+    <div class="brand-icon">✓</div>
+
+    <div class="title">Daily Plan</div>
+    <div class="subtitle">Create your account</div>
+
+    <form th:action="@{/daily/registration}" method="post">
+
+        <div th:if="${param.error}" class="error">
+            Registration failed. Please try again.
+        </div>
+
+        <input type="text"
+               name="username"
+               class="form-control"
+               placeholder="Username">
+
+        <input type="password"
+               name="password"
+               class="form-control"
+               placeholder="Password">
+
+        <button class="btn-auth" type="submit">
+            Sign up
+        </button>
+
+    </form>
+
+    <div class="auth-switch">
+        <span>Already have an account?</span>
+        <a th:href="@{/daily/login}" class="auth-switch-link">Log in</a>
+    </div>
+
+</div>
+
+</body>
+</html>

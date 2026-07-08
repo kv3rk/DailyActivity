@@ -22,7 +22,7 @@ body {
     overflow: hidden;
 }
 
-.login-card {
+.auth-card {
     width: 360px;
     padding: 32px;
     border-radius: 16px;
@@ -52,9 +52,11 @@ body {
 }
 
 .subtitle {
-    font-size: 14px;
-    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
     margin-bottom: 24px;
+    letter-spacing: 0.3px;
 }
 
 .form-control {
@@ -81,7 +83,7 @@ body {
     box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
 }
 
-.btn-login {
+.btn-auth {
     width: 100%;
     border-radius: 8px;
     border: none;
@@ -96,7 +98,7 @@ body {
     margin-top: 4px;
 }
 
-.btn-login:hover {
+.btn-auth:hover {
     background: var(--green-dark);
 }
 
@@ -105,4 +107,30 @@ body {
     font-size: 13px;
     margin-bottom: 12px;
     text-align: left;
+}
+
+.auth-switch {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-weight: 500;
+}
+
+.auth-switch-link {
+    color: var(--green);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.15s;
+}
+
+.auth-switch-link:hover {
+    text-decoration: none;
+    text-shadow: 0 0 12px rgba(34, 197, 94, 0.5), 0 0 24px rgba(34, 197, 94, 0.3);
 }

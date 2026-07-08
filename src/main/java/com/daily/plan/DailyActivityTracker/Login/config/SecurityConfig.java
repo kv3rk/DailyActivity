@@ -29,7 +29,8 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/login",
+                                "/daily/login",
+                                "/daily/registration",
                                 "/css/**",
                                 "/js/**",
                                 "/images/**"
@@ -40,7 +41,7 @@ public class SecurityConfig {
                 )
 
                 .formLogin(form -> form
-                        .loginPage("/login")
+                        .loginPage("/daily/login")
                         .defaultSuccessUrl("/daily/main", true)
                         .failureUrl("/login?error=true")
                         .permitAll()
@@ -48,7 +49,7 @@ public class SecurityConfig {
 
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login")
+                        .logoutSuccessUrl("/daily/login")
                 );
 
         return http.build();
