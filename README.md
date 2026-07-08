@@ -4,6 +4,8 @@ Web application for tracking daily tasks and activities with automatic statistic
 
 The project is developed for personal use and allows tracking goal completion, recording activities via a timer, and receiving automated progress reports.
 
+URL: http://194.33.35.224:8080/daily/main
+
 ## Tech Stack
 
 * Java 21
@@ -47,9 +49,3 @@ http://194.33.35.224:8080/swagger-ui/index.html
 4. Start application
    
    docker compose up --build
-
-5. Open URL
-
-## URL
-
-http://194.33.35.224:8080/daily/main
