@@ -1,17 +1,16 @@
 package com.daily.plan.DailyActivityTracker.Login.config;
 
+import com.daily.plan.DailyActivityTracker.User.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -19,7 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Autowired
-    private Environment env;
+    private UserRepository userRepository;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -31,6 +30,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/daily/login",
                                 "/daily/registration",
+                                "/daily/get/credentials",
                                 "/css/**",
                                 "/js/**",
                                 "/images/**"
@@ -43,7 +43,7 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .loginPage("/daily/login")
                         .defaultSuccessUrl("/daily/main", true)
-                        .failureUrl("/login?error=true")
+                        .failureUrl("/daily/error")
                         .permitAll()
                 )
 
@@ -56,18 +56,20 @@ public class SecurityConfig {
     }
 
     @Bean
+    public AuthenticationProvider authenticationProvider() {
+
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+
+        provider.setUserDetailsService(userDetailsService());
+        provider.setPasswordEncoder(passwordEncoder());
+
+        return provider;
+    }
+
+    @Bean
     public UserDetailsService userDetailsService() {
 
-        String username = env.getProperty("USER_LOGIN", "admin");
-        String password = env.getProperty("USER_PASSWORD", "admin");
-
-        UserDetails user = User.builder()
-                .username(username)
-                .password(passwordEncoder().encode(password))
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(user);
+        return username -> userRepository.findByUsername(username);
     }
 
     @Bean

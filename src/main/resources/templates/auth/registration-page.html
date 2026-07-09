@@ -19,21 +19,28 @@
     <div class="title">Daily Plan</div>
     <div class="subtitle">Create your account</div>
 
-    <form th:action="@{/daily/registration}" method="post">
+    <div th:if="${registrationError}"
+         th:text="${registrationError}"
+         class="error">
+        Registration failed. Please try again.
+    </div>
 
-        <div th:if="${param.error}" class="error">
-            Registration failed. Please try again.
-        </div>
+    <form th:action="@{/daily/get/credentials}" method="post" th:object="${registrationDTO}">
+
 
         <input type="text"
-               name="username"
+               th:field="*{username}"
                class="form-control"
                placeholder="Username">
 
+        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+
         <input type="password"
-               name="password"
+               th:field="*{password}"
                class="form-control"
                placeholder="Password">
+
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 
         <button class="btn-auth" type="submit">
             Sign up

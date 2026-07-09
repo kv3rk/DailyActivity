@@ -10,7 +10,7 @@ public class UserBuilder {
 
     private String username = "user";
     private String password = "password";
-    private Role role = Role.builder().role(RoleEnum.USER).build();
+    private Role role = new Role();
 
     public UserBuilder withUsername(String username) {
 
@@ -26,9 +26,9 @@ public class UserBuilder {
         return this;
     }
 
-    public UserBuilder withRole(RoleEnum roleEnum) {
+    public UserBuilder withRole(Role role) {
 
-        this.role = Role.builder().role(roleEnum).build();
+        this.role = role;
 
         return this;
     }
