@@ -1,3 +1,37 @@
+/* ============================================================
+   THEME VARIABLES
+   ============================================================ */
+
+.theme-light {
+    --bg:           #f8fafc;
+    --card:         #ffffff;
+    --text:         #0f172a;
+    --text-muted:   #64748b;
+    --border:       #e2e8f0;
+    --surface:      #f1f5f9;
+    --hover-border: #cbd5e1;
+    --shadow:       rgba(0,0,0,0.04);
+    --placeholder:  #94a3b8;
+}
+
+.theme-dark {
+    --bg:           #0f172a;
+    --card:         #1e293b;
+    --text:         #f1f5f9;
+    --text-muted:   #94a3b8;
+    --border:       #334155;
+    --surface:      #1e293b;
+    --hover-border: #475569;
+    --shadow:       rgba(0,0,0,0.25);
+    --placeholder:  #64748b;
+}
+
+.theme-light, .theme-dark {
+    --green:       #22c55e;
+    --green-light: #dcfce7;
+    --green-dark:  #15803d;
+}
+
 /* ========= SETTINGS LAYOUT ========= */
 
 .settings-layout {
@@ -19,11 +53,11 @@
 }
 
 .settings-nav-card {
-    background: var(--white);
+    background: var(--card);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 24px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    box-shadow: 0 4px 16px var(--shadow);
     position: sticky;
     top: 0;
 }
@@ -56,16 +90,23 @@
 }
 
 .settings-nav-item:hover {
-    background: var(--surface);
-    color: var(--text);
+    background: var(--green-light);
+    color: var(--green-dark);
+    border-left-color: var(--green);
     text-decoration: none;
 }
 
 .settings-nav-item.active {
+    background: transparent;
+    color: var(--text);
+    border-left-color: transparent;
+    font-weight: 500;  /* было 600 */
+}
+
+.settings-nav-item.active:hover {
     background: var(--green-light);
     color: var(--green-dark);
     border-left-color: var(--green);
-    font-weight: 600;
 }
 
 /* ========= RIGHT CONTENT ========= */
@@ -81,12 +122,12 @@
 .settings-content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
 
 .settings-section {
-    background: var(--white);
+    background: var(--card);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 32px;
     margin-bottom: 24px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    box-shadow: 0 4px 16px var(--shadow);
 }
 
 .settings-section-title {
@@ -129,7 +170,7 @@
 }
 
 .settings-option-card:hover {
-    border-color: #cbd5e1;
+    border-color: var(--hover-border);
 }
 
 .settings-option input:checked + .settings-option-card {
@@ -188,6 +229,7 @@
     border-radius: 99px;
     background: var(--border);
     outline: none;
+    margin-bottom: 16px;
 }
 
 .settings-range::-webkit-slider-thumb {
@@ -203,6 +245,42 @@
 
 .settings-range::-webkit-slider-thumb:hover {
     transform: scale(1.15);
+}
+
+/* ========= VOLUME INPUT & APPLY BUTTON ========= */
+
+#volume-input {
+    width: 120px;
+    padding: 10px 14px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    vertical-align: middle;
+}
+
+.volume-apply-btn {
+    display: inline-block;
+    min-width: 100px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+    background: var(--green);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 14px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-left: 12px;
+    vertical-align: middle;
+}
+
+.volume-apply-btn:hover {
+    background: var(--green-dark);
 }
 
 /* ========= INPUTS ========= */
@@ -238,7 +316,7 @@
 }
 
 .settings-input::placeholder {
-    color: #94a3b8;
+    color: var(--placeholder);
 }
 
 /* ========= TOGGLE ========= */

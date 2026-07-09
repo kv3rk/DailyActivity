@@ -16,7 +16,7 @@
     <!--    Scripts-->
     <script defer src="/js/sidebar-toggle.js"></script>
     <script defer src="/js/Settings/highlight-scroll.js"></script>
-
+    <script defer src="/js/Settings/volume.js"></script>
 
 </head>
 <body>
@@ -151,9 +151,10 @@
             <div class="settings-range-wrap">
                 <div class="settings-range-header">
                     <span class="settings-range-label">Volume</span>
-                    <span class="settings-range-value" id="volume-value">75%</span>
+                    <span class="settings-range-value" id="volume-value">%</span>
                 </div>
-                <input type="range" class="settings-range" min="0" max="100" value="75" id="volume-slider">
+                <input type="number" class="settings-input" min="0" max="100" value="0" id="volume-input">
+                <button type="button" class="volume-apply-btn" id="volume-apply-btn" onclick="applyVolume(event)">Apply</button>
             </div>
         </section>
 

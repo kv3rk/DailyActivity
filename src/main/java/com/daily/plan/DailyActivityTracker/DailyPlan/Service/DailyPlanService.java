@@ -115,11 +115,5 @@ public class DailyPlanService {
         );
     }
 
-    public String getUsername() {
-
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        return username;
-    }
 }
 

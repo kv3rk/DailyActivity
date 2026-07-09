@@ -1,4 +1,4 @@
-package com.daily.plan.DailyActivityTracker.Login.Service;
+package com.daily.plan.DailyActivityTracker.Authenticate.Service;
 
 import com.daily.plan.DailyActivityTracker.Role.Enum.RoleEnum;
 import com.daily.plan.DailyActivityTracker.Role.Repository.RoleRepository;
@@ -8,6 +8,7 @@ import com.daily.plan.DailyActivityTracker.User.Entity.User;
 import com.daily.plan.DailyActivityTracker.User.Repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +16,13 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-public class RegistrationService {
+public class AuthenticateService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public RegistrationService(UserRepository userRepository,
+    public AuthenticateService(UserRepository userRepository,
                                RoleRepository roleRepository,
                                PasswordEncoder passwordEncoder) {
 
@@ -54,5 +55,12 @@ public class RegistrationService {
                 user.getUsername(), user.getRole().getRole());
 
         return true;
+    }
+
+    public String getUsername() {
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        return username;
     }
 }

@@ -1,6 +1,6 @@
-package com.daily.plan.DailyActivityTracker.Login.Controller;
+package com.daily.plan.DailyActivityTracker.Authenticate.Controller;
 
-import com.daily.plan.DailyActivityTracker.Login.Service.RegistrationService;
+import com.daily.plan.DailyActivityTracker.Authenticate.Service.AuthenticateService;
 import com.daily.plan.DailyActivityTracker.User.DTO.RegistrationUserDTO;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/daily")
 public class AuthController {
 
-    private final RegistrationService registrationService;
+    private final AuthenticateService authenticateService;
 
-    public AuthController(RegistrationService registrationService) {
-        this.registrationService = registrationService;
+    public AuthController(AuthenticateService authenticateService) {
+        this.authenticateService = authenticateService;
     }
 
     @GetMapping("/login")
@@ -53,7 +53,7 @@ public class AuthController {
             return "auth/registration-page";
         }
 
-        boolean registrationResult = registrationService.registerUser(registrationUserDTO);
+        boolean registrationResult = authenticateService.registerUser(registrationUserDTO);
 
         if (!registrationResult){
 

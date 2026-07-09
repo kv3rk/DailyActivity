@@ -1,5 +1,6 @@
 package com.daily.plan.DailyActivityTracker.DailyPlan.Controller;
 
+import com.daily.plan.DailyActivityTracker.Authenticate.Service.AuthenticateService;
 import com.daily.plan.DailyActivityTracker.DailyPlan.DTO.GoalDTO;
 import com.daily.plan.DailyActivityTracker.DailyPlan.DTO.ToggleFlagDTO;
 import com.daily.plan.DailyActivityTracker.DailyPlan.Service.DailyPlanService;
@@ -19,11 +20,15 @@ public class DailyPlanController {
 
     private final DailyPlanService dailyPlanService;
     private final TimerService timerService;
+    private final AuthenticateService authenticateService;
 
     public DailyPlanController(DailyPlanService dailyPlanService,
-                               TimerService timerService) {
+                               TimerService timerService,
+                               AuthenticateService authenticateService) {
+
         this.dailyPlanService = dailyPlanService;
         this.timerService = timerService;
+        this.authenticateService = authenticateService;
     }
 
     @GetMapping("/main")
@@ -34,7 +39,7 @@ public class DailyPlanController {
         model.addAttribute("active_goals", dailyPlanService.getActiveGoals());
         model.addAttribute("done_goals", dailyPlanService.getDoneGoals());
         model.addAttribute("activity_types", timerService.getAllActivityTypes());
-        model.addAttribute("username", dailyPlanService.getUsername());
+        model.addAttribute("username", authenticateService.getUsername());
 
         return "main/main_page";
     }
@@ -44,7 +49,7 @@ public class DailyPlanController {
 
         log.info("Entered endpoint [daily/settings]");
 
-        model.addAttribute("username", dailyPlanService.getUsername());
+        model.addAttribute("username", authenticateService.getUsername());
 
         return "settings-page/settings-page";
     }

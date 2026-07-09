@@ -8,12 +8,15 @@ document.addEventListener("click", () => {
 
 
 let repeatAlarmInterval = null;
+let settingsPoller = null;
 
 
 let timer = null;
+let finishTimeout = null;
 let totalSeconds = 2700;
 let endTime = null;
 let isRunning = false;
+let cachedGain = 0.5;
 
 const timerDisplay = document.getElementById("timer-display");
 const minutesInput = document.getElementById("minutes-input");
@@ -53,6 +56,24 @@ function updateDisplay() {
         `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
+function refreshVolume() {
+    const doFetch = typeof fetchVolume === "function"
+        ? fetchVolume
+        : () => fetch('/daily/settings/get/volume')
+            .then(res => res.json())
+            .then(data => data.volume);
+
+    doFetch()
+        .then(volume => {
+            if (volume !== undefined && volume !== null) {
+                cachedGain = volume / 100;
+            }
+        })
+        .catch(() => {
+
+        });
+}
+
 function playSound() {
     if (audioCtx.state === "suspended") {
         audioCtx.resume();
@@ -64,7 +85,7 @@ function playSound() {
 
         osc.type = "sine";
         osc.frequency.value = 750;
-        gain.gain.value = 0.75;
+        gain.gain.value = cachedGain;
 
         osc.connect(gain);
         gain.connect(audioCtx.destination);
@@ -85,6 +106,10 @@ function playSound() {
 function finishTimer() {
     clearInterval(timer);
     timer = null;
+    clearTimeout(finishTimeout);
+    finishTimeout = null;
+    clearInterval(settingsPoller);
+    settingsPoller = null;
     isRunning = false;
     totalSeconds = 0;
     endTime = null;
@@ -106,21 +131,25 @@ function startTimer() {
 
     isRunning = true;
 
-    // фиксируем точное время окончания
     endTime = Date.now() + totalSeconds * 1000;
+
+
+    finishTimeout = setTimeout(() => {
+        finishTimer();
+    }, totalSeconds * 1000);
+
 
     timer = setInterval(() => {
         const remaining = Math.ceil((endTime - Date.now()) / 1000);
-
         totalSeconds = Math.max(remaining, 0);
-
         updateDisplay();
-
-        if (totalSeconds <= 0) {
-            finishTimer();
-        }
-
     }, 1000);
+
+    // Live settings polling every 5 seconds
+    refreshVolume();
+    settingsPoller = setInterval(() => {
+        refreshVolume();
+    }, 5000);
 }
 
 function pauseTimer() {
@@ -130,6 +159,10 @@ function pauseTimer() {
 
     clearInterval(timer);
     timer = null;
+    clearTimeout(finishTimeout);
+    finishTimeout = null;
+    clearInterval(settingsPoller);
+    settingsPoller = null;
     isRunning = false;
 
     const remaining = Math.ceil((endTime - Date.now()) / 1000);
@@ -145,6 +178,10 @@ function pauseTimer() {
 function stopTimer() {
     clearInterval(timer);
     timer = null;
+    clearTimeout(finishTimeout);
+    finishTimeout = null;
+    clearInterval(settingsPoller);
+    settingsPoller = null;
     isRunning = false;
     endTime = null;
 

@@ -1,4 +1,4 @@
-package com.daily.plan.DailyActivityTracker.Login.config;
+package com.daily.plan.DailyActivityTracker.Authenticate.config;
 
 import com.daily.plan.DailyActivityTracker.User.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
