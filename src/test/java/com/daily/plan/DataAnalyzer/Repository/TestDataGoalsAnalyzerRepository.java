@@ -1,6 +1,6 @@
 package com.daily.plan.DataAnalyzer.Repository;
 
-import com.daily.plan.DailyActivityTracker.DailyPlan.Entity.GoalEntity;
+import com.daily.plan.DailyActivityTracker.DailyGoals.Entity.GoalEntity;
 import com.daily.plan.DailyActivityTracker.DataAnalyzer.Repository.DataGoalsAnalyzerRepository;
 import com.daily.plan.DailyPlan.Builder.GoalBuilder;
 import org.junit.jupiter.api.*;

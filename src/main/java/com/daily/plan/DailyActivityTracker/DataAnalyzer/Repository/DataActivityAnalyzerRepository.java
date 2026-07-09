@@ -1,7 +1,7 @@
 package com.daily.plan.DailyActivityTracker.DataAnalyzer.Repository;
 
 import com.daily.plan.DailyActivityTracker.DataAnalyzer.DTO.ActivityDTO;
-import com.daily.plan.DailyActivityTracker.Timer.Entity.TimerEntity;
+import com.daily.plan.DailyActivityTracker.ActivityTime.Entity.TimerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

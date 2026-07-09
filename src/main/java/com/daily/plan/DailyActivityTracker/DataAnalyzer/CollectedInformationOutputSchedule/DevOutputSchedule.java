@@ -1,7 +1,7 @@
 package com.daily.plan.DailyActivityTracker.DataAnalyzer.CollectedInformationOutputSchedule;
 
 import com.daily.plan.DailyActivityTracker.StatsStorage.Service.StatsService;
-import com.daily.plan.DailyActivityTracker.TgBot.PrepareAnswer.ConcatenatingValues;
+import com.daily.plan.DailyActivityTracker.TelegramBot.PrepareAnswer.ConcatenatingValues;
 import com.daily.plan.DailyActivityTracker.common.blueprint.PerTimeCollectExecution;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;

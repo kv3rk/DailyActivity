@@ -1,6 +1,6 @@
 package com.daily.plan.DailyActivityTracker.common.exception;
 
-import com.daily.plan.DailyActivityTracker.DailyPlan.DTO.ApiErrorResponse;
+import com.daily.plan.DailyActivityTracker.DailyGoals.DTO.ApiErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;

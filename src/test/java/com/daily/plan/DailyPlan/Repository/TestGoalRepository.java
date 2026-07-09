@@ -1,8 +1,8 @@
 package com.daily.plan.DailyPlan.Repository;
 
-import com.daily.plan.DailyActivityTracker.DailyPlan.Repository.GoalRepository;
+import com.daily.plan.DailyActivityTracker.DailyGoals.Repository.GoalRepository;
 import com.daily.plan.DailyPlan.Builder.GoalBuilder;
-import com.daily.plan.DailyActivityTracker.DailyPlan.Entity.GoalEntity;
+import com.daily.plan.DailyActivityTracker.DailyGoals.Entity.GoalEntity;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

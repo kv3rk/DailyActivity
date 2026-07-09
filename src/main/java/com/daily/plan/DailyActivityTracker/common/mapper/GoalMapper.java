@@ -1,7 +1,7 @@
 package com.daily.plan.DailyActivityTracker.common.mapper;
 
-import com.daily.plan.DailyActivityTracker.DailyPlan.DTO.GoalDTO;
-import com.daily.plan.DailyActivityTracker.DailyPlan.Entity.GoalEntity;
+import com.daily.plan.DailyActivityTracker.DailyGoals.DTO.GoalDTO;
+import com.daily.plan.DailyActivityTracker.DailyGoals.Entity.GoalEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;

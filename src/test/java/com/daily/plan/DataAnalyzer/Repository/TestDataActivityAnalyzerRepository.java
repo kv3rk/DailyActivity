@@ -3,7 +3,7 @@ package com.daily.plan.DataAnalyzer.Repository;
 import com.daily.plan.DailyActivityTracker.DataAnalyzer.DTO.ActivityDTO;
 import com.daily.plan.DailyActivityTracker.DataAnalyzer.Repository.DataActivityAnalyzerRepository;
 import com.daily.plan.Timer.Builder.TimerBuilder;
-import com.daily.plan.DailyActivityTracker.Timer.Entity.TimerEntity;
+import com.daily.plan.DailyActivityTracker.ActivityTime.Entity.TimerEntity;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
