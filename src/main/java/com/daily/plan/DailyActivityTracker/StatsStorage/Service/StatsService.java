@@ -1,11 +1,13 @@
 package com.daily.plan.DailyActivityTracker.StatsStorage.Service;
 
+import com.daily.plan.DailyActivityTracker.Authenticate.Service.AuthenticateService;
 import com.daily.plan.DailyActivityTracker.DataAnalyzer.DTO.ActivityBigDecimalDTO;
 import com.daily.plan.DailyActivityTracker.DataAnalyzer.Service.DailyDataAnalyzerService;
 import com.daily.plan.DailyActivityTracker.DataAnalyzer.Service.WeeklyDataAnalyzerService;
 import com.daily.plan.DailyActivityTracker.StatsStorage.DTO.StatsDTO;
 import com.daily.plan.DailyActivityTracker.StatsStorage.Entity.StatsEntity;
 import com.daily.plan.DailyActivityTracker.StatsStorage.Repository.StatsRepository;
+import com.daily.plan.DailyActivityTracker.User.Repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +24,8 @@ public class StatsService {
     private final StatsRepository statsRepository;
     private final DailyDataAnalyzerService dailyDataAnalyzerService;
     private final WeeklyDataAnalyzerService weeklyDataAnalyzerService;
+    private final UserRepository userRepository;
+    private final AuthenticateService authenticateService;
     private final String activity_type_1;
     private final String activity_type_2;
     private final String activity_type_3;
@@ -32,15 +36,20 @@ public class StatsService {
     public StatsService(StatsRepository statsRepository,
                         DailyDataAnalyzerService dailyDataAnalyzerService,
                         WeeklyDataAnalyzerService weeklyDataAnalyzerService,
+                        UserRepository userRepository,
+                        AuthenticateService authenticateService,
                         @Value("${activity.type.1}") String activityType1,
                         @Value("${activity.type.2}") String activityType2,
                         @Value("${activity.type.3}") String activityType3,
                         @Value("${activity.type.4}") String activityType4,
                         @Value("${activity.type.5}") String activityType5,
                         @Value("${activity.type.6}") String activityType6) {
+
         this.statsRepository = statsRepository;
         this.dailyDataAnalyzerService = dailyDataAnalyzerService;
         this.weeklyDataAnalyzerService = weeklyDataAnalyzerService;
+        this.userRepository = userRepository;
+        this.authenticateService = authenticateService;
         this.activity_type_1 = activityType1;
         this.activity_type_2 = activityType2;
         this.activity_type_3 = activityType3;
@@ -131,6 +140,9 @@ public class StatsService {
         statsEntity.setTimeActivities(
                 dailyDataAnalyzerService.getAmountTimeSpendOnActivitiesToday()
         );
+
+        statsEntity.setUsername(userRepository.findByUsername(authenticateService.getUsername()));
+
         statsRepository.save(
                 statsEntity
         );
@@ -138,6 +150,11 @@ public class StatsService {
         log.info("Saved stats of daily activity");
 
         return createStatsDTO(statsEntity);
+    }
+
+    public StatsDTO returnDailyStatsDTO(StatsDTO statsDTO){
+
+        return saveDaily();
     }
 
     @Transactional
@@ -168,6 +185,8 @@ public class StatsService {
         statsEntity.setTimeActivities(
                 weeklyDataAnalyzerService.getAmountTimeSpendOnActivitiesWeekly()
         );
+
+        statsEntity.setUsername(userRepository.findByUsername(authenticateService.getUsername()));
 
         statsRepository.save(
                 statsEntity

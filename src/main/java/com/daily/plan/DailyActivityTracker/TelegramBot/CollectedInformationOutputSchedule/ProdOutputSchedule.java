@@ -1,4 +1,4 @@
-package com.daily.plan.DailyActivityTracker.DataAnalyzer.CollectedInformationOutputSchedule;
+package com.daily.plan.DailyActivityTracker.TelegramBot.CollectedInformationOutputSchedule;
 
 import com.daily.plan.DailyActivityTracker.StatsStorage.Service.StatsService;
 import com.daily.plan.DailyActivityTracker.TelegramBot.PrepareAnswer.ConcatenatingValues;

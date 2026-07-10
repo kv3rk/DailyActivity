@@ -1,14 +1,19 @@
 package com.daily.plan.DailyActivityTracker.StatsStorage.Entity;
 
+import com.daily.plan.DailyActivityTracker.User.Entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.UUID;
 
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "stats_storage")
@@ -46,4 +51,14 @@ public class StatsEntity {
 
     @Column(precision = 10, scale = 2)
     private BigDecimal timeActivities;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "username", referencedColumnName = "username", nullable = false)
+    private User username;
+
+    @Column(nullable = false, name = "stats_date")
+    private LocalDate statsDate = LocalDate.now(
+            ZoneId.of("Europe/Moscow")
+    );
 }

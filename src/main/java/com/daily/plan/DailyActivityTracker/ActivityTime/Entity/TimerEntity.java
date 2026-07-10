@@ -49,8 +49,11 @@ public class TimerEntity {
     private LocalDate activityDate = LocalDate.now(
             ZoneId.of("Europe/Moscow")
     );
+
     private String activityType;
+
     private String comment;
+
     private Long timer;
 
     @JsonIgnore
