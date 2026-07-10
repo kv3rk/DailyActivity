@@ -1,0 +1,53 @@
+/* ============================================================
+   THEME SECTION
+   ============================================================ */
+
+.settings-options {
+    display: flex;
+    gap: 16px;
+}
+
+.settings-option {
+    cursor: pointer;
+    flex: 1;
+    max-width: 160px;
+}
+
+.settings-option input {
+    display: none;
+}
+
+.settings-option-card {
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    transition: all 0.2s ease;
+    background: var(--surface);
+}
+
+.settings-option-card:hover {
+    border-color: var(--hover-border);
+}
+
+.settings-option input:checked + .settings-option-card {
+    border-color: var(--green);
+    background: var(--green-light);
+}
+
+.settings-option-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 12px;
+    color: var(--text-muted);
+}
+
+.settings-option input:checked + .settings-option-card .settings-option-icon {
+    color: var(--green-dark);
+}
+
+.settings-option-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+}

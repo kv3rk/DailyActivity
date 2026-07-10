@@ -12,6 +12,8 @@
           rel="stylesheet">
     <link rel="stylesheet" href="/css/sidebar.css"/>
     <link rel="stylesheet" href="/css/settings-page/settings-page-style.css"/>
+    <link rel="stylesheet" href="/css/settings-page/settings-theme-block.css"/>
+    <link rel="stylesheet" href="/css/settings-page/settings-volume-block.css"/>
     <link rel="stylesheet" href="/css/settings-page/settings-telegram-block.css"/>
 
     <!--    Scripts-->
@@ -92,10 +94,9 @@
         <div class="settings-nav-card">
             <div class="settings-nav-title">Settings</div>
             <nav class="settings-nav-list">
-                <a href="#theme" class="settings-nav-item active">Theme</a>
+                <a href="#theme" class="settings-nav-item">Theme</a>
                 <a href="#notification-volume" class="settings-nav-item">Notification Volume</a>
                 <a href="#telegram" class="settings-nav-item">Telegram</a>
-                <a href="#default-goals" class="settings-nav-item">Default Goals</a>
             </nav>
         </div>
     </aside>
@@ -109,6 +110,7 @@
             <p class="settings-section-desc">Choose your preferred appearance for the application.</p>
 
             <div class="settings-options">
+
                 <label class="settings-option">
                     <input type="radio" name="theme" value="light" checked>
                     <div class="settings-option-card">
@@ -130,19 +132,8 @@
                     </div>
                 </label>
 
-                <label class="settings-option">
-                    <input type="radio" name="theme" value="dark">
-                    <div class="settings-option-card">
-                        <div class="settings-option-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                 stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                            </svg>
-                        </div>
-                        <div class="settings-option-label">Dark</div>
-                    </div>
-                </label>
             </div>
+
         </section>
 
         <!-- Notification Volume -->
@@ -173,28 +164,6 @@
             <div class="telegram-actions">
                 <button type="button" class="telegram-btn telegram-btn-save" id="telegram-save-btn">Save</button>
                 <button type="button" class="telegram-btn telegram-btn-delete" id="telegram-delete-btn">Delete</button>
-            </div>
-        </section>
-
-        <!-- Default Goals -->
-        <section id="default-goals" class="settings-section">
-            <h2 class="settings-section-title">Default Goals</h2>
-            <p class="settings-section-desc">Set goals that appear automatically in your daily list.</p>
-
-            <div class="settings-goals-list" id="default-goals-list">
-                <div class="settings-goal-item">
-                    <span class="settings-goal-text">Review yesterday's progress</span>
-                    <button type="button" class="settings-goal-remove">×</button>
-                </div>
-                <div class="settings-goal-item">
-                    <span class="settings-goal-text">Plan today's priorities</span>
-                    <button type="button" class="settings-goal-remove">×</button>
-                </div>
-            </div>
-
-            <div class="settings-goal-add">
-                <input type="text" class="settings-input" placeholder="Add a default goal..." id="new-default-goal">
-                <button type="button" class="settings-goal-add-btn">+ Add</button>
             </div>
         </section>
 
