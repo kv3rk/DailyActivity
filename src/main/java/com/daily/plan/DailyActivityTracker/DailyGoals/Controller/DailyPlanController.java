@@ -5,6 +5,7 @@ import com.daily.plan.DailyActivityTracker.DailyGoals.DTO.GoalDTO;
 import com.daily.plan.DailyActivityTracker.DailyGoals.DTO.ToggleFlagDTO;
 import com.daily.plan.DailyActivityTracker.DailyGoals.Service.DailyPlanService;
 import com.daily.plan.DailyActivityTracker.ActivityTime.Service.TimerService;
+import com.daily.plan.DailyActivityTracker.Settings.Service.SettingsService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -21,14 +22,17 @@ public class DailyPlanController {
     private final DailyPlanService dailyPlanService;
     private final TimerService timerService;
     private final AuthenticateService authenticateService;
+    private final SettingsService settingsService;
 
     public DailyPlanController(DailyPlanService dailyPlanService,
                                TimerService timerService,
-                               AuthenticateService authenticateService) {
+                               AuthenticateService authenticateService,
+                               SettingsService settingsService) {
 
         this.dailyPlanService = dailyPlanService;
         this.timerService = timerService;
         this.authenticateService = authenticateService;
+        this.settingsService = settingsService;
     }
 
     @GetMapping("/main")
@@ -59,7 +63,7 @@ public class DailyPlanController {
 
         log.info("Entered endpoint [daily/error]");
 
-        return "other/error_page";
+        return "error-page/error_page";
     }
 
     @PostMapping("/save")

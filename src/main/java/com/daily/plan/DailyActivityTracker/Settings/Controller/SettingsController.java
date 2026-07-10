@@ -1,5 +1,6 @@
 package com.daily.plan.DailyActivityTracker.Settings.Controller;
 
+import com.daily.plan.DailyActivityTracker.Settings.DTO.TelegramDTO;
 import com.daily.plan.DailyActivityTracker.Settings.DTO.VolumeDTO;
 import com.daily.plan.DailyActivityTracker.Settings.Service.SettingsService;
 import jakarta.validation.Valid;
@@ -34,5 +35,32 @@ public class SettingsController {
 
         return settingsService.getVolume();
 
+    }
+
+    @PostMapping("/set/telegram")
+    public void setTelegram(@RequestBody @Valid TelegramDTO telegramDTO) {
+
+        log.info("Entered endpoint [/set/telegram]");
+
+        settingsService.setTelegram(telegramDTO);
+
+    }
+
+    @GetMapping("/get/telegram")
+    @ResponseBody
+    public TelegramDTO getTelegram() {
+
+        log.info("Entered endpoint [/get/telegram]");
+
+        return settingsService.getTelegram();
+
+    }
+
+    @DeleteMapping("/delete/telegram")
+    public void deleteTelegram(){
+
+        log.info("Entered endpoint [/delete/telegram]");
+
+        settingsService.deleteTelegram();
     }
 }

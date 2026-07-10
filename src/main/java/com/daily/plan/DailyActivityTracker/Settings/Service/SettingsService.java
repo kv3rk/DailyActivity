@@ -1,6 +1,7 @@
 package com.daily.plan.DailyActivityTracker.Settings.Service;
 
 import com.daily.plan.DailyActivityTracker.Authenticate.Service.AuthenticateService;
+import com.daily.plan.DailyActivityTracker.Settings.DTO.TelegramDTO;
 import com.daily.plan.DailyActivityTracker.Settings.DTO.VolumeDTO;
 import com.daily.plan.DailyActivityTracker.User.Entity.User;
 import com.daily.plan.DailyActivityTracker.User.Repository.UserRepository;
@@ -44,5 +45,40 @@ public class SettingsService {
         );
 
         return volumeDTO;
+    }
+
+    @Transactional
+    public void setTelegram(TelegramDTO telegramDTO) {
+
+        User user = userRepository.findByUsername(authenticateService.getUsername());
+
+        user.setTelegram(telegramDTO.telegram());
+
+        log.info("Set telegram [{}] for user [{}]",
+                telegramDTO.telegram(), user.getUsername());
+
+    }
+
+    @Transactional
+    public TelegramDTO getTelegram() {
+
+        User user = userRepository.findByUsername(authenticateService.getUsername());
+
+        TelegramDTO telegramDTO = new TelegramDTO(
+                user.getTelegram()
+        );
+
+        return telegramDTO;
+    }
+
+    @Transactional
+    public void deleteTelegram() {
+
+        User user = userRepository.findByUsername(authenticateService.getUsername());
+
+        user.setTelegram(null);
+
+        log.info("Removed telegram for user [{}]",
+                user.getUsername());
     }
 }

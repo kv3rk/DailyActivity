@@ -1,0 +1,150 @@
+/* ============================================================
+   TELEGRAM SECTION
+   ============================================================ */
+
+/* Telegram section container */
+#telegram.settings-section {
+
+}
+
+/* Telegram username input group */
+#telegram .settings-input-group {
+    margin-bottom: 20px;
+    max-width: 400px;  /* narrower than full width */
+}
+
+/* Telegram username label */
+#telegram .settings-input-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+/* Telegram username input - narrower with margins */
+#telegram-username {
+    width: 100%;
+    max-width: 320px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 14px;
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+#telegram-username:focus {
+    outline: none;
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+#telegram-username::placeholder {
+    color: var(--placeholder);
+}
+
+/* Telegram toggle wrapper */
+#telegram .settings-toggle-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Telegram toggle switch */
+.settings-toggle {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.settings-toggle input {
+    display: none;
+}
+
+.settings-toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: var(--border);
+    border-radius: 99px;
+    transition: background 0.2s ease;
+}
+
+.settings-toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 3px;
+    top: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.settings-toggle input:checked + .settings-toggle-slider {
+    background: var(--green);
+}
+
+.settings-toggle input:checked + .settings-toggle-slider::before {
+    transform: translateX(20px);
+}
+
+/* Telegram toggle label */
+.settings-toggle-label {
+    font-size: 14px;
+    color: var(--text);
+}
+
+/* Telegram action buttons row */
+.telegram-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+/* Base button style */
+.telegram-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    min-width: 100px;
+}
+
+.telegram-btn:active {
+    transform: scale(0.97);
+}
+
+/* Save — in app theme (green) */
+.telegram-btn-save {
+    background: var(--green);
+    color: #ffffff;
+}
+
+.telegram-btn-save:hover {
+    background: var(--green-dark);
+}
+
+/* Delete — soft red */
+.telegram-btn-delete {
+    background: #fee2e2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+.telegram-btn-delete:hover {
+    background: #fecaca;
+    color: #b91c1c;
+}

@@ -28,7 +28,7 @@ public class AuthController {
 
         log.info("Entered endpoint [/login]");
 
-        return "auth/login_page";
+        return "auth-pages/login_page";
     }
 
     @GetMapping("/registration")
@@ -38,7 +38,7 @@ public class AuthController {
 
         model.addAttribute("registrationDTO", new RegistrationUserDTO("", ""));
 
-        return "auth/registration-page";
+        return "auth-pages/registration-page";
     }
 
     @PostMapping("/get/credentials")
@@ -50,7 +50,7 @@ public class AuthController {
 
         if (bindingResult.hasErrors()) {
 
-            return "auth/registration-page";
+            return "auth-pages/registration-page";
         }
 
         boolean registrationResult = authenticateService.registerUser(registrationUserDTO);
@@ -59,7 +59,7 @@ public class AuthController {
 
             model.addAttribute("registrationError", "User with this nickname already exists");
 
-            return "auth/registration-page";
+            return "auth-pages/registration-page";
         }
 
         return "redirect:/daily/login";

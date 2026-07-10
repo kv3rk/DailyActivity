@@ -12,8 +12,10 @@
           rel="stylesheet">
     <link rel="stylesheet" href="/css/sidebar.css"/>
     <link rel="stylesheet" href="/css/settings-page/settings-page-style.css"/>
+    <link rel="stylesheet" href="/css/settings-page/settings-telegram-block.css"/>
 
     <!--    Scripts-->
+    <script defer src="/js/Settings/telegram.js"></script>
     <script defer src="/js/sidebar-toggle.js"></script>
     <script defer src="/js/Settings/highlight-scroll.js"></script>
     <script defer src="/js/Settings/volume.js"></script>
@@ -168,12 +170,9 @@
                 <input type="text" class="settings-input" placeholder="@username" id="telegram-username">
             </div>
 
-            <div class="settings-toggle-wrap">
-                <label class="settings-toggle">
-                    <input type="checkbox" id="telegram-enabled">
-                    <span class="settings-toggle-slider"></span>
-                </label>
-                <span class="settings-toggle-label">Enable Telegram notifications</span>
+            <div class="telegram-actions">
+                <button type="button" class="telegram-btn telegram-btn-save" id="telegram-save-btn">Save</button>
+                <button type="button" class="telegram-btn telegram-btn-delete" id="telegram-delete-btn">Delete</button>
             </div>
         </section>
 
