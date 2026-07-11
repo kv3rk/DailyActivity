@@ -239,3 +239,25 @@ function switchToStopwatch() {
     document.getElementById("mode-timer-btn").classList.remove("active");
     document.getElementById("mode-stopwatch-btn").classList.add("active");
 }
+
+// Close activity modal by X button
+document.getElementById("activity-modal-close")?.addEventListener("click", closeActivityModal);
+
+// Close activity modal by overlay click
+document.getElementById("activity-modal-overlay")?.addEventListener("click", (e) => {
+    if (e.target === document.getElementById("activity-modal-overlay")) {
+        closeActivityModal();
+    }
+});
+
+// Close error modal by X button
+document.getElementById("error-modal-close-x")?.addEventListener("click", () => {
+    document.getElementById("error-modal-overlay").style.display = "none";
+});
+
+// Close error modal by overlay click
+document.getElementById("error-modal-overlay")?.addEventListener("click", (e) => {
+    if (e.target === document.getElementById("error-modal-overlay")) {
+        document.getElementById("error-modal-overlay").style.display = "none";
+    }
+});

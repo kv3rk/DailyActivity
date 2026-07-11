@@ -11,6 +11,8 @@
 
     <!--    CSS-->
     <link rel="stylesheet" href="/css/main-page/style.css"/>
+    <link rel="stylesheet" href="/css/main-page/style-goals-block.css"/>
+    <link rel="stylesheet" href="/css/main-page/style-time-block.css"/>
     <link rel="stylesheet" href="/css/main-page/stopwatch.css"/>
     <link rel="stylesheet" href="/css/main-page/Error.css"/>
     <link rel="stylesheet" href="/css/sidebar.css"/>
@@ -25,7 +27,7 @@
     <script defer src="/js/TimerActivity/Stopwatch.js"></script>
     <script defer src="/js/sidebar-toggle.js"></script>
     <script defer src="/js/DailyPlan/refreshingInterface.js"></script>
-
+    <script defer src="/js/TimerActivity/Custom_addiition.js"></script>
 
 </head>
 <body>
@@ -176,11 +178,16 @@
                 <button type="button" class="timer-btn" id="stop-stopwatch-btn">Stop & save</button>
             </div>
         </div>
+
+        <!-- Custom Edition -->
+        <hr class="timer-divider" id="custom-edition-divider">
+        <button type="button" class="timer-btn" id="custom-edition-btn">Custom Edition</button>
     </div>
 </div>
 
 <div id="activity-modal-overlay">
     <div id="activity-modal">
+        <button class="modal-close-btn" id="activity-modal-close" aria-label="Close">&times;</button>
         <h2 id="activity-modal-title">Session complete</h2>
         <p id="activity-modal-subtitle">What were you working on?</p>
         <select id="activity-type">
@@ -193,9 +200,25 @@
 
 <div id="error-modal-overlay">
     <div id="error-modal">
+        <button class="modal-close-btn" id="error-modal-close-x" aria-label="Close">&times;</button>
         <h2 id="error-modal-title">Something went wrong</h2>
         <p id="error-modal-message">Please try again</p>
         <button id="error-modal-close">Close</button>
+    </div>
+</div>
+
+<!-- Custom Activity Modal -->
+<div id="custom-activity-modal-overlay">
+    <div id="custom-activity-modal">
+        <button class="modal-close-btn" id="custom-modal-close-x" aria-label="Close">&times;</button>
+        <h2 id="custom-activity-modal-title">Custom Activity</h2>
+        <p id="custom-activity-modal-subtitle">Log your custom activity</p>
+        <select id="custom-activity-type">
+            <option th:each="element : ${activity_types}" th:value="${element}" th:text="${element}">Backend</option>
+        </select>
+        <input type="number" id="custom-activity-time" class="form-control" min="1" placeholder="Time in minutes">
+        <textarea id="custom-activity-comment" placeholder="Add a short note..."></textarea>
+        <button id="custom-activity-submit-btn">Save session</button>
     </div>
 </div>
 
