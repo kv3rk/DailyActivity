@@ -38,29 +38,30 @@ public class SettingsController {
     }
 
     @PostMapping("/set/telegram")
-    public void setTelegram(@RequestBody @Valid TelegramDTO telegramDTO) {
+    @ResponseBody
+    public String setTelegram() {
 
         log.info("Entered endpoint [/set/telegram]");
 
-        settingsService.setTelegram(telegramDTO);
+        return settingsService.setTelegram();
 
     }
 
-    @GetMapping("/get/telegram")
-    @ResponseBody
-    public TelegramDTO getTelegram() {
-
-        log.info("Entered endpoint [/get/telegram]");
-
-        return settingsService.getTelegram();
-
-    }
-
-    @DeleteMapping("/delete/telegram")
-    public void deleteTelegram(){
-
-        log.info("Entered endpoint [/delete/telegram]");
-
-        settingsService.deleteTelegram();
-    }
+//    @GetMapping("/get/telegram")
+//    @ResponseBody
+//    public TelegramDTO getTelegram() {
+//
+//        log.info("Entered endpoint [/get/telegram]");
+//
+//        return settingsService.getTelegram();
+//
+//    }
+//
+//    @DeleteMapping("/delete/telegram")
+//    public void deleteTelegram(){
+//
+//        log.info("Entered endpoint [/delete/telegram]");
+//
+//        settingsService.deleteTelegram();
+//    }
 }

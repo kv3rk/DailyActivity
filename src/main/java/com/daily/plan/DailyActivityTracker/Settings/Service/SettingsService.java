@@ -9,6 +9,8 @@ import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @Slf4j
 public class SettingsService {
@@ -48,37 +50,41 @@ public class SettingsService {
     }
 
     @Transactional
-    public void setTelegram(TelegramDTO telegramDTO) {
+    public String setTelegram() {
 
         User user = userRepository.findByUsername(authenticateService.getUsername());
 
-        user.setTelegram(telegramDTO.telegram());
+        String generatedUUID = String.valueOf(UUID.randomUUID());
 
-        log.info("Set telegram [{}] for user [{}]",
-                telegramDTO.telegram(), user.getUsername());
+        user.setTelegram(generatedUUID);
+
+        log.info("Set telegram UUID [{}] for user [{}]",
+                generatedUUID, user.getUsername());
+
+        return generatedUUID;
 
     }
 
-    @Transactional
-    public TelegramDTO getTelegram() {
-
-        User user = userRepository.findByUsername(authenticateService.getUsername());
-
-        TelegramDTO telegramDTO = new TelegramDTO(
-                user.getTelegram()
-        );
-
-        return telegramDTO;
-    }
-
-    @Transactional
-    public void deleteTelegram() {
-
-        User user = userRepository.findByUsername(authenticateService.getUsername());
-
-        user.setTelegram(null);
-
-        log.info("Removed telegram for user [{}]",
-                user.getUsername());
-    }
+//    @Transactional
+//    public TelegramDTO getTelegram() {
+//
+//        User user = userRepository.findByUsername(authenticateService.getUsername());
+//
+//        TelegramDTO telegramDTO = new TelegramDTO(
+//                user.getTelegram()
+//        );
+//
+//        return telegramDTO;
+//    }
+//
+//    @Transactional
+//    public void deleteTelegram() {
+//
+//        User user = userRepository.findByUsername(authenticateService.getUsername());
+//
+//        user.setTelegram(null);
+//
+//        log.info("Removed telegram for user [{}]",
+//                user.getUsername());
+//    }
 }

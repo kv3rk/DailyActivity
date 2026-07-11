@@ -1,5 +1,6 @@
-package com.daily.plan.DailyActivityTracker.TelegramBot.TelegramBotLogic;
+package com.daily.plan.DailyActivityTracker.TelegramBot.TelegramBot;
 
+import com.daily.plan.DailyActivityTracker.TelegramBot.Service.TelegramBotLogic;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

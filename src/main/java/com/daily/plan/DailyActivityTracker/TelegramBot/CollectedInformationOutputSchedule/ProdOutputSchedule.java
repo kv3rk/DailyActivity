@@ -2,14 +2,17 @@ package com.daily.plan.DailyActivityTracker.TelegramBot.CollectedInformationOutp
 
 import com.daily.plan.DailyActivityTracker.StatsStorage.Service.StatsService;
 import com.daily.plan.DailyActivityTracker.TelegramBot.PrepareAnswer.ConcatenatingValues;
-import com.daily.plan.DailyActivityTracker.TelegramBot.TelegramBotLogic.TelegramBotLogic;
+import com.daily.plan.DailyActivityTracker.TelegramBot.Service.TelegramBotLogic;
+import com.daily.plan.DailyActivityTracker.User.Entity.User;
+import com.daily.plan.DailyActivityTracker.User.Repository.UserRepository;
 import com.daily.plan.DailyActivityTracker.common.blueprint.PerTimeCollectExecution;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @Slf4j
@@ -19,16 +22,14 @@ public class ProdOutputSchedule implements PerTimeCollectExecution {
 
     private final ConcatenatingValues concatenatingValues;
     private final TelegramBotLogic telegramBotLogic;
-    private final String chatId;
     private final StatsService statsService;
 
     public ProdOutputSchedule(ConcatenatingValues concatenatingValues,
                               TelegramBotLogic telegramBotLogic,
-                              @Value("${telegram.bot.chat.id}") String chatId,
-                              StatsService statsService) {
+                              StatsService statsService
+    ) {
         this.concatenatingValues = concatenatingValues;
         this.telegramBotLogic = telegramBotLogic;
-        this.chatId = chatId;
         this.statsService = statsService;
     }
 
@@ -36,20 +37,50 @@ public class ProdOutputSchedule implements PerTimeCollectExecution {
     @Scheduled(cron = "0 55 23 1/1 * *", zone = "Europe/Moscow")
     public void dailyRollover() {
 
-//        telegramBotLogic.sendToChat(
-//                chatId,
-//                concatenatingValues.answerDailyRollover(statsService.saveDaily())
-//        );
+        List<User> users = statsService.usersWithLinkedTelegram();
+
+        for (User user : users) {
+            String chatId = user.getTelegram();
+
+            if (!isValidChatId(chatId)) {
+                log.warn("User [{}] has no linked Telegram chat, skipping daily report", user.getUsername());
+                continue;
+            }
+
+            var message = concatenatingValues.answerDailyRollover(
+                    statsService.saveDaily(user)
+            );
+
+            telegramBotLogic.sendToChat(chatId, message);
+        }
     }
 
     @Override
     @Scheduled(cron = "0 55 23 * * SUN", zone = "Europe/Moscow")
     public void weeklyRollover() {
 
-//        telegramBotLogic.sendToChat(
-//                chatId,
-//                concatenatingValues.answerWeeklyRollover(statsService.saveWeekly())
-//        );
+        List<User> users = statsService.usersWithLinkedTelegram();
+
+        for (User user : users) {
+            String chatId = user.getTelegram();
+
+            if (!isValidChatId(chatId)) {
+                log.warn("User [{}] has no linked Telegram chat, skipping weekly report", user.getUsername());
+                continue;
+            }
+
+            var message = concatenatingValues.answerWeeklyRollover(
+                    statsService.saveWeekly(user)
+            );
+
+            telegramBotLogic.sendToChat(chatId, message);
+        }
     }
 
+    private boolean isValidChatId(String telegram) {
+        if (telegram == null || telegram.isBlank()) {
+            return false;
+        }
+        return !telegram.contains("-");
+    }
 }

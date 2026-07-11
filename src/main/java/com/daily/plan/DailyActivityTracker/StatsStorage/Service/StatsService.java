@@ -262,4 +262,12 @@ public class StatsService {
 
     }
 
+    @Transactional
+    public List<User> usersWithLinkedTelegram() {
+        return userRepository.findAllByTelegramIsNotNullAndTelegramNot("")
+                .stream()
+                .filter(u -> u.getTelegram() != null && !u.getTelegram().contains("-"))
+                .toList();
+    }
+
 }

@@ -13,4 +13,8 @@ public interface UserRepository extends JpaRepository<User, UUID> {
     User findByUsername(String username);
 
     List<User> findAllByTelegramIsNotNullAndTelegramNot(String telegram);
+
+    User findByTelegram(String telegram);
+
+    boolean existsByTelegram(String telegram);
 }
