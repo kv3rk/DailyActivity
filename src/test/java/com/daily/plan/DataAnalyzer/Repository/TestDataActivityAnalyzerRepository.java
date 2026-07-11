@@ -37,7 +37,7 @@ public class TestDataActivityAnalyzerRepository {
 
             repository.save(timerEntity);
 
-            Long result = repository.countAllActivities(LocalDate.now());
+            Long result = repository.countAllActivities(LocalDate.now(), "kv3rk");
 
             assertThat(result).isEqualTo(1L);
         }
@@ -51,7 +51,7 @@ public class TestDataActivityAnalyzerRepository {
 
             repository.save(timerEntity);
 
-            Long result = repository.countAllActivities(LocalDate.now());
+            Long result = repository.countAllActivities(LocalDate.now(), "kv3rk");
 
             assertThat(result).isEqualTo(1L);
         }
@@ -65,7 +65,7 @@ public class TestDataActivityAnalyzerRepository {
 
             repository.save(timerEntity);
 
-            Long result = repository.countAllActivities(LocalDate.now());
+            Long result = repository.countAllActivities(LocalDate.now(), "kv3rk");
 
             assertThat(result).isZero();
         }
@@ -87,7 +87,7 @@ public class TestDataActivityAnalyzerRepository {
             repository.save(timerEntity);
             repository.save(timerEntity2);
 
-            List<ActivityDTO> resultList = repository.sumOfTimeAllActivities(LocalDate.now());
+            List<ActivityDTO> resultList = repository.sumOfTimeAllActivities(LocalDate.now(), "kv3rk");
             Long result = resultList
                     .stream()
                     .mapToLong(ActivityDTO::getTimer)
@@ -111,7 +111,7 @@ public class TestDataActivityAnalyzerRepository {
             repository.save(timerEntity);
             repository.save(timerEntity2);
 
-            List<ActivityDTO> resultList = repository.sumOfTimeAllActivities(LocalDate.now());
+            List<ActivityDTO> resultList = repository.sumOfTimeAllActivities(LocalDate.now(), "kv3rk");
             Long result = resultList
                     .stream()
                     .mapToLong(ActivityDTO::getTimer)
@@ -135,7 +135,7 @@ public class TestDataActivityAnalyzerRepository {
             repository.save(timerEntity);
             repository.save(timerEntity2);
 
-            List<ActivityDTO> resultList = repository.sumOfTimeAllActivities(LocalDate.now());
+            List<ActivityDTO> resultList = repository.sumOfTimeAllActivities(LocalDate.now(), "kv3rk");
             Long result = resultList
                     .stream()
                     .mapToLong(ActivityDTO::getTimer)
@@ -159,7 +159,7 @@ public class TestDataActivityAnalyzerRepository {
             repository.save(timerEntity);
             repository.save(timerEntity2);
 
-            List<ActivityDTO> resultList = repository.sumOfTimeAllActivities(LocalDate.now());
+            List<ActivityDTO> resultList = repository.sumOfTimeAllActivities(LocalDate.now(), "kv3rk");
             Long result = resultList
                     .stream()
                     .mapToLong(ActivityDTO::getTimer)

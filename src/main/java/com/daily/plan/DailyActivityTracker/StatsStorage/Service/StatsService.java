@@ -1,12 +1,12 @@
 package com.daily.plan.DailyActivityTracker.StatsStorage.Service;
 
-import com.daily.plan.DailyActivityTracker.Authenticate.Service.AuthenticateService;
 import com.daily.plan.DailyActivityTracker.DataAnalyzer.DTO.ActivityBigDecimalDTO;
 import com.daily.plan.DailyActivityTracker.DataAnalyzer.Service.DailyDataAnalyzerService;
 import com.daily.plan.DailyActivityTracker.DataAnalyzer.Service.WeeklyDataAnalyzerService;
 import com.daily.plan.DailyActivityTracker.StatsStorage.DTO.StatsDTO;
 import com.daily.plan.DailyActivityTracker.StatsStorage.Entity.StatsEntity;
 import com.daily.plan.DailyActivityTracker.StatsStorage.Repository.StatsRepository;
+import com.daily.plan.DailyActivityTracker.User.Entity.User;
 import com.daily.plan.DailyActivityTracker.User.Repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -25,7 +27,6 @@ public class StatsService {
     private final DailyDataAnalyzerService dailyDataAnalyzerService;
     private final WeeklyDataAnalyzerService weeklyDataAnalyzerService;
     private final UserRepository userRepository;
-    private final AuthenticateService authenticateService;
     private final String activity_type_1;
     private final String activity_type_2;
     private final String activity_type_3;
@@ -37,7 +38,6 @@ public class StatsService {
                         DailyDataAnalyzerService dailyDataAnalyzerService,
                         WeeklyDataAnalyzerService weeklyDataAnalyzerService,
                         UserRepository userRepository,
-                        AuthenticateService authenticateService,
                         @Value("${activity.type.1}") String activityType1,
                         @Value("${activity.type.2}") String activityType2,
                         @Value("${activity.type.3}") String activityType3,
@@ -49,7 +49,6 @@ public class StatsService {
         this.dailyDataAnalyzerService = dailyDataAnalyzerService;
         this.weeklyDataAnalyzerService = weeklyDataAnalyzerService;
         this.userRepository = userRepository;
-        this.authenticateService = authenticateService;
         this.activity_type_1 = activityType1;
         this.activity_type_2 = activityType2;
         this.activity_type_3 = activityType3;
@@ -113,35 +112,58 @@ public class StatsService {
     }
 
     @Transactional
-    public StatsDTO saveDaily() {
+    public List<User> usersWithTelegram() {
+
+        List<User> users = userRepository.findAllByTelegramIsNotNullAndTelegramNot("");
+
+        log.info("{}", users);
+
+        return users;
+
+    }
+
+    @Transactional
+    public StatsDTO saveDaily(User user) {
 
         StatsEntity statsEntity = new StatsEntity();
 
         statsEntity.setTerm("daily");
 
         statsEntity.setAmountGoals(
-                dailyDataAnalyzerService.getAmountTodayGoals());
+                dailyDataAnalyzerService.getAmountTodayGoals(
+                        user.getUsername()
+                ));
 
         statsEntity.setPercentageCompletion(
                 dailyDataAnalyzerService.calculatePercentageCompletion(
-                        dailyDataAnalyzerService.getAmountTodayDoneGoals(),
-                        dailyDataAnalyzerService.getAmountTodayGoals())
+                        dailyDataAnalyzerService.getAmountTodayDoneGoals(
+                                user.getUsername()
+                        ),
+                        dailyDataAnalyzerService.getAmountTodayGoals(
+                                user.getUsername()
+                        ))
         );
 
         statsEntity.setAmountActivities(
-                dailyDataAnalyzerService.getAmountTodayActivities());
+                dailyDataAnalyzerService.getAmountTodayActivities(
+                        user.getUsername()
+                ));
 
-        dailyDataAnalyzerService.getInfoOfAllTodayActivities()
+        dailyDataAnalyzerService.getInfoOfAllTodayActivities(
+                        user.getUsername()
+                )
                 .forEach(
                         dto -> mappingActivityTypesToEntity(dto, statsEntity)
                 );
 
 
         statsEntity.setTimeActivities(
-                dailyDataAnalyzerService.getAmountTimeSpendOnActivitiesToday()
+                dailyDataAnalyzerService.getAmountTimeSpendOnActivitiesToday(
+                        user.getUsername()
+                )
         );
 
-        statsEntity.setUsername(userRepository.findByUsername(authenticateService.getUsername()));
+        statsEntity.setUsername(user);
 
         statsRepository.save(
                 statsEntity
@@ -152,41 +174,50 @@ public class StatsService {
         return createStatsDTO(statsEntity);
     }
 
-    public StatsDTO returnDailyStatsDTO(StatsDTO statsDTO){
-
-        return saveDaily();
-    }
 
     @Transactional
-    public StatsDTO saveWeekly() {
+    public StatsDTO saveWeekly(User user) {
 
         StatsEntity statsEntity = new StatsEntity();
 
         statsEntity.setTerm("weekly");
 
         statsEntity.setAmountGoals(
-                weeklyDataAnalyzerService.getAmountWeeklyGoals());
+                weeklyDataAnalyzerService.getAmountWeeklyGoals(
+                        user.getUsername()
+                ));
 
         statsEntity.setPercentageCompletion(
                 weeklyDataAnalyzerService.calculatePercentageCompletion(
-                        weeklyDataAnalyzerService.getAmountWeeklyDoneGoals(),
-                        weeklyDataAnalyzerService.getAmountWeeklyGoals())
+
+                        weeklyDataAnalyzerService.getAmountWeeklyDoneGoals(
+                                user.getUsername()
+                        ),
+                        weeklyDataAnalyzerService.getAmountWeeklyGoals(
+                                user.getUsername()
+                        ))
         );
 
         statsEntity.setAmountActivities(
-                weeklyDataAnalyzerService.getAmountWeeklyActivities());
+                weeklyDataAnalyzerService.getAmountWeeklyActivities(
+                        user.getUsername()
+                ));
 
-        weeklyDataAnalyzerService.getInfoOfAllWeeklyActivities()
+        weeklyDataAnalyzerService.getInfoOfAllWeeklyActivities(
+                        user.getUsername()
+                )
                 .forEach(
                         dto -> mappingActivityTypesToEntity(dto, statsEntity)
                 );
 
 
         statsEntity.setTimeActivities(
-                weeklyDataAnalyzerService.getAmountTimeSpendOnActivitiesWeekly()
+                weeklyDataAnalyzerService.getAmountTimeSpendOnActivitiesWeekly(
+                        user.getUsername()
+                )
         );
 
-        statsEntity.setUsername(userRepository.findByUsername(authenticateService.getUsername()));
+        statsEntity.setUsername(user);
 
         statsRepository.save(
                 statsEntity
@@ -195,6 +226,40 @@ public class StatsService {
         log.info("Saved stats of weekly activity");
 
         return createStatsDTO(statsEntity);
+    }
+
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    public List<StatsDTO> dailyResults() {
+
+        List<StatsDTO> dailyResultList = new ArrayList<>();
+
+        usersWithTelegram().forEach(user -> {
+
+            dailyResultList.add(
+                    saveDaily(user)
+            );
+
+        });
+
+        return dailyResultList;
+
+    }
+
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    public List<StatsDTO> weeklyResults() {
+
+        List<StatsDTO> weeklyResultList = new ArrayList<>();
+
+        usersWithTelegram().forEach(user -> {
+
+            weeklyResultList.add(
+                    saveWeekly(user)
+            );
+
+        });
+
+        return weeklyResultList;
+
     }
 
 }

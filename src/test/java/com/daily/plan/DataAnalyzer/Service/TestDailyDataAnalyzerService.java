@@ -71,9 +71,9 @@ public class TestDailyDataAnalyzerService {
     void getAmountTodayGoalsContainsOneGoal() {
 
         given(currentDateTime.getCurrentDate()).willReturn(LocalDate.ofEpochDay(2026 - 6 - 8));
-        given(goalsAnalyzerRepository.countAllGoals(currentDateTime.getCurrentDate())).willReturn(1L);
+        given(goalsAnalyzerRepository.countAllGoals(currentDateTime.getCurrentDate(), "kv3rk")).willReturn(1L);
 
-        Long result = dailyDataAnalyzerService.getAmountTodayGoals();
+        Long result = dailyDataAnalyzerService.getAmountTodayGoals("kv3rk");
 
         assertThat(result).isEqualTo(1L);
 

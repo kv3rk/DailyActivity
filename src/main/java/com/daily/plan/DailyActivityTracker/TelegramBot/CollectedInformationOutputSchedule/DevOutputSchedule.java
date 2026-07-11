@@ -1,8 +1,10 @@
 package com.daily.plan.DailyActivityTracker.TelegramBot.CollectedInformationOutputSchedule;
 
+import com.daily.plan.DailyActivityTracker.StatsStorage.DTO.StatsDTO;
 import com.daily.plan.DailyActivityTracker.StatsStorage.Service.StatsService;
 import com.daily.plan.DailyActivityTracker.TelegramBot.PrepareAnswer.ConcatenatingValues;
 import com.daily.plan.DailyActivityTracker.common.blueprint.PerTimeCollectExecution;
+import com.daily.plan.DailyActivityTracker.common.unit.CurrentDateTime;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -17,11 +19,15 @@ public class DevOutputSchedule implements PerTimeCollectExecution {
 
     private final ConcatenatingValues concatenatingValues;
     private final StatsService statsService;
+    private final CurrentDateTime currentDateTime;
 
-    public DevOutputSchedule(ConcatenatingValues concatenatingValues, StatsService statsService) {
+    public DevOutputSchedule(ConcatenatingValues concatenatingValues,
+                             StatsService statsService,
+                             CurrentDateTime currentDateTime) {
 
         this.concatenatingValues = concatenatingValues;
         this.statsService = statsService;
+        this.currentDateTime = currentDateTime;
     }
 
 
@@ -29,20 +35,58 @@ public class DevOutputSchedule implements PerTimeCollectExecution {
     @Scheduled(cron = "0/15 * * * * * ", zone = "Europe/Moscow")
     public void dailyRollover() {
 
-        log.info(
-                "\n {}",
-                concatenatingValues.answerDailyRollover(statsService.saveDaily())
-        );
+        for (StatsDTO dto : statsService.dailyResults()) {
+
+            log.info(
+                    "\n {}",
+                    concatenatingValues.answerDailyRollover(dto)
+            );
+
+
+        }
+
     }
 
     @Override
     @Scheduled(cron = "0/15 * * * * *", zone = "Europe/Moscow")
     public void weeklyRollover() {
 
-        log.info(
-                "\n {}",
-                concatenatingValues.answerWeeklyRollover(statsService.saveWeekly())
-        );
+        for (StatsDTO dto : statsService.weeklyResults()) {
+
+            log.info(
+                    "\n {}",
+                    concatenatingValues.answerWeeklyRollover(dto)
+            );
+
+
+        }
 
     }
+
+//    @Scheduled(fixedRate = 1, timeUnit = TimeUnit.SECONDS)
+//    public void testMethod1() throws InterruptedException {
+//
+//        log.info("{} Testing method 1 in {}",
+//                currentDateTime.getFormattedTime(),
+//                Thread.currentThread().getName());
+//
+//        Thread.sleep(10 * 1000);
+//
+//    }
+//
+//    @Scheduled(fixedRate = 1, timeUnit = TimeUnit.SECONDS)
+//    public void testMethod2() throws InterruptedException {
+//
+//        log.info("{} Testing method 2 in {}",
+//                currentDateTime.getFormattedTime(),
+//                Thread.currentThread().getName());
+//
+//
+//    }
+
+//    public String returnDailyString() {
+//
+//        return concatenatingValues.answerWeeklyRollover(statsService.saveWeekly());
+//    }
+
 }

@@ -13,20 +13,22 @@ import java.util.UUID;
 public interface DataGoalsAnalyzerRepository extends JpaRepository<GoalEntity, UUID> {
 
     @Query(
-            value = "select count(id) from daily_goals where goal_date >= :date",
+            value = "select count(id) from daily_goals where goal_date >= :date and username = :username",
             nativeQuery = true
     )
     Long countAllGoals(
-            @Param("date") LocalDate date
+            @Param("date") LocalDate date,
+            @Param("username") String username
     );
 
     @Query(
-            value = "select count(id) from daily_goals where goal_date >= :date and done_flag = :flag",
+            value = "select count(id) from daily_goals where goal_date >= :date and done_flag = :flag and username = :username",
             nativeQuery = true
     )
     Long countAllStatusGoals(
             @Param("date") LocalDate date,
-            @Param("flag") Boolean flag
+            @Param("flag") Boolean flag,
+            @Param("username") String username
     );
 
 }

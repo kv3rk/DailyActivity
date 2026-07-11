@@ -22,8 +22,6 @@ public class CurrentDateTime {
 
         );
 
-        log.info("Created instance of current time [{}]", currentTime);
-
         return currentTime;
 
     }
@@ -40,8 +38,6 @@ public class CurrentDateTime {
 
         );
 
-        log.info("Created instance of current date [{}]", currentDate);
-
         return currentDate;
 
     }
@@ -52,13 +48,11 @@ public class CurrentDateTime {
 
                 DateTimeFormatter.ofPattern(
 
-                        "dd-MM-yyyy HH:mm"
+                        "dd-MM-yyyy HH:mm:ss"
 
                 )
 
         );
-
-        log.info("Created instance of current time STRING [{}]", formattedTime);
 
         return formattedTime;
 
@@ -75,8 +69,6 @@ public class CurrentDateTime {
                 )
 
         );
-
-        log.info("Created instance of current date STRING [{}]", formattedDate);
 
         return formattedDate;
 

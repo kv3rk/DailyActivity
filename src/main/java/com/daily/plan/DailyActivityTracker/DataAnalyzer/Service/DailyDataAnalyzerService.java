@@ -32,28 +32,32 @@ public class DailyDataAnalyzerService {
     }
 
     @Transactional
-    public Long getAmountTodayGoals() {
-        Long count = goalsAnalyzerRepository.countAllGoals(currentDateTime.getCurrentDate());
+    public Long getAmountTodayGoals(String username) {
 
-        log.info("Return amount of all daily goals in size [{}] in time [{}]",
-                count, currentDateTime.getFormattedTime());
-
-        return count;
-    }
-
-    @Transactional
-    public Long getAmountTodayActiveGoals() {
-        Long count = goalsAnalyzerRepository.countAllStatusGoals(currentDateTime.getCurrentDate(), false);
-
-        log.info("Return amount of all daily ACTIVE goals in size [{}] in time [{}]",
-                count, currentDateTime.getFormattedTime());
+        Long count = goalsAnalyzerRepository.countAllGoals(
+                currentDateTime.getCurrentDate(),
+                username
+        );
 
         return count;
     }
 
     @Transactional
-    public Long getAmountTodayDoneGoals() {
-        Long count = goalsAnalyzerRepository.countAllStatusGoals(currentDateTime.getCurrentDate(), true);
+    public Long getAmountTodayActiveGoals(String username) {
+        Long count = goalsAnalyzerRepository.countAllStatusGoals(
+                currentDateTime.getCurrentDate(),
+                false,
+                username);
+
+        return count;
+    }
+
+    @Transactional
+    public Long getAmountTodayDoneGoals(String username) {
+        Long count = goalsAnalyzerRepository.countAllStatusGoals(
+                currentDateTime.getCurrentDate(),
+                true,
+                username);
 
         log.info("Return amount of all daily ACCOMPLISHED goals in size [{}] in time [{}]",
                 count, currentDateTime.getFormattedTime());
@@ -62,11 +66,12 @@ public class DailyDataAnalyzerService {
     }
 
     @Transactional
-    public BigDecimal getAmountTimeSpendOnActivitiesToday() {
+    public BigDecimal getAmountTimeSpendOnActivitiesToday(String username) {
 
         List<ActivityDTO> list =
                 activityAnalyzerRepository.sumOfTimeAllActivities(
-                        currentDateTime.getCurrentDate()
+                        currentDateTime.getCurrentDate(),
+                        username
                 );
 
         Long count = list.stream()
@@ -78,29 +83,30 @@ public class DailyDataAnalyzerService {
         BigDecimal result = BigDecimal.valueOf(count)
                 .divide(BigDecimal.valueOf(60), 2, RoundingMode.HALF_UP);
 
-        log.info("Return amount of time spending on all activities today with value [{}] in time [{}]",
-                count, currentDateTime.getFormattedTime());
 
         return result;
     }
 
     @Transactional
-    public Long getAmountTodayActivities() {
+    public Long getAmountTodayActivities(String username) {
+
+
         Long count = activityAnalyzerRepository.countAllActivities(
-                currentDateTime.getCurrentDate()
+                currentDateTime.getCurrentDate(),
+                username
         );
-        log.info("Return amount ALL TODAY ACTIVITIES in size [{}] in time [{}]",
-                count, currentDateTime.getFormattedTime());
+
 
         return count;
     }
 
     @Transactional
-    public List<ActivityBigDecimalDTO> getInfoOfAllTodayActivities() {
+    public List<ActivityBigDecimalDTO> getInfoOfAllTodayActivities(String username) {
 
         List<ActivityDTO> list =
                 activityAnalyzerRepository.sumOfTimeAllActivities(
-                        currentDateTime.getCurrentDate()
+                        currentDateTime.getCurrentDate(),
+                        username
                 );
 
         List<ActivityBigDecimalDTO> resultList = new ArrayList<>();
@@ -118,8 +124,6 @@ public class DailyDataAnalyzerService {
                 }
         );
 
-        log.info("Return list of daily activities in size [{}] in time [{}]",
-                list.size(), currentDateTime.getFormattedTime());
 
         return resultList;
 

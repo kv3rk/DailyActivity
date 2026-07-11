@@ -36,20 +36,20 @@ public class ProdOutputSchedule implements PerTimeCollectExecution {
     @Scheduled(cron = "0 55 23 1/1 * *", zone = "Europe/Moscow")
     public void dailyRollover() {
 
-        telegramBotLogic.sendToChat(
-                chatId,
-                concatenatingValues.answerDailyRollover(statsService.saveDaily())
-        );
+//        telegramBotLogic.sendToChat(
+//                chatId,
+//                concatenatingValues.answerDailyRollover(statsService.saveDaily())
+//        );
     }
 
     @Override
     @Scheduled(cron = "0 55 23 * * SUN", zone = "Europe/Moscow")
     public void weeklyRollover() {
 
-        telegramBotLogic.sendToChat(
-                chatId,
-                concatenatingValues.answerWeeklyRollover(statsService.saveWeekly())
-        );
+//        telegramBotLogic.sendToChat(
+//                chatId,
+//                concatenatingValues.answerWeeklyRollover(statsService.saveWeekly())
+//        );
     }
 
 }

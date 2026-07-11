@@ -34,7 +34,7 @@ class TestDataGoalsAnalyzerRepository {
 
             repository.save(goal);
 
-            Long result = repository.countAllGoals(LocalDate.now());
+            Long result = repository.countAllGoals(LocalDate.now(), "kv3rk");
 
             assertThat(result).isEqualTo(1L);
         }
@@ -48,7 +48,7 @@ class TestDataGoalsAnalyzerRepository {
 
             repository.save(goal);
 
-            Long result = repository.countAllGoals(LocalDate.now());
+            Long result = repository.countAllGoals(LocalDate.now(), "kv3rk");
 
             assertThat(result).isZero();
         }
@@ -62,7 +62,7 @@ class TestDataGoalsAnalyzerRepository {
 
             repository.save(goal);
 
-            Long result = repository.countAllGoals(LocalDate.now());
+            Long result = repository.countAllGoals(LocalDate.now(), "kv3rk");
 
             assertThat(result).isEqualTo(1L);
         }
@@ -83,7 +83,8 @@ class TestDataGoalsAnalyzerRepository {
 
             Long result = repository.countAllStatusGoals(
                     LocalDate.now(),
-                    true
+                    true,
+                    "kv3rk"
             );
 
             assertThat(result).isEqualTo(1L);
@@ -99,7 +100,7 @@ class TestDataGoalsAnalyzerRepository {
 
             Long result = repository.countAllStatusGoals(
                     LocalDate.now(),
-                    true
+                    true, "kv3rk"
             );
 
             assertThat(result).isZero();
@@ -116,7 +117,7 @@ class TestDataGoalsAnalyzerRepository {
 
             Long result = repository.countAllStatusGoals(
                     LocalDate.now(),
-                    true
+                    true, "kv3rk"
             );
 
             assertThat(result).isZero();
@@ -133,7 +134,7 @@ class TestDataGoalsAnalyzerRepository {
 
             Long result = repository.countAllStatusGoals(
                     LocalDate.now(),
-                    true
+                    true, "kv3rk"
             );
 
             assertThat(result).isEqualTo(1L);

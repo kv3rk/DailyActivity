@@ -31,51 +31,51 @@ public class WeeklyDataAnalyzerService {
     }
 
     @Transactional
-    public Long getAmountWeeklyGoals() {
+    public Long getAmountWeeklyGoals(String username) {
+
         Long count = goalsAnalyzerRepository.countAllGoals(
                 currentDateTime.getCurrentDate()
-                        .minusWeeks(1)
+                        .minusWeeks(1),
+                username
         );
 
-        log.info("Return amount of all weekly goals in size [{}] in time [{}]",
-                count, currentDateTime.getFormattedTime());
-
         return count;
     }
 
     @Transactional
-    public Long getAmountWeeklyActiveGoals() {
+    public Long getAmountWeeklyActiveGoals(String username) {
+
         Long count = goalsAnalyzerRepository.countAllStatusGoals(
                 currentDateTime.getCurrentDate()
                         .minusWeeks(1),
-                false);
-
-        log.info("Return amount of all weekly ACTIVE goals in size [{}] in time [{}]",
-                count, currentDateTime.getFormattedTime());
+                false,
+                username
+        );
 
         return count;
     }
 
     @Transactional
-    public Long getAmountWeeklyDoneGoals() {
+    public Long getAmountWeeklyDoneGoals(String username) {
+
         Long count = goalsAnalyzerRepository.countAllStatusGoals(
                 currentDateTime.getCurrentDate()
                         .minusWeeks(1),
-                true);
-
-        log.info("Return amount of all weekly ACCOMPLISHED goals in size [{}] in time [{}]",
-                count, currentDateTime.getFormattedTime());
+                true,
+                username
+        );
 
         return count;
     }
 
     @Transactional
-    public BigDecimal getAmountTimeSpendOnActivitiesWeekly() {
+    public BigDecimal getAmountTimeSpendOnActivitiesWeekly(String username) {
 
         List<ActivityDTO> list =
                 activityAnalyzerRepository.sumOfTimeAllActivities(
                         currentDateTime.getCurrentDate()
-                                .minusWeeks(1)
+                                .minusWeeks(1),
+                        username
                 );
 
         Long count = list.stream()
@@ -87,19 +87,17 @@ public class WeeklyDataAnalyzerService {
         BigDecimal result = BigDecimal.valueOf(count)
                 .divide(BigDecimal.valueOf(60), 2, RoundingMode.HALF_UP);
 
-        log.info("Return amount of time spending on all activities weekly with value [{}] minutes in time [{}]",
-                count, currentDateTime.getFormattedTime());
-
         return result;
     }
 
     @Transactional
-    public List<ActivityBigDecimalDTO> getInfoOfAllWeeklyActivities() {
+    public List<ActivityBigDecimalDTO> getInfoOfAllWeeklyActivities(String username) {
 
         List<ActivityDTO> list =
                 activityAnalyzerRepository.sumOfTimeAllActivities(
                         currentDateTime.getCurrentDate()
-                                .minusWeeks(1)
+                                .minusWeeks(1),
+                        username
                 );
 
         List<ActivityBigDecimalDTO> resultList = new ArrayList<>();
@@ -117,21 +115,18 @@ public class WeeklyDataAnalyzerService {
                 }
         );
 
-        log.info("Return list of weekly activities in size [{}] in time [{}]",
-                list.size(), currentDateTime.getFormattedTime());
-
         return resultList;
 
     }
 
     @Transactional
-    public Long getAmountWeeklyActivities() {
+    public Long getAmountWeeklyActivities(String username) {
+
         Long count = activityAnalyzerRepository.countAllActivities(
                 currentDateTime.getCurrentDate()
-                        .minusWeeks(1)
+                        .minusWeeks(1),
+                username
         );
-        log.info("Return amount ALL TODAY ACTIVITIES in size [{}] in time [{}]",
-                count, currentDateTime.getFormattedTime());
 
         return count;
     }
