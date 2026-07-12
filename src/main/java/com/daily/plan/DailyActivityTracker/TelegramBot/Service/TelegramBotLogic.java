@@ -55,7 +55,7 @@ public class TelegramBotLogic extends TelegramLongPollingBot {
     @Transactional
     public void linkUser(String uuid, Long chatId) {
 
-        if (!userRepository.existsByTelegram(uuid)) {
+        if (!userRepository.existsByTelegramAndTelegramIsNotEmpty(uuid)) {
             log.warn("No user found with telegram UUID [{}]", uuid);
             return;
         }
@@ -65,7 +65,7 @@ public class TelegramBotLogic extends TelegramLongPollingBot {
 
         log.info("Linked user [{}] to chatId [{}]", user.getUsername(), chatId);
 
-        sendToChat(String.valueOf(chatId), "✅ Connected! You'll receive daily and weekly reports.");
+        sendToChat(String.valueOf(chatId), "✅ Connected! You'll receive daily and weekly reports. On chatId " + chatId + "on telegram " + user.getTelegram());
     }
 
     public void sendToChat(String chatId, String text) {
