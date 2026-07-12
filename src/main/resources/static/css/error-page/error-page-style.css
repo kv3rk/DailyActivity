@@ -9,6 +9,21 @@
     --white: #ffffff;
     --danger: #ef4444;
     --danger-light: #fef2f2;
+    --shadow: rgba(0, 0, 0, 0.05);
+}
+
+body.dark {
+    --green: #238636;
+    --green-light: #1a3a2a;
+    --green-dark: #2ea043;
+    --text: #c9d1d9;
+    --text-muted: #8b949e;
+    --border: #1e3a2f;
+    --surface: #0d1117;
+    --white: #161b22;
+    --danger: #b62324;
+    --danger-light: #2a0f0f;
+    --shadow: rgba(0, 0, 0, 0.4);
 }
 
 * {
@@ -34,7 +49,7 @@ body {
     padding: 48px 40px;
     border-radius: 20px;
     border: 1px solid var(--border);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 24px var(--shadow);
     max-width: 420px;
     width: 90%;
 }
@@ -87,4 +102,9 @@ a {
 
 a:hover {
     background: var(--green-dark);
+}
+
+body.dark a {
+    color: #0d1117;
+    font-weight: 600;
 }

@@ -2,7 +2,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
 
-:root {
+body.light,
+body {
     --green: #22c55e;
     --green-light: #dcfce7;
     --green-dark: #15803d;
@@ -11,6 +12,35 @@
     --border: #e2e8f0;
     --surface: #f8fafc;
     --white: #ffffff;
+    --sidebar-bg: #ffffff;
+    --sidebar-overlay: rgba(15, 23, 42, 0.3);
+    --sidebar-hover: #f8fafc;
+    --logout-color: #ef4444;
+    --logout-hover-bg: #fef2f2;
+    --logout-hover-color: #dc2626;
+    --hamburger-hover-bg: #dcfce7;
+    --hamburger-glow: rgba(34, 197, 94, 0.25);
+    --topbar-bg: #ffffff;
+}
+
+body.dark {
+    --green: #238636;
+    --green-light: #1a3a2a;
+    --green-dark: #2ea043;
+    --text: #c9d1d9;
+    --text-muted: #8b949e;
+    --border: #1e3a2f;
+    --surface: #0d1117;
+    --white: #161b22;
+    --sidebar-bg: #161b22;
+    --sidebar-overlay: rgba(0, 0, 0, 0.7);
+    --sidebar-hover: #0d1117;
+    --logout-color: #b62324;
+    --logout-hover-bg: #2a0f0f;
+    --logout-hover-color: #f87171;
+    --hamburger-hover-bg: #1a3a2a;
+    --hamburger-glow: rgba(46, 160, 67, 0.25);
+    --topbar-bg: #161b22;
 }
 
 /* ========= SIDEBAR ========= */
@@ -18,7 +48,7 @@
 .sidebar-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(15, 23, 42, 0.3);
+    background: var(--sidebar-overlay);
     backdrop-filter: blur(2px);
     z-index: 9998;
     opacity: 0;
@@ -37,14 +67,13 @@
     left: 0;
     width: 260px;
     height: 100vh;
-    background: var(--white);
+    background: var(--sidebar-bg);
     border-right: 1px solid var(--border);
     z-index: 9999;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
-    /* Ключевое: запрещаем расширение за 260px */
     overflow: hidden;
 }
 
@@ -54,7 +83,6 @@
 
 .sidebar-header {
     padding: 24px 20px 16px;
-    /* Фиксируем ширину шапки */
     width: 100%;
     box-sizing: border-box;
 }
@@ -63,7 +91,6 @@
     font-size: 16px;
     font-weight: 600;
     color: var(--text);
-    /* Обрезаем длинный username */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -73,7 +100,6 @@
     height: 1px;
     background: var(--border);
     margin: 0 16px;
-    /* Фиксируем ширину */
     width: calc(100% - 32px);
     box-sizing: border-box;
 }
@@ -85,7 +111,6 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
-    /* Ключевое: min-width: 0 позволяет flex-children сжиматься */
     min-width: 0;
 }
 
@@ -101,7 +126,6 @@
     text-decoration: none;
     background: transparent;
     border: none;
-    /* Ключевое: фиксируем ширину, не даём расширяться */
     width: 100%;
     max-width: 100%;
     min-width: 0;
@@ -109,7 +133,6 @@
     cursor: pointer;
     font-family: 'Plus Jakarta Sans', sans-serif;
     transition: background-color 0.2s ease, color 0.2s ease;
-    /* Обрезаем всё, что выходит за границы */
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -120,21 +143,15 @@
     width: 18px;
     height: 18px;
     flex-shrink: 0;
-    /* Запрещаем svg сжиматься */
     min-width: 18px;
 }
 
-/* Текст внутри sidebar-item — обрезаем */
-.sidebar-item {
-    /* Текстовый узел должен сжиматься */
-    & > *:not(svg) {
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+.sidebar-item > *:not(svg) {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Для старых браузеров без & селектора */
 .sidebar-item span,
 .sidebar-item div {
     min-width: 0;
@@ -143,14 +160,12 @@
 }
 
 .sidebar-item:hover {
-    background: var(--surface);
+    background: var(--sidebar-hover);
     color: var(--green);
     text-decoration: none;
-    /* Явно фиксируем размеры при hover */
     transform: none;
     box-shadow: none;
     border: none;
-    /* Не даём padding меняться */
     padding: 12px 14px;
 }
 
@@ -180,17 +195,17 @@
 /* ========= LOGOUT ========= */
 
 .sidebar-item.logout {
-    color: #ef4444;
+    color: var(--logout-color);
 }
 
 .sidebar-item.logout:hover {
-    background: #fef2f2;
-    color: #dc2626;
+    background: var(--logout-hover-bg);
+    color: var(--logout-hover-color);
 }
 
 .sidebar-item.logout.active {
-    background: #fef2f2;
-    color: #dc2626;
+    background: var(--logout-hover-bg);
+    color: var(--logout-hover-color);
 }
 
 .sidebar-logout-form {
@@ -229,9 +244,9 @@
 }
 
 .hamburger-btn:hover {
-    background: var(--green-light);
+    background: var(--hamburger-hover-bg);
     color: var(--green);
-    box-shadow: 0 0 12px rgba(34, 197, 94, 0.25);
+    box-shadow: 0 0 12px var(--hamburger-glow);
 }
 
 .hamburger-btn:active {
@@ -240,7 +255,7 @@
 
 /* Topbar base styles (used by settings page) */
 #topbar {
-    background: var(--white);
+    background: var(--topbar-bg);
     border-bottom: 1px solid var(--border);
     padding: 0 32px;
     height: 60px;
@@ -265,7 +280,7 @@
     align-items: center;
     justify-content: center;
     font-size: 16px;
-    color: white;
+    color: var(--surface);
 }
 
 .brand-name {

@@ -51,3 +51,33 @@
     font-weight: 500;
     color: var(--text);
 }
+
+/* Theme toggle button (for quick switch) */
+.theme-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    padding: 10px 20px;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 16px;
+}
+
+.theme-toggle-btn:hover {
+    border-color: var(--green);
+    background: var(--green-light);
+    color: var(--green-dark);
+}
+
+.theme-toggle-btn svg {
+    width: 18px;
+    height: 18px;
+}

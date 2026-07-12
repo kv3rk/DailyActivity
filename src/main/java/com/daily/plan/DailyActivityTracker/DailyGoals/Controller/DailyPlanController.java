@@ -55,14 +55,17 @@ public class DailyPlanController {
         log.info("Entered endpoint [daily/settings]");
 
         model.addAttribute("username", authenticateService.getUsername());
+        model.addAttribute("theme", "dark");
 
         return "settings-page/settings-page";
     }
 
     @GetMapping("/error")
-    public String errorPage() {
+    public String errorPage(Model model) {
 
         log.info("Entered endpoint [daily/error]");
+
+        model.addAttribute("theme", "dark");
 
         return "error-page/error_page";
     }

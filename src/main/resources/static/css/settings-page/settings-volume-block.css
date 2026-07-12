@@ -52,6 +52,10 @@
     transform: scale(1.15);
 }
 
+body.dark .settings-range::-webkit-slider-thumb {
+    box-shadow: 0 2px 8px rgba(46, 160, 67, 0.3);
+}
+
 /* Volume input */
 #volume-input {
     width: 120px;
@@ -69,7 +73,7 @@
 #volume-input:focus {
     outline: none;
     border-color: var(--green);
-    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+    box-shadow: 0 0 0 3px var(--input-focus-shadow);
 }
 
 /* Apply button */
@@ -92,4 +96,8 @@
 
 .volume-apply-btn:hover {
     background: var(--green-dark);
+}
+
+body.dark .volume-apply-btn {
+    color: #0d1117;
 }

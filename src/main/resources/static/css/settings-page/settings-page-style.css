@@ -2,7 +2,8 @@
    SHARED / BASE STYLES ONLY
    ============================================================ */
 
-.theme-light {
+body.light,
+body {
     --bg:           #f8fafc;
     --card:         #ffffff;
     --text:         #0f172a;
@@ -12,25 +13,49 @@
     --hover-border: #cbd5e1;
     --shadow:       rgba(0,0,0,0.04);
     --placeholder:  #94a3b8;
-}
-
-.theme-dark {
-    --bg:           #0f172a;
-    --card:         #1e293b;
-    --text:         #f1f5f9;
-    --text-muted:   #94a3b8;
-    --border:       #334155;
-    --surface:      #1e293b;
-    --hover-border: #475569;
-    --shadow:       rgba(0,0,0,0.25);
-    --placeholder:  #64748b;
-}
-
-.theme-light, .theme-dark {
     --green:       #22c55e;
     --green-light: #dcfce7;
     --green-dark:  #15803d;
+    --body-bg: #f8fafc;
+    --topbar-bg: #ffffff;
+    --nav-active-bg: transparent;
+    --nav-active-text: var(--text-muted);
+    --input-focus-shadow: rgba(34, 197, 94, 0.1);
+    --scrollbar-thumb: #cbd5e1;
+    --scrollbar-track: transparent;
 }
+
+body.dark {
+    --bg:           #0d1117;
+    --card:         #161b22;
+    --text:         #c9d1d9;
+    --text-muted:   #8b949e;
+    --border:       #1e3a2f;
+    --surface:      #0d1117;
+    --hover-border: #2d4a3e;
+    --shadow:       rgba(0,0,0,0.25);
+    --placeholder:  #6e7681;
+    --green:       #238636;
+    --green-light: #1a3a2a;
+    --green-dark:  #2ea043;
+    --body-bg: #0d1117;
+    --topbar-bg: #161b22;
+    --nav-active-bg: transparent;
+    --nav-active-text: var(--text-muted);
+    --input-focus-shadow: rgba(46, 160, 67, 0.15);
+    --scrollbar-thumb: #1e3a2f;
+    --scrollbar-track: #0d1117;
+}
+
+body {
+    background: var(--body-bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 99px; }
 
 /* ========= LAYOUT ========= */
 
@@ -94,8 +119,8 @@
 }
 
 .settings-nav-item.active {
-    background: transparent;
-    color: var(--text-muted);
+    background: var(--nav-active-bg);
+    color: var(--nav-active-text);
     border-left-color: transparent;
     font-weight: 500;
 }
@@ -165,7 +190,7 @@
 .settings-input:focus {
     outline: none;
     border-color: var(--green);
-    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+    box-shadow: 0 0 0 3px var(--input-focus-shadow);
 }
 
 .settings-input::placeholder {
