@@ -24,9 +24,11 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    public String loginPage() {
+    public String loginPage(Model model) {
 
         log.info("Entered endpoint [/login]");
+
+        model.addAttribute("theme", "dark");
 
         return "auth-pages/login_page";
     }
@@ -37,6 +39,7 @@ public class AuthController {
         log.info("Entered endpoint [/registration]");
 
         model.addAttribute("registrationDTO", new RegistrationUserDTO("", ""));
+        model.addAttribute("theme", "dark");
 
         return "auth-pages/registration-page";
     }

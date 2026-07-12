@@ -10,7 +10,7 @@
 
 </head>
 
-<body>
+<body th:class="${theme}">
 
 <div class="auth-card">
 
@@ -33,14 +33,14 @@
                class="form-control"
                placeholder="Username">
 
-        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+        <span class="field-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
 
         <input type="password"
                th:field="*{password}"
                class="form-control"
                placeholder="Password">
 
-        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+        <span class="field-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 
         <button class="btn-auth" type="submit">
             Sign up
