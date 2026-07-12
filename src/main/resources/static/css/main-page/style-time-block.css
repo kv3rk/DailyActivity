@@ -1,6 +1,6 @@
 /* TIMER PANEL */
 #timer-panel {
-    background: var(--white);
+    background: var(--timer-panel-bg);
     padding: 28px 24px;
     display: flex;
     flex-direction: column;
@@ -48,6 +48,10 @@
 
 #minutes-input:focus { outline: none; border-color: var(--green); }
 
+body.dark #minutes-input:focus {
+    box-shadow: 0 0 0 3px rgba(46, 160, 67, 0.15);
+}
+
 .timer-actions { display: flex; flex-direction: column; gap: 8px; }
 
 .timer-btn {
@@ -70,8 +74,8 @@
 }
 
 #start-timer-btn:hover { background: var(--green-dark); border-color: var(--green-dark); }
-#pause-timer-btn:hover { background: #fef3c7; border-color: #f59e0b; color: #92400e; }
-#stop-timer-btn:hover { background: #fee2e2; border-color: #ef4444; color: #991b1b; }
+#pause-timer-btn:hover { background: var(--yellow-hover-bg); border-color: var(--yellow-hover-border); color: var(--yellow-hover-text); }
+#stop-timer-btn:hover { background: var(--red-hover-bg); border-color: var(--red-hover-border); color: var(--red-hover-text); }
 
 .timer-divider {
     border: none;
@@ -89,7 +93,7 @@
 /* ACTIVITY MODAL */
 #activity-modal-overlay {
     position: fixed; inset: 0;
-    background: rgba(15,23,42,0.5);
+    background: var(--overlay-bg);
     backdrop-filter: blur(4px);
     display: none; justify-content: center; align-items: center;
     z-index: 9999;
@@ -102,7 +106,7 @@
     border-radius: 16px;
     padding: 28px;
     display: flex; flex-direction: column; gap: 16px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    box-shadow: 0 20px 60px var(--shadow-modal);
 }
 
 #activity-modal-title { font-size: 20px; font-weight: 600; color: var(--text); }
@@ -121,6 +125,10 @@
 #activity-comment { min-height: 100px; resize: none; }
 #activity-type:focus, #activity-comment:focus { outline: none; border-color: var(--green); }
 
+body.dark #activity-type:focus, body.dark #activity-comment:focus {
+    box-shadow: 0 0 0 3px rgba(46, 160, 67, 0.15);
+}
+
 #activity-submit-btn {
     background: var(--green); border: none; border-radius: 8px;
     color: #fff; padding: 13px; font-size: 14px; font-weight: 500;
@@ -132,7 +140,7 @@
 /* CUSTOM ACTIVITY MODAL */
 #custom-activity-modal-overlay {
     position: fixed; inset: 0;
-    background: rgba(15,23,42,0.5);
+    background: var(--overlay-bg);
     backdrop-filter: blur(4px);
     display: none; justify-content: center; align-items: center;
     z-index: 9999;
@@ -145,7 +153,7 @@
     border-radius: 16px;
     padding: 28px;
     display: flex; flex-direction: column; gap: 16px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    box-shadow: 0 20px 60px var(--shadow-modal);
 }
 
 #custom-activity-modal-title { font-size: 20px; font-weight: 600; color: var(--text); }
@@ -166,6 +174,10 @@
 #custom-activity-comment { min-height: 100px; resize: none; }
 #custom-activity-type:focus, #custom-activity-comment:focus, #custom-activity-time:focus { outline: none; border-color: var(--green); }
 
+body.dark #custom-activity-type:focus, body.dark #custom-activity-comment:focus, body.dark #custom-activity-time:focus {
+    box-shadow: 0 0 0 3px rgba(46, 160, 67, 0.15);
+}
+
 #custom-activity-submit-btn {
     background: var(--green); border: none; border-radius: 8px;
     color: #fff; padding: 13px; font-size: 14px; font-weight: 500;
@@ -177,4 +189,8 @@
 #custom-modal-close {
     background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
     color: var(--text); padding: 10px; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body.dark #custom-modal-close {
+    background: var(--white);
 }

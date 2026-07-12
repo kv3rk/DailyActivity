@@ -6,6 +6,7 @@
     padding: 24px;
     border-right: 1px solid var(--border);
     min-height: 0;
+    background: var(--panel-bg);
 }
 
 .panel:last-child { border-right: none; }
@@ -47,8 +48,8 @@
 }
 
 .goal-item:hover {
-    border-color: #cbd5e1;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    border-color: var(--goal-hover-border);
+    box-shadow: 0 2px 8px var(--goal-hover-shadow);
 }
 
 .goal-dot {
@@ -90,5 +91,5 @@
     border-color: transparent;
 }
 
-.element-done-goal .goal-dot { background: #cbd5e1; }
+.element-done-goal .goal-dot { background: var(--dot-inactive); }
 .element-done-goal .goal-text { text-decoration: line-through; color: var(--text-muted); }

@@ -44,6 +44,7 @@ public class DailyPlanController {
         model.addAttribute("done_goals", dailyPlanService.getDoneGoals());
         model.addAttribute("activity_types", timerService.getAllActivityTypes());
         model.addAttribute("username", authenticateService.getUsername());
+        model.addAttribute("theme", "dark");
 
         return "main/main_page";
     }
