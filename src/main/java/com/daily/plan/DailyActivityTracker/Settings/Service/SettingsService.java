@@ -65,26 +65,26 @@ public class SettingsService {
 
     }
 
-//    @Transactional
-//    public TelegramDTO getTelegram() {
-//
-//        User user = userRepository.findByUsername(authenticateService.getUsername());
-//
-//        TelegramDTO telegramDTO = new TelegramDTO(
-//                user.getTelegram()
-//        );
-//
-//        return telegramDTO;
-//    }
-//
-//    @Transactional
-//    public void deleteTelegram() {
-//
-//        User user = userRepository.findByUsername(authenticateService.getUsername());
-//
-//        user.setTelegram(null);
-//
-//        log.info("Removed telegram for user [{}]",
-//                user.getUsername());
-//    }
+    @Transactional
+    public TelegramDTO getTelegram() {
+
+        User user = userRepository.findByUsername(authenticateService.getUsername());
+
+        TelegramDTO telegramDTO = new TelegramDTO(
+                user.getTelegram()
+        );
+
+        return telegramDTO;
+    }
+
+    @Transactional
+    public void deleteTelegram() {
+
+        User user = userRepository.findByUsername(authenticateService.getUsername());
+
+        user.setTelegram(null);
+
+        log.info("Removed telegram for user [{}]",
+                user.getUsername());
+    }
 }
