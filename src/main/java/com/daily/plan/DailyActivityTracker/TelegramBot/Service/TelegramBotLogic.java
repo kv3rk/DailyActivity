@@ -50,14 +50,6 @@ public class TelegramBotLogic extends TelegramLongPollingBot {
             String uuid = text.replace("/start ", "").trim();
             linkUser(uuid, chatId);
         }
-
-        if (userRepository.existsByTelegram(String.valueOf(chatId))) {
-            log.info("User with chatId {} exists", chatId);
-        } else {
-            log.info("User with this chatId doesnt exists {}. {} has chadId {}",
-                    chatId, userRepository.findByUsername("kv3rk").getUsername(),
-                    userRepository.findByUsername("kv3rk").getTelegram());
-        }
     }
 
     @Transactional
@@ -74,10 +66,7 @@ public class TelegramBotLogic extends TelegramLongPollingBot {
 
         log.info("Linked user [{}] to chatId [{}]", user.getUsername(), chatId);
 
-        sendToChat(String.valueOf(chatId), "✅ Connected! You (" + user.getUsername() + ") will receive daily and weekly reports. On chatId "
-                + chatId + " on telegram "
-                + user.getTelegram()
-                + " on uuid " + uuid);
+        sendToChat(String.valueOf(chatId), "✅ Connected! You'll receive daily and weekly reports");
     }
 
     public void sendToChat(String chatId, String text) {
