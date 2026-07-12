@@ -70,6 +70,7 @@ public class TelegramBotLogic extends TelegramLongPollingBot {
 
         User user = userRepository.findByTelegram(uuid);
         user.setTelegram(String.valueOf(chatId));
+        userRepository.save(user);
 
         log.info("Linked user [{}] to chatId [{}]", user.getUsername(), chatId);
 
