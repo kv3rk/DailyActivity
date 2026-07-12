@@ -35,7 +35,7 @@ public class TelegramBotLogic extends TelegramLongPollingBot {
     }
 
     @Override
-    @Transactional
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public void onUpdateReceived(Update update) {
 
         if (!update.hasMessage() || !update.getMessage().hasText()) {
@@ -68,7 +68,7 @@ public class TelegramBotLogic extends TelegramLongPollingBot {
         sendToChat(String.valueOf(chatId), "✅ Connected! You (" + user.getUsername() + ") will receive daily and weekly reports. On chatId "
                 + chatId + " on telegram "
                 + user.getTelegram()
-                + " on uuid" + uuid);
+                + " on uuid " + uuid);
     }
 
     public void sendToChat(String chatId, String text) {
