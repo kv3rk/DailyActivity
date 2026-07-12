@@ -35,7 +35,7 @@ public class TelegramBotLogic extends TelegramLongPollingBot {
     }
 
     @Override
-    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    @Transactional
     public void onUpdateReceived(Update update) {
 
         if (!update.hasMessage() || !update.getMessage().hasText()) {
@@ -49,6 +49,14 @@ public class TelegramBotLogic extends TelegramLongPollingBot {
         if (text.startsWith("/start ")) {
             String uuid = text.replace("/start ", "").trim();
             linkUser(uuid, chatId);
+        }
+
+        if (userRepository.existsByTelegram(String.valueOf(chatId))) {
+            log.info("User with chatId {} exists", chatId);
+        } else {
+            log.info("User with this chatId doesnt exists {}. {} has chadId {}",
+                    chatId, userRepository.findByUsername("kv3rk").getUsername(),
+                    userRepository.findByUsername("kv3rk").getTelegram());
         }
     }
 
