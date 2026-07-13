@@ -6,6 +6,8 @@ import com.daily.plan.DailyActivityTracker.User.Builder.UserBuilder;
 import com.daily.plan.DailyActivityTracker.User.DTO.RegistrationUserDTO;
 import com.daily.plan.DailyActivityTracker.User.Entity.User;
 import com.daily.plan.DailyActivityTracker.User.Repository.UserRepository;
+import com.daily.plan.DailyActivityTracker.UserActivities.Entity.UserActivity;
+import com.daily.plan.DailyActivityTracker.UserActivities.Repository.UserActivityRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,14 +23,17 @@ public class AuthenticateService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserActivityRepository userActivityRepository;
 
     public AuthenticateService(UserRepository userRepository,
                                RoleRepository roleRepository,
-                               PasswordEncoder passwordEncoder) {
+                               PasswordEncoder passwordEncoder,
+                               UserActivityRepository userActivityRepository) {
 
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.userActivityRepository = userActivityRepository;
     }
 
     @Transactional
@@ -51,8 +56,19 @@ public class AuthenticateService {
 
         userRepository.save(user);
 
+
         log.info("Created user with credentials [{}], [{}]",
                 user.getUsername(), user.getRole().getRole());
+
+        UserActivity userActivity = UserActivity.builder()
+                .username(user)
+                .build();
+
+        userActivityRepository.save(userActivity);
+
+
+        log.info("Created activities for user [{}]",
+                user.getUsername());
 
         return true;
     }

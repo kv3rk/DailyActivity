@@ -45,6 +45,7 @@ public class DailyPlanController {
         model.addAttribute("activity_types", timerService.getAllActivityTypes());
         model.addAttribute("username", authenticateService.getUsername());
         model.addAttribute("theme", settingsService.getTheme());
+        model.addAttribute("userActivities", settingsService.getUserActivities());
 
         return "main/main_page";
     }
@@ -56,6 +57,7 @@ public class DailyPlanController {
 
         model.addAttribute("username", authenticateService.getUsername());
         model.addAttribute("theme", settingsService.getTheme());
+        model.addAttribute("userActivities", settingsService.getUserActivities());
 
         return "settings-page/settings-page";
     }
