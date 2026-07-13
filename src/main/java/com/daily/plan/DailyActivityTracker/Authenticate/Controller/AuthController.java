@@ -1,6 +1,8 @@
 package com.daily.plan.DailyActivityTracker.Authenticate.Controller;
 
 import com.daily.plan.DailyActivityTracker.Authenticate.Service.AuthenticateService;
+import com.daily.plan.DailyActivityTracker.Settings.DTO.ThemeDTO;
+import com.daily.plan.DailyActivityTracker.Settings.Service.SettingsService;
 import com.daily.plan.DailyActivityTracker.User.DTO.RegistrationUserDTO;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -18,9 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AuthController {
 
     private final AuthenticateService authenticateService;
+    private final SettingsService settingsService;
 
-    public AuthController(AuthenticateService authenticateService) {
+    public AuthController(AuthenticateService authenticateService,
+                          SettingsService settingsService) {
+
         this.authenticateService = authenticateService;
+        this.settingsService = settingsService;
     }
 
     @GetMapping("/login")
@@ -28,7 +34,7 @@ public class AuthController {
 
         log.info("Entered endpoint [/login]");
 
-        model.addAttribute("theme", "dark");
+        model.addAttribute("theme", new ThemeDTO("light"));
 
         return "auth-pages/login_page";
     }
@@ -39,7 +45,7 @@ public class AuthController {
         log.info("Entered endpoint [/registration]");
 
         model.addAttribute("registrationDTO", new RegistrationUserDTO("", ""));
-        model.addAttribute("theme", "dark");
+        model.addAttribute("theme", new ThemeDTO("light"));
 
         return "auth-pages/registration-page";
     }

@@ -44,7 +44,7 @@ public class DailyPlanController {
         model.addAttribute("done_goals", dailyPlanService.getDoneGoals());
         model.addAttribute("activity_types", timerService.getAllActivityTypes());
         model.addAttribute("username", authenticateService.getUsername());
-        model.addAttribute("theme", "dark");
+        model.addAttribute("theme", settingsService.getTheme());
 
         return "main/main_page";
     }
@@ -55,7 +55,7 @@ public class DailyPlanController {
         log.info("Entered endpoint [daily/settings]");
 
         model.addAttribute("username", authenticateService.getUsername());
-        model.addAttribute("theme", "dark");
+        model.addAttribute("theme", settingsService.getTheme());
 
         return "settings-page/settings-page";
     }
@@ -65,7 +65,7 @@ public class DailyPlanController {
 
         log.info("Entered endpoint [daily/error]");
 
-        model.addAttribute("theme", "dark");
+        model.addAttribute("theme", settingsService.getTheme());
 
         return "error-page/error_page";
     }

@@ -1,6 +1,7 @@
 package com.daily.plan.DailyActivityTracker.Settings.Controller;
 
 import com.daily.plan.DailyActivityTracker.Settings.DTO.TelegramDTO;
+import com.daily.plan.DailyActivityTracker.Settings.DTO.ThemeDTO;
 import com.daily.plan.DailyActivityTracker.Settings.DTO.VolumeDTO;
 import com.daily.plan.DailyActivityTracker.Settings.Service.SettingsService;
 import jakarta.validation.Valid;
@@ -58,10 +59,29 @@ public class SettingsController {
     }
 
     @DeleteMapping("/delete/telegram")
-    public void deleteTelegram(){
+    public void deleteTelegram() {
 
         log.info("Entered endpoint [/delete/telegram]");
 
         settingsService.deleteTelegram();
+    }
+
+    @PostMapping("/set/theme")
+    public void setTheme(@RequestBody @Valid ThemeDTO themeDTO) {
+
+        log.info("Entered endpoint [/set/theme]");
+
+        settingsService.setTheme(themeDTO);
+
+    }
+
+    @GetMapping("/get/theme")
+    @ResponseBody
+    public ThemeDTO getTheme() {
+
+        log.info("Entered endpoint [/get/theme]");
+
+        return settingsService.getTheme();
+
     }
 }
