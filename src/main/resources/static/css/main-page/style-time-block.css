@@ -90,6 +90,46 @@ body.dark #minutes-input:focus {
     color: var(--green-dark);
 }
 
+/* ---------- Modal Close Button ---------- */
+.modal-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text-muted);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.modal-close-btn:hover {
+    background: var(--red-hover-bg);
+    border-color: var(--red-hover-border);
+    color: var(--red-hover-text);
+}
+
+/* ---------- Placeholder Colors ---------- */
+#custom-activity-time::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+#activity-type option:first-child,
+#custom-activity-type option:first-child {
+    color: var(--text-muted);
+}
+
 /* ACTIVITY MODAL */
 #activity-modal-overlay {
     position: fixed; inset: 0;
@@ -100,6 +140,7 @@ body.dark #minutes-input:focus {
 }
 
 #activity-modal {
+    position: relative;
     width: 420px;
     background: var(--white);
     border: 1px solid var(--border);
@@ -147,6 +188,7 @@ body.dark #activity-type:focus, body.dark #activity-comment:focus {
 }
 
 #custom-activity-modal {
+    position: relative;
     width: 420px;
     background: var(--white);
     border: 1px solid var(--border);
@@ -194,3 +236,34 @@ body.dark #custom-activity-type:focus, body.dark #custom-activity-comment:focus,
 body.dark #custom-modal-close {
     background: var(--white);
 }
+
+/* ERROR MODAL */
+#error-modal-overlay {
+    position: fixed; inset: 0;
+    background: var(--overlay-bg);
+    backdrop-filter: blur(4px);
+    display: none; justify-content: center; align-items: center;
+    z-index: 9999;
+}
+
+#error-modal {
+    position: relative;
+    width: 420px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex; flex-direction: column; gap: 16px;
+    box-shadow: 0 20px 60px var(--shadow-modal);
+}
+
+#error-modal-title { font-size: 20px; font-weight: 600; color: var(--text); }
+#error-modal-message { font-size: 14px; color: var(--text-muted); }
+
+#error-modal-close {
+    background: var(--green); border: none; border-radius: 8px;
+    color: #fff; padding: 13px; font-size: 14px; font-weight: 500;
+    cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+#error-modal-close:hover { background: var(--green-dark); }
