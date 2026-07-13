@@ -56,11 +56,6 @@ async function connectTelegram() {
         const telegramLink = `https://t.me/${BOT_USERNAME}?start=${uuid}`;
         window.open(telegramLink, '_blank');
 
-        // Reload the page after opening Telegram link
-        setTimeout(() => {
-            window.location.reload();
-        }, 500);
-
     } catch (err) {
         console.error("Connect Telegram failed:", err);
     }
