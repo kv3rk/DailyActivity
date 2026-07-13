@@ -4,7 +4,6 @@ import com.daily.plan.DailyActivityTracker.User.Entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,7 +14,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @Table(name = "user_activity")
-@Builder
 public class UserActivity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

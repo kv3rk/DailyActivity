@@ -20,17 +20,14 @@ import java.util.List;
 public class DailyPlanController {
 
     private final DailyPlanService dailyPlanService;
-    private final TimerService timerService;
     private final AuthenticateService authenticateService;
     private final SettingsService settingsService;
 
     public DailyPlanController(DailyPlanService dailyPlanService,
-                               TimerService timerService,
                                AuthenticateService authenticateService,
                                SettingsService settingsService) {
 
         this.dailyPlanService = dailyPlanService;
-        this.timerService = timerService;
         this.authenticateService = authenticateService;
         this.settingsService = settingsService;
     }
@@ -42,10 +39,9 @@ public class DailyPlanController {
 
         model.addAttribute("active_goals", dailyPlanService.getActiveGoals());
         model.addAttribute("done_goals", dailyPlanService.getDoneGoals());
-        model.addAttribute("activity_types", timerService.getAllActivityTypes());
         model.addAttribute("username", authenticateService.getUsername());
         model.addAttribute("theme", settingsService.getTheme());
-        model.addAttribute("userActivities", settingsService.getUserActivities());
+        model.addAttribute("userActivities", settingsService.getUserActivitiesForFront());
 
         return "main/main_page";
     }
@@ -57,7 +53,7 @@ public class DailyPlanController {
 
         model.addAttribute("username", authenticateService.getUsername());
         model.addAttribute("theme", settingsService.getTheme());
-        model.addAttribute("userActivities", settingsService.getUserActivities());
+        model.addAttribute("userActivities", settingsService.getUserActivitiesForFront());
 
         return "settings-page/settings-page";
     }
@@ -67,7 +63,7 @@ public class DailyPlanController {
 
         log.info("Entered endpoint [daily/error]");
 
-        model.addAttribute("theme", settingsService.getTheme());
+        model.addAttribute("theme", "light");
 
         return "error-page/error_page";
     }

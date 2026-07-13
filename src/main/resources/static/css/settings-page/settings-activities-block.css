@@ -112,31 +112,6 @@
     background: var(--green-light);
 }
 
-/* Delete button */
-.activity-btn-delete {
-    color: #ef4444;
-    border-color: #fecaca;
-    background: #fef2f2;
-}
-
-body.dark .activity-btn-delete {
-    color: #f87171;
-    border-color: #7f1d1d;
-    background: #450a0a;
-}
-
-.activity-btn-delete:hover {
-    color: #dc2626;
-    border-color: #ef4444;
-    background: #fee2e2;
-}
-
-body.dark .activity-btn-delete:hover {
-    color: #fca5a5;
-    border-color: #dc2626;
-    background: #7f1d1d;
-}
-
 /* ---------- Edit Activity Form (appears below list) ---------- */
 
 .activity-edit-wrap {
@@ -268,70 +243,4 @@ body.dark .activity-save-btn:hover {
         justify-content: center;
         padding: 12px;
     }
-}
-
-/* ---------- Add Activity Form (always visible, below edit form) ---------- */
-
-.activity-add-wrap {
-    margin-top: 20px;
-}
-
-.activity-add-divider {
-    height: 1px;
-    background: var(--border);
-    margin-bottom: 20px;
-}
-
-.activity-add-label {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 12px;
-}
-
-.activity-add-input-wrap {
-    display: flex;
-    gap: 10px;
-    align-items: stretch;
-}
-
-.activity-add-input {
-    flex: 1;
-    min-width: 0;
-}
-
-.activity-add-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0 20px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    cursor: pointer;
-    border: none;
-    background: var(--green);
-    color: #ffffff;
-    transition: all 0.15s ease;
-    white-space: nowrap;
-}
-
-.activity-add-btn:hover {
-    background: var(--green-dark);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
-}
-
-body.dark .activity-add-btn:hover {
-    box-shadow: 0 4px 12px rgba(46, 160, 67, 0.3);
-}
-
-.activity-add-btn:active {
-    transform: translateY(0);
-}
-
-.activity-add-btn svg {
-    width: 16px;
-    height: 16px;
 }

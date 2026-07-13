@@ -60,9 +60,9 @@ public class AuthenticateService {
         log.info("Created user with credentials [{}], [{}]",
                 user.getUsername(), user.getRole().getRole());
 
-        UserActivity userActivity = UserActivity.builder()
-                .username(user)
-                .build();
+        UserActivity userActivity = new UserActivity();
+
+        userActivity.setUsername(user);
 
         userActivityRepository.save(userActivity);
 

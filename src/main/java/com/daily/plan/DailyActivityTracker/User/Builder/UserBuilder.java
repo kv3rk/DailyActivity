@@ -11,6 +11,8 @@ public class UserBuilder {
     private String username = "user";
     private String password = "password";
     private Role role = new Role();
+    private Byte volume = 50;
+    private String theme = "light";
 
     public UserBuilder withUsername(String username) {
 
@@ -39,6 +41,8 @@ public class UserBuilder {
                 .username(username)
                 .password(password)
                 .role(role)
+                .volume(volume)
+                .theme(theme)
                 .build();
     }
 }

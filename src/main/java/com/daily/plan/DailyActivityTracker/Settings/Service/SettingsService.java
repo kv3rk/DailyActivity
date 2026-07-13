@@ -1,10 +1,7 @@
 package com.daily.plan.DailyActivityTracker.Settings.Service;
 
 import com.daily.plan.DailyActivityTracker.Authenticate.Service.AuthenticateService;
-import com.daily.plan.DailyActivityTracker.Settings.DTO.TelegramDTO;
-import com.daily.plan.DailyActivityTracker.Settings.DTO.ThemeDTO;
-import com.daily.plan.DailyActivityTracker.Settings.DTO.UserActivitiesDTO;
-import com.daily.plan.DailyActivityTracker.Settings.DTO.VolumeDTO;
+import com.daily.plan.DailyActivityTracker.Settings.DTO.*;
 import com.daily.plan.DailyActivityTracker.User.Entity.User;
 import com.daily.plan.DailyActivityTracker.User.Repository.UserRepository;
 import com.daily.plan.DailyActivityTracker.UserActivities.Entity.UserActivity;
@@ -14,6 +11,7 @@ import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -126,9 +124,9 @@ public class SettingsService {
     }
 
     @Transactional
-    public UserActivitiesDTO getUserActivities() {
+    public UserActivityDTOForStats getUserActivities() {
 
-        UserActivitiesDTO userActivitiesDTO = userActivityMapper.userActivityToDTO(
+        UserActivityDTOForStats userActivityDTOForStats = userActivityMapper.userActivityToDTO(
                 userActivityRepository.findByUsername(
                         userRepository.findByUsername(
                                 authenticateService.getUsername()
@@ -136,11 +134,33 @@ public class SettingsService {
                 )
         );
 
-        return userActivitiesDTO;
+        return userActivityDTOForStats;
     }
 
     @Transactional
-    public void setUserActivities(UserActivitiesDTO userActivitiesDTO) {
+    public UserActivityDTOForFront getUserActivitiesForFront() {
+
+        UserActivityDTOForStats userActivityDTOForStats = userActivityMapper.userActivityToDTO(
+                userActivityRepository.findByUsername(
+                        userRepository.findByUsername(
+                                authenticateService.getUsername()
+                        )
+                )
+        );
+
+        UserActivityDTOForFront userActivityDTOForFront = new UserActivityDTOForFront(
+                List.of(
+                        userActivityDTOForStats.activity1(),
+                        userActivityDTOForStats.activity2(),
+                        userActivityDTOForStats.activity3()
+                )
+        );
+
+        return userActivityDTOForFront;
+    }
+
+    @Transactional
+    public void setUserActivities(UserActivityDTOForStats userActivityDTOForStats) {
 
         UserActivity userActivity = userActivityRepository.findByUsername(
                 userRepository.findByUsername(
@@ -148,9 +168,9 @@ public class SettingsService {
                 )
         );
 
-        userActivity.setActivity1(userActivitiesDTO.activity1());
-        userActivity.setActivity2(userActivitiesDTO.activity2());
-        userActivity.setActivity3(userActivitiesDTO.activity3());
+        userActivity.setActivity1(userActivityDTOForStats.activity1());
+        userActivity.setActivity2(userActivityDTOForStats.activity2());
+        userActivity.setActivity3(userActivityDTOForStats.activity3());
 
         userActivityRepository.save(userActivity);
 

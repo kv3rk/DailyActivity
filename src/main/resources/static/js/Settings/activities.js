@@ -2,17 +2,19 @@
 // ACTIVITY TYPES
 // ============================================================
 
+const ACTIVITIES_ENDPOINT = '/daily/settings';
+
 /**
  * Shows the edit form below the activity list, pre-filled with the current name.
  * Only one edit form can be open at a time.
+ * @param {number} slot - The activity slot number (1, 2, or 3)
  */
-function editActivity(activityId) {
-    const item = document.querySelector(`.activity-type-item[data-activity-id="${activityId}"]`);
+function editActivity(slot) {
+    const item = document.querySelector(`.activity-type-item[data-activity-slot="${slot}"]`);
     if (!item) return;
 
-    // Get current activity name
-    const nameEl = item.querySelector('.activity-type-name');
-    const currentName = nameEl ? nameEl.textContent.trim() : '';
+    // Get current activity name from data attribute
+    const currentName = item.getAttribute('data-activity-name') || '';
 
     // Hide any previously open edit form
     hideEditForm();
@@ -20,13 +22,13 @@ function editActivity(activityId) {
     // Show the edit form
     const editWrap = document.getElementById('activity-edit-wrap');
     const editInput = document.getElementById('activity-edit-input');
-    const editIdInput = document.getElementById('activity-edit-id');
+    const editSlotInput = document.getElementById('activity-edit-slot');
 
-    if (editWrap && editInput && editIdInput) {
+    if (editWrap && editInput && editSlotInput) {
         editWrap.style.display = 'block';
         editInput.value = currentName;
         editInput.focus();
-        editIdInput.value = activityId;
+        editSlotInput.value = slot;
 
         // Highlight the item being edited
         item.classList.add('editing');
@@ -39,11 +41,11 @@ function editActivity(activityId) {
 function hideEditForm() {
     const editWrap = document.getElementById('activity-edit-wrap');
     const editInput = document.getElementById('activity-edit-input');
-    const editIdInput = document.getElementById('activity-edit-id');
+    const editSlotInput = document.getElementById('activity-edit-slot');
 
     if (editWrap) editWrap.style.display = 'none';
     if (editInput) editInput.value = '';
-    if (editIdInput) editIdInput.value = '';
+    if (editSlotInput) editSlotInput.value = '';
 
     // Remove editing highlight from all items
     document.querySelectorAll('.activity-type-item.editing').forEach(el => {
@@ -52,18 +54,43 @@ function hideEditForm() {
 }
 
 /**
- * Saves the edited activity name.
- * Placeholder — replace with actual endpoint call when backend is ready.
+ * Collects current activity values from the DOM and builds the full DTO
+ * with activity1, activity2, activity3 fields.
+ * @returns {Object} Object with activity1, activity2, activity3
  */
-function saveActivity() {
+function buildActivitiesDTO() {
+    const dto = {
+        activity1: null,
+        activity2: null,
+        activity3: null
+    };
+
+    // Read all visible activity items and map them by slot
+    const items = document.querySelectorAll('.activity-type-item');
+    items.forEach(item => {
+        const slot = item.getAttribute('data-activity-slot');
+        const nameEl = item.querySelector('.activity-type-name');
+        const name = nameEl ? nameEl.textContent.trim() : '';
+
+        if (slot === '1') dto.activity1 = name || null;
+        if (slot === '2') dto.activity2 = name || null;
+        if (slot === '3') dto.activity3 = name || null;
+    });
+
+    return dto;
+}
+
+/**
+ * Saves the edited activity name by sending the full DTO to the backend.
+ */
+async function saveActivity() {
     const editInput = document.getElementById('activity-edit-input');
-    const editIdInput = document.getElementById('activity-edit-id');
+    const editSlotInput = document.getElementById('activity-edit-slot');
 
     const newName = editInput ? editInput.value.trim() : '';
-    const activityId = editIdInput ? editIdInput.value : '';
+    const slot = editSlotInput ? editSlotInput.value : '';
 
     if (!newName) {
-        // Shake the input or show some visual feedback
         if (editInput) {
             editInput.style.borderColor = '#ef4444';
             setTimeout(() => {
@@ -73,139 +100,37 @@ function saveActivity() {
         return;
     }
 
-    if (!activityId) return;
+    if (!slot) return;
 
-    // TODO: Replace with actual API call
-    // Example:
-    // fetch(`/api/activities/${activityId}`, {
-    //     method: 'PUT',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ name: newName })
-    // })
-    // .then(response => {
-    //     if (response.ok) {
-    //         window.location.reload();
-    //     }
-    // });
+    // Build the full DTO with current values
+    const dto = buildActivitiesDTO();
 
-    // For now: update the DOM and reload
-    const item = document.querySelector(`.activity-type-item[data-activity-id="${activityId}"]`);
-    if (item) {
-        const nameEl = item.querySelector('.activity-type-name');
-        if (nameEl) {
-            nameEl.textContent = newName;
+    // Update the edited slot with the new name
+    if (slot === '1') dto.activity1 = newName;
+    if (slot === '2') dto.activity2 = newName;
+    if (slot === '3') dto.activity3 = newName;
+
+    try {
+        const response = await fetch(`${ACTIVITIES_ENDPOINT}/set/user/activities`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dto)
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to save activity: ${response.status}`);
         }
-    }
 
-    hideEditForm();
+        // Reload the page after successful save
+        window.location.reload();
 
-    // Reload the page (as requested)
-    // window.location.reload();
-}
-
-/**
- * Deletes an activity item and renumbers the remaining ones.
- * Placeholder — replace with actual endpoint call when backend is ready.
- */
-function deleteActivity(activityId) {
-    const item = document.querySelector(`.activity-type-item[data-activity-id="${activityId}"]`);
-    if (!item) return;
-
-    // Optional: confirm before delete
-    // if (!confirm('Are you sure you want to delete this activity?')) return;
-
-    // TODO: Replace with actual API call
-    // Example:
-    // fetch(`/api/activities/${activityId}`, { method: 'DELETE' })
-    // .then(response => {
-    //     if (response.ok) {
-    //         window.location.reload();
-    //     }
-    // });
-
-    // For now: remove from DOM and renumber
-    item.remove();
-    renumberItems();
-    hideEditForm();
-
-    // Check if list is empty
-    const list = document.getElementById('activity-types-list');
-    if (list && list.children.length === 0) {
-        showEmptyState();
+    } catch (err) {
+        console.error('Save activity failed:', err);
     }
 }
 
-/**
- * Adds a new activity.
- * Placeholder — replace with actual endpoint call when backend is ready.
- */
-function addActivity() {
-    const input = document.getElementById('activity-add-input');
-    const name = input ? input.value.trim() : '';
-
-    if (!name) {
-        if (input) {
-            input.style.borderColor = '#ef4444';
-            setTimeout(() => {
-                input.style.borderColor = '';
-            }, 300);
-        }
-        return;
-    }
-
-    // TODO: Replace with actual API call
-    // Example:
-    // fetch(`/api/activities`, {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ name: name })
-    // })
-    // .then(response => {
-    //     if (response.ok) {
-    //         window.location.reload();
-    //     }
-    // });
-
-    // For now: clear input and reload the page to simulate
-    if (input) input.value = '';
-    // window.location.reload();
-}
-
-/**
- * Renumbers all activity items sequentially (1, 2, 3, ...).
- * Call this after any item is deleted.
- */
-function renumberItems() {
-    const list = document.getElementById('activity-types-list');
-    if (!list) return;
-
-    const items = list.querySelectorAll('.activity-type-item');
-    items.forEach((item, index) => {
-        const numberEl = item.querySelector('.activity-type-number');
-        if (numberEl) {
-            numberEl.textContent = (index + 1).toString();
-        }
-    });
-}
-
-/**
- * Shows an empty state message when all activities are deleted.
- * The Add Activity button remains visible below.
- */
-function showEmptyState() {
-    const list = document.getElementById('activity-types-list');
-    if (!list) return;
-
-    list.innerHTML = `
-        <div class="activity-types-empty">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="8" y1="12" x2="16" y2="12"></line>
-            </svg>
-            <p>No activity types configured.</p>
-        </div>
-    `;
-}
 
 // ============================================================
 // KEYBOARD SUPPORT
@@ -222,17 +147,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             if (e.key === 'Escape') {
                 hideEditForm();
-            }
-        });
-    }
-
-    // Allow pressing Enter in the add input to add activity
-    const addInput = document.getElementById('activity-add-input');
-    if (addInput) {
-        addInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                addActivity();
             }
         });
     }

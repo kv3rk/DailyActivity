@@ -32,7 +32,6 @@ public class User implements UserDetails {
 
     private String telegram;
 
-    @Column(nullable = false)
     private String theme = "light";
 
     private Byte volume = 50;
