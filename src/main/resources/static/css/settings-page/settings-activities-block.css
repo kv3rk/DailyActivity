@@ -1,0 +1,337 @@
+/* ============================================================
+   ACTIVITY TYPES BLOCK
+   ============================================================ */
+
+/* ---------- Activity List ---------- */
+
+.activity-types-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.activity-type-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.activity-type-item:hover {
+    border-color: var(--hover-border);
+    box-shadow: 0 2px 8px var(--shadow);
+    transform: translateY(-1px);
+}
+
+.activity-type-item.dragging {
+    opacity: 0.6;
+    border-color: var(--green);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+/* ---------- Activity Info (left side) ---------- */
+
+.activity-type-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    min-width: 0;
+}
+
+/* Numbered circle instead of SVG icon */
+.activity-type-number {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--green-light);
+    border-radius: 10px;
+    flex-shrink: 0;
+    color: var(--green-dark);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    user-select: none;
+}
+
+.activity-type-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ---------- Activity Actions (right side) ---------- */
+
+.activity-type-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.activity-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.15s ease;
+    background: transparent;
+}
+
+.activity-btn svg {
+    width: 15px;
+    height: 15px;
+}
+
+/* Edit button */
+.activity-btn-edit {
+    color: var(--text-muted);
+    border-color: var(--border);
+    background: var(--card);
+}
+
+.activity-btn-edit:hover {
+    color: var(--green-dark);
+    border-color: var(--green);
+    background: var(--green-light);
+}
+
+/* Delete button */
+.activity-btn-delete {
+    color: #ef4444;
+    border-color: #fecaca;
+    background: #fef2f2;
+}
+
+body.dark .activity-btn-delete {
+    color: #f87171;
+    border-color: #7f1d1d;
+    background: #450a0a;
+}
+
+.activity-btn-delete:hover {
+    color: #dc2626;
+    border-color: #ef4444;
+    background: #fee2e2;
+}
+
+body.dark .activity-btn-delete:hover {
+    color: #fca5a5;
+    border-color: #dc2626;
+    background: #7f1d1d;
+}
+
+/* ---------- Edit Activity Form (appears below list) ---------- */
+
+.activity-edit-wrap {
+    margin-top: 20px;
+}
+
+.activity-edit-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 20px;
+}
+
+.activity-edit-form-outer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.activity-edit-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.activity-edit-input-wrap {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.activity-edit-input {
+    flex: 1;
+    min-width: 0;
+}
+
+.activity-save-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer;
+    border: none;
+    background: var(--green);
+    color: #ffffff;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.activity-save-btn:hover {
+    background: var(--green-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
+}
+
+body.dark .activity-save-btn:hover {
+    box-shadow: 0 4px 12px rgba(46, 160, 67, 0.3);
+}
+
+.activity-save-btn:active {
+    transform: translateY(0);
+}
+
+.activity-save-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* ---------- Empty State ---------- */
+
+.activity-types-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+}
+
+.activity-types-empty svg {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+    opacity: 0.4;
+}
+
+.activity-types-empty p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* ---------- Count Badge ---------- */
+
+.activity-types-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 7px;
+    border-radius: 99px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 600px) {
+    .activity-type-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .activity-type-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .activity-edit-input-wrap {
+        flex-direction: column;
+    }
+
+    .activity-save-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+    }
+}
+
+/* ---------- Add Activity Form (always visible, below edit form) ---------- */
+
+.activity-add-wrap {
+    margin-top: 20px;
+}
+
+.activity-add-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 20px;
+}
+
+.activity-add-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+}
+
+.activity-add-input-wrap {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.activity-add-input {
+    flex: 1;
+    min-width: 0;
+}
+
+.activity-add-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer;
+    border: none;
+    background: var(--green);
+    color: #ffffff;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.activity-add-btn:hover {
+    background: var(--green-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
+}
+
+body.dark .activity-add-btn:hover {
+    box-shadow: 0 4px 12px rgba(46, 160, 67, 0.3);
+}
+
+.activity-add-btn:active {
+    transform: translateY(0);
+}
+
+.activity-add-btn svg {
+    width: 16px;
+    height: 16px;
+}

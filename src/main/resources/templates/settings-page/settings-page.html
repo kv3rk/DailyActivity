@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/css/settings-page/settings-theme-block.css"/>
     <link rel="stylesheet" href="/css/settings-page/settings-volume-block.css"/>
     <link rel="stylesheet" href="/css/settings-page/settings-telegram-block.css"/>
+    <link rel="stylesheet" href="/css/settings-page/settings-activities-block.css"/>
 
     <!--    Scripts-->
     <script defer src="/js/Settings/telegram.js"></script>
@@ -22,6 +23,7 @@
     <script defer src="/js/Settings/highlight-scroll.js"></script>
     <script defer src="/js/Settings/volume.js"></script>
     <script defer src="/js/Settings/theme.js"></script>
+    <script defer src="/js/Settings/activities.js"></script>
 
 </head>
 <body th:class="${theme.theme()}">
@@ -98,6 +100,7 @@
                 <a href="#theme" class="settings-nav-item">Theme</a>
                 <a href="#notification-volume" class="settings-nav-item">Notification Volume</a>
                 <a href="#telegram" class="settings-nav-item">Telegram</a>
+                <a href="#activity-types" class="settings-nav-item">Activity Types</a>
             </nav>
         </div>
     </aside>
@@ -166,6 +169,130 @@
 
             <div class="telegram-connect-wrap" id="telegram-status-wrap">
                 <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- Activity Types -->
+        <section id="activity-types" class="settings-section">
+            <h2 class="settings-section-title">Activity Types</h2>
+            <p class="settings-section-desc">Manage the types of activities you track. These appear when saving time from timers and stopwatches.</p>
+
+            <div class="activity-types-wrap">
+                <!-- Activity List -->
+                <div class="activity-types-list" id="activity-types-list">
+                    <!-- Default activities rendered server-side -->
+                    <div class="activity-type-item" data-activity-id="1">
+                        <div class="activity-type-info">
+                            <div class="activity-type-number">1</div>
+                            <span class="activity-type-name">Games</span>
+                        </div>
+                        <div class="activity-type-actions">
+                            <button type="button" class="activity-btn activity-btn-edit" onclick="editActivity(1)" title="Edit">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                                <span>Edit</span>
+                            </button>
+                            <button type="button" class="activity-btn activity-btn-delete" onclick="deleteActivity(1)" title="Delete">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                                <span>Delete</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="activity-type-item" data-activity-id="2">
+                        <div class="activity-type-info">
+                            <div class="activity-type-number">2</div>
+                            <span class="activity-type-name">Studying</span>
+                        </div>
+                        <div class="activity-type-actions">
+                            <button type="button" class="activity-btn activity-btn-edit" onclick="editActivity(2)" title="Edit">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                                <span>Edit</span>
+                            </button>
+                            <button type="button" class="activity-btn activity-btn-delete" onclick="deleteActivity(2)" title="Delete">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                                <span>Delete</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="activity-type-item" data-activity-id="3">
+                        <div class="activity-type-info">
+                            <div class="activity-type-number">3</div>
+                            <span class="activity-type-name">Music</span>
+                        </div>
+                        <div class="activity-type-actions">
+                            <button type="button" class="activity-btn activity-btn-edit" onclick="editActivity(3)" title="Edit">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                                <span>Edit</span>
+                            </button>
+                            <button type="button" class="activity-btn activity-btn-delete" onclick="deleteActivity(3)" title="Delete">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                                <span>Delete</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit Activity Form (hidden by default, shown when Edit is clicked) -->
+                <div class="activity-edit-wrap" id="activity-edit-wrap" style="display: none;">
+                    <div class="activity-edit-divider"></div>
+                    <div class="activity-edit-form-outer">
+                        <div class="activity-edit-label">Edit Activity</div>
+                        <div class="activity-edit-input-wrap">
+                            <input type="text"
+                                   class="settings-input activity-edit-input"
+                                   id="activity-edit-input"
+                                   placeholder="Enter new activity name..."
+                                   maxlength="50">
+                            <button type="button" class="activity-save-btn" id="activity-save-btn" onclick="saveActivity()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Save Changes</span>
+                            </button>
+                        </div>
+                        <input type="hidden" id="activity-edit-id" value="">
+                    </div>
+                </div>
+
+                <!-- Add Activity Form (always visible, below edit form) -->
+                <div class="activity-add-wrap" id="activity-add-wrap">
+                    <div class="activity-add-divider"></div>
+                    <div class="activity-add-label">Add new activity</div>
+                    <div class="activity-add-input-wrap">
+                        <input type="text"
+                               class="settings-input activity-add-input"
+                               id="activity-add-input"
+                               placeholder="Enter activity name..."
+                               maxlength="50">
+                        <button type="button" class="activity-add-btn" id="activity-add-btn" onclick="addActivity()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            <span>Add Activity</span>
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </section>
 
