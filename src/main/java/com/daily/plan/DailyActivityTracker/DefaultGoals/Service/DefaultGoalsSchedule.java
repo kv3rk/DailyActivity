@@ -1,22 +1,24 @@
-package com.daily.plan.DailyActivityTracker.DailyGoals.DefaultGoals;
+package com.daily.plan.DailyActivityTracker.DefaultGoals.Service;
 
-import com.daily.plan.DailyActivityTracker.DailyGoals.DTO.GoalDTO;
-import com.daily.plan.DailyActivityTracker.DailyGoals.Service.DailyPlanService;
+import com.daily.plan.DailyActivityTracker.DailyGoals.Entity.GoalEntity;
+import com.daily.plan.DailyActivityTracker.DailyGoals.Repository.GoalRepository;
+import com.daily.plan.DailyActivityTracker.User.Repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 @EnableScheduling
 @Slf4j
 @Profile({"dev", "prod"})
 public class DefaultGoalsSchedule {
 
-    private final DailyPlanService dailyPlanService;
+    private final GoalRepository goalRepository;
+    private final UserRepository userRepository;
 
     private final String defaultGoalNumber1;
     private final String defaultGoalNumber2;
@@ -43,7 +45,8 @@ public class DefaultGoalsSchedule {
 
     public DefaultGoalsSchedule(
 
-            DailyPlanService dailyPlanService,
+            GoalRepository goalRepository,
+            UserRepository userRepository,
 
             @Value("${default.goal.number1}") String defaultGoalNumber1,
             @Value("${default.goal.number2}") String defaultGoalNumber2,
@@ -68,7 +71,8 @@ public class DefaultGoalsSchedule {
             @Value("${default.goal.number25}") String defaultGoalNumber25,
             @Value("${default.goal.number26}") String defaultGoalNumber26) {
 
-        this.dailyPlanService = dailyPlanService;
+        this.goalRepository = goalRepository;
+        this.userRepository = userRepository;
 
         this.defaultGoalNumber1 = defaultGoalNumber1;
         this.defaultGoalNumber2 = defaultGoalNumber2;
@@ -96,13 +100,17 @@ public class DefaultGoalsSchedule {
 
     public void createGoal(String text) {
 
-        GoalDTO defaultGoalDTO = new GoalDTO(
-                null, text, false
+        GoalEntity goal = new GoalEntity();
+
+        goal.setGoalText(text);
+        goal.setDoneFlag(false);
+        goal.setUsername(
+                userRepository.findByUsername("kv3rk")
         );
 
-        dailyPlanService.save(defaultGoalDTO);
+        goalRepository.save(goal);
 
-        log.info("Created DEFAULT goal with text [{}]", defaultGoalDTO.goalText());
+        log.info("Created DEFAULT goal with text [{}] for user [{}]", text, "kv3rk");
     }
 
 
