@@ -82,8 +82,15 @@ public class SettingsService {
 
         User user = userRepository.findByUsername(authenticateService.getUsername());
 
+        String telegram = user.getTelegram();
+
+        if (telegram.contains("-")) {
+
+            return new TelegramDTO("");
+        }
+
         TelegramDTO telegramDTO = new TelegramDTO(
-                user.getTelegram()
+                telegram
         );
 
         return telegramDTO;
