@@ -46,8 +46,13 @@ public class TelegramBotLogic extends TelegramLongPollingBot {
         Long chatId = message.getChatId();
         String text = message.getText();
 
+        log.info("ChatId: {}",
+                chatId);
+
         if (text.startsWith("/start ")) {
             String uuid = text.replace("/start ", "").trim();
+            log.info("ChatId: {} and uuid: {}",
+                    chatId, uuid);
             linkUser(uuid, chatId);
         }
     }

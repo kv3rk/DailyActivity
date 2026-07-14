@@ -53,7 +53,7 @@ async function connectTelegram() {
         }
 
         const uuid = await response.text();
-        const telegramLink = `https://t.me/${BOT_USERNAME}?start=${uuid}`;
+        const telegramLink = `https://telegram.me/${BOT_USERNAME}?start=${uuid}`;
         window.open(telegramLink, '_blank');
 
     } catch (err) {

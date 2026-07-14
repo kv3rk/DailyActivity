@@ -68,6 +68,8 @@ public class SettingsService {
 
         user.setTelegram(generatedUUID);
 
+        userRepository.save(user);
+
         log.info("Set telegram UUID [{}] for user [{}]",
                 generatedUUID, user.getUsername());
 
