@@ -28,6 +28,7 @@ public class DefaultGoalsSchedule {
     private final String defaultGoalNumber6;
     private final String defaultGoalNumber7;
     private final String defaultGoalNumber8;
+    private final String defaultGoalNumber9;
     private final String defaultGoalNumber11;
     private final String defaultGoalNumber12;
     private final String defaultGoalNumber13;
@@ -56,6 +57,7 @@ public class DefaultGoalsSchedule {
             @Value("${default.goal.number6}") String defaultGoalNumber6,
             @Value("${default.goal.number7}") String defaultGoalNumber7,
             @Value("${default.goal.number8}") String defaultGoalNumber8,
+            @Value("${default.goal.number9}") String defaultGoalNumber9,
             @Value("${default.goal.number11}") String defaultGoalNumber11,
             @Value("${default.goal.number12}") String defaultGoalNumber12,
             @Value("${default.goal.number13}") String defaultGoalNumber13,
@@ -82,6 +84,7 @@ public class DefaultGoalsSchedule {
         this.defaultGoalNumber6 = defaultGoalNumber6;
         this.defaultGoalNumber7 = defaultGoalNumber7;
         this.defaultGoalNumber8 = defaultGoalNumber8;
+        this.defaultGoalNumber9 = defaultGoalNumber9;
         this.defaultGoalNumber11 = defaultGoalNumber11;
         this.defaultGoalNumber12 = defaultGoalNumber12;
         this.defaultGoalNumber13 = defaultGoalNumber13;
@@ -118,6 +121,7 @@ public class DefaultGoalsSchedule {
     @Scheduled(cron = "0 1 0 1/1 * *", zone = "Europe/Moscow")
     public void addDailyScheduledGoal() {
 
+        createGoal(defaultGoalNumber9);
         createGoal(defaultGoalNumber12);
         createGoal(defaultGoalNumber13);
         createGoal(defaultGoalNumber14);
