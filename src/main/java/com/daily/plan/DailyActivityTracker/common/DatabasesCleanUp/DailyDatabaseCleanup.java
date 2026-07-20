@@ -24,7 +24,7 @@ public class DailyDatabaseCleanup {
     }
 
 
-    @Scheduled(cron = "0 1 0 1/1 * *", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 1 0 * * MON", zone = "Europe/Moscow")
     public void dailyCleanUp() {
 
         dailyPlanService.deleteAll();

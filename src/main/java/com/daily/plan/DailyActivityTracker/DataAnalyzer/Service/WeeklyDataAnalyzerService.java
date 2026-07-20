@@ -35,7 +35,7 @@ public class WeeklyDataAnalyzerService {
 
         Long count = goalsAnalyzerRepository.countAllGoals(
                 currentDateTime.getCurrentDate()
-                        .minusWeeks(1),
+                        .minusDays(6),
                 username
         );
 
@@ -47,7 +47,7 @@ public class WeeklyDataAnalyzerService {
 
         Long count = goalsAnalyzerRepository.countAllStatusGoals(
                 currentDateTime.getCurrentDate()
-                        .minusWeeks(1),
+                        .minusDays(6),
                 false,
                 username
         );
@@ -60,7 +60,7 @@ public class WeeklyDataAnalyzerService {
 
         Long count = goalsAnalyzerRepository.countAllStatusGoals(
                 currentDateTime.getCurrentDate()
-                        .minusWeeks(1),
+                        .minusDays(6),
                 true,
                 username
         );
@@ -74,7 +74,7 @@ public class WeeklyDataAnalyzerService {
         List<ActivityDTO> list =
                 activityAnalyzerRepository.sumOfTimeAllActivities(
                         currentDateTime.getCurrentDate()
-                                .minusWeeks(1),
+                                .minusDays(6),
                         username
                 );
 
@@ -96,7 +96,7 @@ public class WeeklyDataAnalyzerService {
         List<ActivityDTO> list =
                 activityAnalyzerRepository.sumOfTimeAllActivities(
                         currentDateTime.getCurrentDate()
-                                .minusWeeks(1),
+                                .minusDays(6),
                         username
                 );
 
@@ -124,7 +124,7 @@ public class WeeklyDataAnalyzerService {
 
         Long count = activityAnalyzerRepository.countAllActivities(
                 currentDateTime.getCurrentDate()
-                        .minusWeeks(1),
+                        .minusDays(6),
                 username
         );
 
