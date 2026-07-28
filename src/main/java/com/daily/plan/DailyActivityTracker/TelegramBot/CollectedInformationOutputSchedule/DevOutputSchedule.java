@@ -4,14 +4,11 @@ import com.daily.plan.DailyActivityTracker.StatsStorage.DTO.StatsDTO;
 import com.daily.plan.DailyActivityTracker.StatsStorage.Service.StatsService;
 import com.daily.plan.DailyActivityTracker.TelegramBot.PrepareAnswer.ConcatenatingValues;
 import com.daily.plan.DailyActivityTracker.common.blueprint.PerTimeCollectExecution;
-import com.daily.plan.DailyActivityTracker.common.unit.CurrentDateTime;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import java.util.concurrent.TimeUnit;
 
 @Component
 @Slf4j
@@ -21,15 +18,12 @@ public class DevOutputSchedule implements PerTimeCollectExecution {
 
     private final ConcatenatingValues concatenatingValues;
     private final StatsService statsService;
-    private final CurrentDateTime currentDateTime;
 
     public DevOutputSchedule(ConcatenatingValues concatenatingValues,
-                             StatsService statsService,
-                             CurrentDateTime currentDateTime) {
+                             StatsService statsService) {
 
         this.concatenatingValues = concatenatingValues;
         this.statsService = statsService;
-        this.currentDateTime = currentDateTime;
     }
 
 
