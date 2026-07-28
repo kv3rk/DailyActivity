@@ -11,6 +11,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.TimeUnit;
+
 @Component
 @Slf4j
 @EnableScheduling
@@ -62,31 +64,5 @@ public class DevOutputSchedule implements PerTimeCollectExecution {
         }
 
     }
-
-//    @Scheduled(fixedRate = 1, timeUnit = TimeUnit.SECONDS)
-//    public void testMethod1() throws InterruptedException {
-//
-//        log.info("{} Testing method 1 in {}",
-//                currentDateTime.getFormattedTime(),
-//                Thread.currentThread().getName());
-//
-//        Thread.sleep(10 * 1000);
-//
-//    }
-//
-//    @Scheduled(fixedRate = 1, timeUnit = TimeUnit.SECONDS)
-//    public void testMethod2() throws InterruptedException {
-//
-//        log.info("{} Testing method 2 in {}",
-//                currentDateTime.getFormattedTime(),
-//                Thread.currentThread().getName());
-//
-//
-//    }
-
-//    public String returnDailyString() {
-//
-//        return concatenatingValues.answerWeeklyRollover(statsService.saveWeekly());
-//    }
 
 }
