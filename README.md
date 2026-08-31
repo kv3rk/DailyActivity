@@ -81,6 +81,8 @@ The core idea is to provide a hands-free tracking experience: users set goals an
 <p align="center">
  <img src="src/main/resources/static/images/readme-images/login-page.png" width="450">
  <img src="src/main/resources/static/images/readme-images/main-page-timer.png" width="450">
+ <img src="src/main/resources/static/images/readme-images/sidebar-menu.png" width="450">
+ <img src="src/main/resources/static/images/readme-images/settings-page.png" width="450">
  <img src="src/main/resources/static/images/readme-images/error-notification.png" width="450">
  <img src="src/main/resources/static/images/readme-images/error-page.png" width="450">
  <img src="src/main/resources/static/images/readme-images/Telegram-report.png" width="450">
