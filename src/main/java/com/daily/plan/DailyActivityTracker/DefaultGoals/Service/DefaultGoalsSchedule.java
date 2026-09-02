@@ -49,7 +49,7 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 0 * * *", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 45 1 * * *", zone = "Europe/Moscow")
     public void addDailyGoals() {
         createGoal(goals.getWater());
         createGoal(goals.getMorningRoutine());
@@ -57,7 +57,7 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 0 * * MON-SAT", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 45 1 * * MON-SAT", zone = "Europe/Moscow")
     public void addMonToSatGoals() {
         createGoal(goals.getEnglishSpeaking());
         createGoal(goals.getEnglishGrammar());
@@ -66,7 +66,7 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 0 * * SUN", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 45 1 * * SUN", zone = "Europe/Moscow")
     public void addSundayGoals() {
         createGoal(goals.getCleaning());
         createGoal(goals.getWeeklyReview());
@@ -74,7 +74,7 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 0 * * SUN", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 45 1 * * SUN", zone = "Europe/Moscow")
     public void addAlternatingSundayGoals() {
         int weekOfYear = LocalDate.now().get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
         if (weekOfYear % 2 != 0) {
@@ -85,7 +85,7 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 0 * * SUN", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 45 1 * * SUN", zone = "Europe/Moscow")
     public void addEvery8WeeksGoal() {
         int weekOfYear = LocalDate.now().get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
         if (weekOfYear % 8 == 0) {
@@ -94,33 +94,33 @@ public class DefaultGoalsSchedule {
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 0 * * MON,WED,FRI", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 45 1 * * MON,WED,FRI", zone = "Europe/Moscow")
     public void addMonWedFriGoals() {
         createGoal(goals.getEnglishAnki1());
         createGoal(goals.getRun());
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 0 * * TUE,THU,SAT", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 45 1 * * TUE,THU,SAT", zone = "Europe/Moscow")
     public void addTueThuSatGoals() {
         createGoal(goals.getEnglishAnki2());
         createGoal(goals.getStrength());
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 0 * * MON,THU", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 45 1 * * MON,THU", zone = "Europe/Moscow")
     public void addMonThuGoals() {
         createGoal(goals.getEnglishWriting());
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 0 * * TUE,FRI", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 45 1 * * TUE,FRI", zone = "Europe/Moscow")
     public void addTueFriGoals() {
         createGoal(goals.getEnglishReading());
     }
 
     @Async("asyncTaskExecutor")
-    @Scheduled(cron = "0 0 0 * * WED,SAT", zone = "Europe/Moscow")
+    @Scheduled(cron = "0 45 1 * * WED,SAT", zone = "Europe/Moscow")
     public void addWedSatGoals() {
         createGoal(goals.getEnglishListening());
     }
