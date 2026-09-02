@@ -8,9 +8,23 @@ A personal productivity web application for tracking daily goals, activities, an
 ---
 
 ## 📖 About the Project
-Daily Plan is a full-stack web application designed to help users track their daily routines, manage goals, and analyze their productivity. Unlike standard CRUD applications, this project features a real domain logic with background processing, external API integration, and automated data analytics.
+Daily Plan is a full-stack web application designed to help users track their daily routines, manage goals, and analyze their productivity. Unlike a standard CRUD application, the project includes domain-specific business logic, background processing, external API integration, and automated data analytics.
 
 The core idea is to provide a hands-free tracking experience: users set goals and use a built-in timer to log activities, while the backend automatically aggregates statistics, cleans up outdated data, and sends formatted progress reports directly to the user's Telegram.
+
+---
+
+## 📸 Screenshots
+
+<p align="center">
+ <img src="src/main/resources/static/images/readme-images/login-page.png" width="450">
+ <img src="src/main/resources/static/images/readme-images/main-page-timer.png" width="450">
+ <img src="src/main/resources/static/images/readme-images/sidebar-menu.png" width="450">
+ <img src="src/main/resources/static/images/readme-images/settings-page.png" width="450">
+ <img src="src/main/resources/static/images/readme-images/error-notification.png" width="450">
+ <img src="src/main/resources/static/images/readme-images/error-page.png" width="450">
+ <img src="src/main/resources/static/images/readme-images/Telegram-report.png" width="450">
+</p>
 
 ---
 
@@ -19,7 +33,7 @@ The core idea is to provide a hands-free tracking experience: users set goals an
 ### 📊 Goal & Activity Tracking
 *   **Interactive Timer:** Track time spent on specific activities with a built-in web timer.
 *   **Goal Management:** Set daily/weekly goals and track completion status.
-*   **Domain-Driven Logic:** Real-world entity relationships (User, Goals, Activities, Timer, Statistics, Settings).
+*   **Domain Model:** User, Goals, Activities, Timer, Statistics, and Settings with relationships reflecting the application's business logic.
 
 ### 🤖 Telegram Integration & Reporting
 *   **Automated Reports:** Scheduled daily and weekly progress reports sent via Telegram Bot API.
@@ -27,7 +41,7 @@ The core idea is to provide a hands-free tracking experience: users set goals an
 
 ### ⚙️ Background Processing & Analytics
 *   **Scheduled Jobs (`@Scheduled`):** Automated creation of default goals, daily/weekly tasks, database cleanup (data-retention policy), and statistics aggregation.
-*   **Async Execution (`@Async`):** Non-blocking processing for heavy analytical tasks.
+*   **Async Execution (`@Async`):** Asynchronous execution of scheduled background tasks using a dedicated thread pool.
 *   **Separate Stats Storage:** Dedicated schema for storing aggregated analytics to optimize read performance.
 
 ### 🛡️ Security & Infrastructure
@@ -39,10 +53,10 @@ The core idea is to provide a hands-free tracking experience: users set goals an
 
 ## 🏗️ How It Works
 1.  **User Interaction:** The user authenticates, sets goals, and starts the activity timer via the Thymeleaf/JS frontend.
-2.  **Data Persistence:** Timer events and goal completions are saved to PostgreSQL within managed Spring transactions (`@Transactional`).
-3.  **Background Analytics:** Scheduled background jobs aggregate raw timer data into a separate `stats_storage` for fast analytical queries.
+2.  **Data Persistence:** Timer events and goal changes are persisted to PostgreSQL through Spring Data JPA, with transactional boundaries managed by Spring.
+3.  **Background Analytics:** Scheduled background jobs aggregate raw timer and goal data and store the resulting statistics in a separate stats_storage table for faster reads.
 4.  **Automated Reporting:** The system triggers the Telegram Bot to send formatted weekly/daily reports to the user's chat.
-5.  **Data Retention:** An automated daily cleanup job removes outdated historical data to keep the database lightweight.
+5.  **Data Retention:** A scheduled weekly cleanup job removes goal and timer records according to the application's data-retention policy.
 
 ---
 
@@ -56,7 +70,7 @@ The core idea is to provide a hands-free tracking experience: users set goals an
 | **Integrations** | Telegram Bot API, OpenAPI (Swagger), Spring Actuator |
 | **Utilities** | MapStruct, Lombok, Logback |
 | **DevOps** | Docker, Docker Compose, Environment Variables |
-| **Testing** | JUnit, AssertJ, Testcontainers, JaCoCo |
+| **Testing** | JUnit, AssertJ, Spring Boot Test |
 
 ---
 
@@ -73,20 +87,6 @@ The core idea is to provide a hands-free tracking experience: users set goals an
 *   **Test Coverage:** Implement comprehensive integration tests using **Testcontainers** and **PostgreSQL Testcontainers** for repositories and services.
 *   **CI/CD Pipeline:** Set up **GitHub Actions** for automated testing, building, and Docker image deployment on `git push`.
 *   **Configuration Externalization:** Move hardcoded settings (like `ZoneId`) to externalized `application.yml` properties for better multi-environment support.
-
----
-
-## 📸 Screenshots
-
-<p align="center">
- <img src="src/main/resources/static/images/readme-images/login-page.png" width="450">
- <img src="src/main/resources/static/images/readme-images/main-page-timer.png" width="450">
- <img src="src/main/resources/static/images/readme-images/sidebar-menu.png" width="450">
- <img src="src/main/resources/static/images/readme-images/settings-page.png" width="450">
- <img src="src/main/resources/static/images/readme-images/error-notification.png" width="450">
- <img src="src/main/resources/static/images/readme-images/error-page.png" width="450">
- <img src="src/main/resources/static/images/readme-images/Telegram-report.png" width="450">
-</p>
 
 ---
 
